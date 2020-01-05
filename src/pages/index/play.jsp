@@ -11,7 +11,7 @@
 <html>
 <head>
 <!-- 引入Title图标 -->
-<link href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" rel="shortcut icon" /> 
+<link href="${pageContext.request.contextPath }/static/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 <!-- 声明页面信息与字符编码集 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 声明移动端响应式布局-->
@@ -68,7 +68,7 @@ var videoId = ${requestScope.video.id};
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>	
+      </button>
       <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
     </div>
 
@@ -91,7 +91,7 @@ var videoId = ${requestScope.video.id};
       <ul class="nav navbar-nav navbar-right">
         <c:if test="${sessionScope.user != null}">
         	<li><a href="account-collect-show">收藏夹</a></li>
-        </c:if>   
+        </c:if>
         <li class="dropdown">
           <!-- 用户未登录显示部分 -->
           <c:if test="${sessionScope.user == null}">
@@ -207,7 +207,7 @@ var videoId = ${requestScope.video.id};
 				<textarea class="form-control" rows="3" placeholder="请再次发表您对该视频的看法,下方会随机显示五条用户的评论信息,您的信息有可能会显示其中哦~" id="commentValue"></textarea><br>
 				<button type="submit" class="btn btn-default pull-right" style="background-color:#f36c60; color:white;" id="commentBtn">发表评论</button>
 			</form>
-		</c:if>	
+		</c:if>
 			<script type="text/javascript">
 				//提交内容为空
 				$("#commentBtn").on("click", function() {
@@ -233,7 +233,7 @@ var videoId = ${requestScope.video.id};
 						if (data == 0) {
 							alert("评论失败,请检查您的评论内容是否合法!");
 						}
-					}); 
+					});
 					return false;
 				})
 			</script>
@@ -242,7 +242,7 @@ var videoId = ${requestScope.video.id};
 	<hr id="commentHr">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1" id="commentDiv">
-			
+
 			<c:forEach items="${requestScope.video.videoComments }" var="vc" begin="0" end="4">
 				<div class="media">
 				  <a class="media-left media-middle" href="#">
@@ -255,14 +255,14 @@ var videoId = ${requestScope.video.id};
 				</div>
 				<hr>
 			</c:forEach>
-			
+
 		</div>
 	</div>
 </div>
 <!-- 评论部分 ]] -->
 
-	
-	
+
+
 <script src="${pageContext.request.contextPath }/js/jquery-2.1.4.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.shCircleLoader.js"></script>
 <script src="${pageContext.request.contextPath }/js/jquery.danmu.js"></script>
@@ -275,7 +275,7 @@ $("#danmup").DanmuPlayer({
   });
 
   $("#danmup .danmu-div").danmu("addDanmu",[
-	<% 
+	<%
 		Object obj =  request.getAttribute("danmus");
     	ArrayList<String> danmus = (ArrayList<String>) obj;
     	for (int i = 0; i < danmus.size(); ++i) {

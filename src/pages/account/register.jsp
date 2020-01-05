@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- 引入Title图标 -->
-<link href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" rel="shortcut icon" /> 
+<link href="${pageContext.request.contextPath }/static/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 <!-- 声明页面信息与字符编码集 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 声明移动端响应式布局-->
@@ -19,19 +17,19 @@
 <!-- 引入logo使用的网络字库 -->
 <link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/46833/582d7e08f629d8136ca2db97.css' rel='stylesheet' type='text/css' />
 <!-- 引入类型标题使用的网络字库 -->
-<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/5836fb1ef629dc16884f4127.css' rel='stylesheet' type='text/css' />
+<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/583304a6f629d816742d34f6.css' rel='stylesheet' type='text/css' />
 <!-- 引入jQuery库 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/jquery-2.0.2.js"></script>
 <!-- 引入Bootstrap框架js部分 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/bootstrap.min.js"></script>
-<title>个人中心</title>
+<title>用户注册</title>
 <style type="text/css">
-	.myself_bar {
+	.register_bar {
 		width: 100%;
-		height: 280px;
-		background-color: grey;
+		height: 300px;
+		background-color: orange;
 		margin-top: -21px;
-		background: url(${pageContext.request.contextPath}/${sessionScope.myselfBar.src}) no-repeat center center;
+		background: url(${pageContext.request.contextPath}/photo/account/register_bar.png) no-repeat center center;
 		background-size: cover;
 	}
 	td p {
@@ -39,14 +37,6 @@
 	}
 	td h4 {
 		margin-left: 30px;
-	}
-	#icon {
-		width: 100px;
-		height: 100px;
-		margin-top: -50px;
-	}
-	#message p {
-		line-height: 2em;
 	}
 </style>
 </head>
@@ -61,7 +51,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>	
+      </button>
       <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
     </div>
 
@@ -73,7 +63,7 @@
         <li><a href="shop-shop-show"><i class="glyphicon glyphicon-shopping-cart" style="font-size:10px;"></i> 周边商城</a></li>
       	<li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="font-size:10px;"></i> 游戏</a></li>
       </ul>
-            <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
+           <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search">
         </div>
@@ -84,7 +74,7 @@
       <ul class="nav navbar-nav navbar-right">
         <c:if test="${sessionScope.user != null}">
         	<li><a href="account-collect-show">收藏夹</a></li>
-        </c:if>   
+        </c:if>
         <li class="dropdown">
           <!-- 用户未登录显示部分 -->
           <c:if test="${sessionScope.user == null}">
@@ -112,93 +102,63 @@
 </nav>
 <!-- 网站主体导航栏 ]] -->
 <!-- bar图 [[ -->
-	<div class="myself_bar"></div>
-	<a href="#!" data-toggle="modal" title="点击我上传头像~" data-target="#myModal"><img src="${pageContext.request.contextPath }/${sessionScope.user.icon }" alt="..." class="img-circle center-block" id="icon"></a>
-	<h3 class="text-center" style="margin:0">${sessionScope.user.username }</h3>
-	<p class="text-center" style="margin:0">${sessionScope.user.introduce }</p>
-<br><br>
-<!-- 主体内容 [[ -->
+<!-- 	<div class="register_bar"></div>
+ --><!-- bar图 ]] -->
+<br>
+<br>
+<!-- 注册表单 [[ -->
+<form action="account-register-execute" method="post">
 <div class="container">
 	<div class="row">
-		<div class="col-lg-8">
-			<table class="table table-bordered" style="background-color: white;">
+		<div class="col-lg-6 col-lg-offset-3">
+			<table class="table table-bordered" style="text-align: center;">
 				<tr>
-					<td>
-						<h4 class="css73bee384d5489"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>我最近收藏的视频</h4>
-						
-						<c:forEach items="${sessionScope.user.videos }" var="v" begin="0" end="3">
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							    <a href="index-play-show?id=${v.id }" class="thumbnail">
-							      <img src="${pageContext.request.contextPath }/${v.src }" alt="">
-							    </a>
-							 </div>
-						</c:forEach>
-						
-					</td>
+					<td><h3><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35"></img><span class="css72c7373005489">恭喜您答对了全部的问题,现在可以注册啦!</span></h3></td>
 				</tr>
 				<tr>
 					<td>
-						<h4 class="css73bee384d5489"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>我最近评论</h4>
-						<div class="list-group">
-						<c:forEach items="${requestScope.comments }" var="c">
-							<a href="#" class="list-group-item">${c.content } <span class="pull-right" style="color:grey"> <fmt:formatDate value="${c.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </span></a>
-						</c:forEach>
+					<form>
+						<br>
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						  <input type="text" class="form-control" placeholder="用户名" name="username" id="usernameInput" value="">
+						  <!--用户名不存在显示--><span class="glyphicon glyphicon-ok form-control-feedback" style="display:none" id="noExistName" ></span>
+						  <!--用户名存在显示--><span class="glyphicon glyphicon-remove form-control-feedback" style="display:none" id="existName" ></span>
 						</div>
+						<br>
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						  <input type="password" class="form-control" placeholder="密码" name="password" id="passwordInput" value="">
+						</div>
+						<br>
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+						  <input type="text" class="form-control" placeholder="个性签名" name="introduce" id="introduceInput" value="">
+						</div>
+						<br>
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+						  <input type="date" class="form-control" title="出生日期" name="birth">
+						</div>
+						<br>
+						<div>
+						    <label>
+						    	<span>性别 : </span>&nbsp;&nbsp;&nbsp;&nbsp;
+						      <input type="radio" name="sex" value="m" checked="checked"> ♂男 &nbsp;&nbsp;
+						      <input type="radio" name="sex" value="f"> ♀女
+						    </label>
+						 </div>
+				    	<br>
+					  <button type="submit" class="btn btn-info" id="registerBtn">注册</button>
+					</form>
 					</td>
 				</tr>
 			</table>
 		</div>
-		<div class="col-lg-4">
-			<div class="list-group">
-			  <div class="list-group-item">
-			    <h4 class="list-group-item-heading css73bee384d5489"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>个人介绍</h4>
-			  </div>
-			  <div class="list-group-item" id="message">
-			  	<p class="list-group-item-text">昵称 : ${sessionScope.user.username }</p>
-			    <p class="list-group-item-text">个性签名 : ${sessionScope.user.introduce }</p>
-			    <p class="list-group-item-text">出生日期 : <fmt:formatDate value="${sessionScope.user.birth }" pattern="yyyy-MM-dd"/> </p>
-			    <p class="list-group-item-text">性别 : <c:if test="${sessionScope.user.sex == 'm' }">男</c:if> <c:if test="${sessionScope.user.sex == 'f' }">女</c:if> </p>
-			    <p class="list-group-item-text">注册时间 : <fmt:formatDate value="${sessionScope.user.createTime }" pattern="yyyy-MM-dd"/></p>
-			    <p class="list-group-item-text">硬币数 : ${sessionScope.user.dollar }</p>
-			    <p class="list-group-item-text">视频收藏数 : ${requestScope.videoCount }</p>
-			  </div>
-			</div>
-		</div>
 	</div>
 </div>
-<!-- 主体内容 ]] -->
-
-<!-- 修改头像模态框 [[ -->
-<s:form action="account-icon-execute" method="post" enctype="multipart/form-data">
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-picture"></i> 上传用户头像</h4>
-      </div>
-      <div class="modal-body">
-		    <input type="file" id="exampleInputFile" name="file">
-		    <p class="help-block">请上传小于10MB的图像文件</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">不了</button>
-        <button type="submit" class="btn btn-primary" style="background-color: #f36c60;" id="uploadBtn">上传头像</button>
-      </div>
-    </div>
-  </div>
-</div>
-</s:form>
-<script type="text/javascript">
-	$("#uploadBtn").on("click", function() {
-		if ($("#exampleInputFile").val() == "") {
-			return false;
-		}
-	});
-</script>
-<!-- 修改头像模态框 ]] -->
-
-
+</form>
+<!-- 注册表单 ]] -->
 <br><br><br>
 <!-- 友情链接部分 [[ -->
 <div class="container-fluid" style="background-color:rgb(236,236,236)" id="footer">
@@ -231,6 +191,34 @@
 	<br>
 </div>
 <!-- 友情链接部分 ]] -->
-
+<script type="text/javascript">
+$(function() {
+	$("#registerBtn").on("click", function() {
+		if ($("#usernameInput").val() == "" || $("#passwordInput").val() == "") {
+			alert("用户名或密码不能为空!");
+			return false;
+		}
+	});
+	$("#usernameInput").on("change", function() {
+		var val = $(this).val();
+		val = $.trim(val);
+		$(this).val(val);
+		var url = "${pageContext.request.contextPath}/account-username-ajax";
+		var args = {"username":val, "time":new Date()};
+		$.post(url, args, function(data) {
+			if (data == 1) {
+				$("#existName").css("display", "inline");
+				$("#noExistName").css("display", "none");
+			} else if (data == -1) {
+				$("#existName").css("display", "none");
+				$("#noExistName").css("display", "inline");
+			} else if (data == 0) {
+				$("#existName").css("display", "none");
+				$("#noExistName").css("display", "none");
+			}
+		});
+	});
+})
+</script>
 </body>
 </html>

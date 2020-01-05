@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- 引入Title图标 -->
-<link href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" rel="shortcut icon" /> 
+<link href="${pageContext.request.contextPath }/static/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 <!-- 声明页面信息与字符编码集 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 声明移动端响应式布局-->
@@ -14,30 +15,24 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/framework/bootstrap.min.css" />
 <!-- 引入该页面对应样式表 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css" />
+<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/46833/582d7e08f629d8136ca2db97.css' rel='stylesheet' type='text/css' />
 <!-- 引入logo使用的网络字库 -->
 <link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/46833/582d7e08f629d8136ca2db97.css' rel='stylesheet' type='text/css' />
 <!-- 引入类型标题使用的网络字库 -->
-<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/5835a40cf629e303883534e6.css' rel='stylesheet' type='text/css' />
+<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/582db26ff629d8136ca2dbc5.css' rel='stylesheet' type='text/css' />
+<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/584044bff629d80748ce1c7d.css' rel='stylesheet' type='text/css' />
 <!-- 引入jQuery库 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/jquery-2.0.2.js"></script>
 <!-- 引入Bootstrap框架js部分 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/bootstrap.min.js"></script>
-<title>用户信息修改</title>
+<title>游戏中心</title>
 <style type="text/css">
-	.register_bar {
-		width: 100%;
-		height: 300px;
-		background-color: orange;
-		margin-top: -21px;
-		background: url(${pageContext.request.contextPath}/photo/account/register_bar.png) no-repeat center center;
-		background-size: cover;
-	}
-	td p {
-		margin-left: 40px;
-	}
-	td h4 {
-		margin-left: 30px;
-	}
+#moreGame a {
+	color: grey;
+}
+#moreGame a:hover {
+	color: skyblue;
+}
 </style>
 </head>
 <body>
@@ -51,19 +46,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>	
+      </button>
       <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class=""><a href="index-index-show"><i class="glyphicon glyphicon-film" style="color:#f36c60;font-size:10px;"></i> 主站</a></li>
+        <li class=""><a href="index-index-show"><i class="glyphicon glyphicon-film" style="font-size:10px;"></i> 主站</a></li>
         <li><a href="palette-palette-show"><i class="glyphicon glyphicon-picture" style="font-size:10px;"></i> 画友</a></li>
         <li><a href="shop-shop-show"><i class="glyphicon glyphicon-shopping-cart" style="font-size:10px;"></i> 周边商城</a></li>
-      	<li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="font-size:10px;"></i> 游戏</a></li>
+        <li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="color:#f36c60;font-size:10px;"></i> 游戏</a></li>
       </ul>
-           <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
+      <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search">
         </div>
@@ -74,7 +69,7 @@
       <ul class="nav navbar-nav navbar-right">
         <c:if test="${sessionScope.user != null}">
         	<li><a href="account-collect-show">收藏夹</a></li>
-        </c:if>   
+        </c:if>
         <li class="dropdown">
           <!-- 用户未登录显示部分 -->
           <c:if test="${sessionScope.user == null}">
@@ -101,72 +96,117 @@
   </div><!-- /.container-fluid -->
 </nav>
 <!-- 网站主体导航栏 ]] -->
-<br>
-<br>
-<!-- 编辑信息 [[ -->
-<form action="account-edit-execute" method="post">
-<input type="hidden" name="id" value="${sessionScope.user.id }">
-<div class="container">
-	<div class="row">
-		<div class="col-lg-6 col-lg-offset-3">
-			<table class="table table-bordered" style="text-align: center;">
-				<tr>
-					<td><h3><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35"></img><span class="css736b219905489">个人信息修改</span></h3></td>
-				</tr>
-				<tr>
-					<td>
-					<form>
-						<br>
-						<div class="input-group">
-						  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-						  <input type="text" class="form-control" placeholder="用户名" name="username" id="usernameInput" value="${sessionScope.user.username }" disabled>
-						</div>
-						<br>
-						<div class="input-group">
-						  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-						  <input type="password" class="form-control" placeholder="密码" name="password" id="passwordInput" value="${sessionScope.user.password }">
-						</div>
-						<br>
-						<div class="input-group">
-						  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-						  <input type="text" class="form-control" placeholder="个性签名" name="introduce" id="introduceInput" value="${sessionScope.user.introduce }">
-						</div>
-						<br>
-						<div class="input-group">
-						  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-						  <input type="date" class="form-control" title="出生日期" name="birth" value="${sessionScope.user.birth }">
-						</div>
-						<br>
-						<div>
-						    <label>
-						    	<span>性别 : </span>&nbsp;&nbsp;&nbsp;&nbsp;
-						      <input type="radio" name="sex" value="m" id="sexM"> ♂男 &nbsp;&nbsp;
-						      <input type="radio" name="sex" value="f" id="sexF"> ♀女
-						    </label>
-						 </div>
-				    	<br>
-					  <button type="submit" class="btn btn-info">修改</button>
-					</form>
-					</td>
-				</tr>
-			</table>
+
+	<!--轮播-->
+	<div id="myCarousel" class="carousel slide" style="margin-top:-20px;">
+		<!-- 轮播（Carousel）指标 -->
+		<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+		<li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-inner">
+		<div class="item active">
+		<img src="${pageContext.request.contextPath }/${requestScope.gameShows[0].src}" alt="First slide">
 		</div>
-	</div>
-</div>
-</form>
-<script type="text/javascript">
-	var sex = "${sessionScope.user.sex}";
-	if (sex == "m") {
-		$("#sexM").attr("checked","checked");
-		$("#sexF").removeAttr("checked");
-	}
-	if (sex == "f") {
-		$("#sexM").removeAttr("checked");
-		$("#sexF").attr("checked", "checked");
-	}
-</script>
-<!-- 编辑信息 ]] -->
-<br><br><br>
+		<div class="item">
+		<img src="${pageContext.request.contextPath }/${requestScope.gameShows[1].src}" alt="Second slide">
+		</div>
+		<div class="item">
+		<img src="${pageContext.request.contextPath }/${requestScope.gameShows[2].src}" alt="Third slide">
+		</div>
+		<div class="item">
+		<img src="${pageContext.request.contextPath }/${requestScope.gameShows[3].src}" alt="Third slide">
+		</div>
+
+		</div>
+		</div>
+		<br /><br /><br />
+			<script type="text/javascript">
+			$('.carousel').carousel({
+				  interval: 3000
+				})
+		</script>
+		<!--轮播结束-->
+		<!--第三部分-->
+
+		<c:forEach items="${requestScope.games }" var="g" varStatus="status">
+			<div class="row">
+			<div class="col-md-6 col-md-offset-2" >
+				<img src="${pageContext.request.contextPath }/${g.src}"  class="img-responsive" alt="Responsive image"/>
+			</div>
+			<div class="col-md-2">
+				<span style="color: grey;font-size: 18px;font-weight: bold;">
+				${g.name}
+				</span>
+				<br/><br/>
+				<div style="background-color: lightseagreen;
+					height: 2px;width: 200px;">
+				</div>
+				<br/>
+				<p style="color: grey;">${g.title}</p>
+				<br/><br/>
+			</div>
+		</div>
+		<br>
+		</c:forEach>
+
+
+		<!--第三部分结束-->
+		<br /><br /><br />
+		<!--各种游戏-->
+		<div class="row" id="moreGame">
+			<div class="col-md-2 col-md-offset-2" style="border: 1px solid;border-color: darkgray;">
+				<div class="row" style="background-color:lightgray;
+					padding: 5px 0px 5px 8px;">
+					<b style="font-size: 20dp;">手机游戏</b>
+				</div>
+				<div class="row" style="padding:3px 0px 3px 8px;height: 350px;">
+					<p style="color: orange;">新游推荐</p>
+					<c:forEach items="${requestScope.intro1 }" var="i" >
+						<a href="#">${i.name }</a><br />
+					</c:forEach>
+				</div>
+			</div>
+			<div class="col-md-4" style="border: 1px solid;border-color: darkgray; margin-left:-1px; margin-right:-1px;">
+				<div class="row" style="background-color:lightgray;
+					padding: 5px 0px 5px 8px;height: 30.5px;">
+					<b style="font-size: 20dp;"></b>
+				</div>
+				<div class="row" style="padding:3px 0px 3px 8px;height: 350px;">
+					<p style="color: orange;">热门推荐</p>
+					<div class="row">
+						<c:forEach items="${requestScope.intro2 }" var="i" varStatus="status">
+						<c:if test="${status.count % (requestScope.intro2size/2)  == 1}">
+						<div class="col-md-6">
+						</c:if>
+							<a href="#">${i.name }</a><br />
+						<c:if test="${status.count % (requestScope.intro2size/2) == 0}">
+						</div>
+						</c:if>
+						</c:forEach>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-2" style="border: 1px solid;border-color: darkgray;">
+				<div class="row" style="background-color:lightgray;
+					padding: 5px 0px 5px 8px;">
+					<b style="font-size: 20dp;">网页游戏</b>
+				</div>
+				<div class="row" style="padding:3px 0px 3px 8px;height: 350px;">
+					<p style="color: orange;">网游推荐</p>
+					<c:forEach items="${requestScope.intro3 }" var="i" >
+						<a href="#">${i.name }</a><br />
+					</c:forEach>
+				</div>
+			</div>
+
+		</div>
+		<!--各种游戏结束-->
+		<br><br><br>
 <!-- 友情链接部分 [[ -->
 <div class="container-fluid" style="background-color:rgb(236,236,236)" id="footer">
 <br>

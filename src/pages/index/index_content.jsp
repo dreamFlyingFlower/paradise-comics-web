@@ -6,13 +6,13 @@
 <html>
 <head>
 <!-- 引入Title图标 -->
-<link href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" rel="shortcut icon" /> 
+<link href="${pageContext.request.contextPath }/static/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 <!-- 声明页面信息与字符编码集 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 声明移动端响应式布局-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 引入Title图标 -->
-<link href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" rel="shortcut icon" /> 
+<link href="${pageContext.request.contextPath }/static/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 <!-- 引入Bootstrap框架样式部分-->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/framework/bootstrap.min.css" />
 <!-- 引入该页面对应样式表 -->
@@ -39,7 +39,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>	
+      </button>
       <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
     </div>
 
@@ -62,7 +62,7 @@
       <ul class="nav navbar-nav navbar-right">
         <c:if test="${sessionScope.user != null}">
         	<li><a href="account-collect-show">收藏夹</a></li>
-        </c:if>   
+        </c:if>
         <li class="dropdown">
           <!-- 用户未登录显示部分 -->
           <c:if test="${sessionScope.user == null}">
@@ -127,7 +127,7 @@
 				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
 				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
 				  </ol>
-				
+
 				  <!-- Wrapper for slides -->
 				  <div class="carousel-inner" role="listbox">
 				    <div class="item active">
@@ -149,7 +149,7 @@
 					  </div>
 				    </div>
 				  </div>
-				</div>	
+				</div>
 			</div>
 			<!-- 小屏轮播图 -->
 			<div class="col-md-6 col-md-offset-3 hidden-lg">
@@ -160,7 +160,7 @@
 				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
 				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
 				  </ol>
-				
+
 				  <!-- Wrapper for slides -->
 				  <div class="carousel-inner" role="listbox">
 				    <div class="item active">
@@ -182,7 +182,7 @@
 					  </div>
 				    </div>
 				  </div>
-				</div>	
+				</div>
 				<br>
 			</div>
 			<!-- 视频轮播图 ]] -->
@@ -236,7 +236,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 		<div class="row">
 		  <c:forEach items="${requestScope.videos1 }" var="v" begin="4" end="7">
@@ -249,7 +249,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 	</div>
 <!-- 视频主体1 ]] -->
@@ -271,7 +271,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 		<div class="row">
 		  <c:forEach items="${requestScope.videos2 }" var="v" begin="4" end="7">
@@ -284,7 +284,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 	</div>
 <!-- 视频主体2 ]] -->
@@ -306,9 +306,9 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
-		<div class="row">	
+		<div class="row">
 		  <c:forEach items="${requestScope.videos3 }" var="v" begin="4" end="7">
 			  <div class="col-lg-3 col-md-3 col-sm-3">
 			    <a href="index-play-show?id=${v.id }" class="thumbnail">
@@ -319,7 +319,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 	</div>
 <!-- 视频主体3 ]] -->
@@ -341,9 +341,9 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
-		<div class="row">	
+		<div class="row">
 		  <c:forEach items="${requestScope.videos4 }" var="v" begin="4" end="7">
 			  <div class="col-lg-3 col-md-3 col-sm-3">
 			    <a href="index-play-show?id=${v.id }" class="thumbnail">
@@ -354,7 +354,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 	</div>
 <!-- 视频主体4 ]] -->
@@ -376,9 +376,9 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
-		<div class="row">	
+		<div class="row">
 		  <c:forEach items="${requestScope.videos5 }" var="v" begin="4" end="7">
 			  <div class="col-lg-3 col-md-3 col-sm-3">
 			    <a href="index-play-show?id=${v.id }" class="thumbnail">
@@ -389,7 +389,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 	</div>
 <!-- 视频主体5 ]] -->
@@ -411,9 +411,9 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
-		<div class="row">	
+		<div class="row">
 		  <c:forEach items="${requestScope.videos6 }" var="v" begin="4" end="7">
 			  <div class="col-lg-3 col-md-3 col-sm-3">
 			    <a href="index-play-show?id=${v.id }" class="thumbnail">
@@ -424,7 +424,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 	</div>
 <!-- 视频主体6 ]] -->
@@ -446,9 +446,9 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
-		<div class="row">	
+		<div class="row">
 		  <c:forEach items="${requestScope.videos7 }" var="v" begin="4" end="7">
 			  <div class="col-lg-3 col-md-3 col-sm-3">
 			    <a href="index-play-show?id=${v.id }" class="thumbnail">
@@ -459,7 +459,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 	</div>
 <!-- 视频主体7 ]] -->
@@ -481,9 +481,9 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
-		<div class="row">	
+		<div class="row">
 		  <c:forEach items="${requestScope.videos8 }" var="v" begin="4" end="7">
 			  <div class="col-lg-3 col-md-3 col-sm-3">
 			    <a href="index-play-show?id=${v.id }" class="thumbnail">
@@ -494,7 +494,7 @@
 			      </div>
 			    </a>
 			  </div>
-		  </c:forEach>	  
+		  </c:forEach>
 		</div>
 	</div>
 <!-- 视频主体8 ]] -->

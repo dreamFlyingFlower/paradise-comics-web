@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- 引入Title图标 -->
-<link href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" rel="shortcut icon" /> 
+<link href="${pageContext.request.contextPath }/static/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 <!-- 声明页面信息与字符编码集 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 声明移动端响应式布局-->
@@ -16,19 +18,20 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css" />
 <!-- 引入logo使用的网络字库 -->
 <link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/46833/582d7e08f629d8136ca2db97.css' rel='stylesheet' type='text/css' />
-<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/5831bc5ef629d8120c37105b.css' rel='stylesheet' type='text/css' />
+<!-- 引入类型标题使用的网络字库 -->
+<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/5836fb1ef629dc16884f4127.css' rel='stylesheet' type='text/css' />
 <!-- 引入jQuery库 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/jquery-2.0.2.js"></script>
 <!-- 引入Bootstrap框架js部分 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/bootstrap.min.js"></script>
-<title>用户注册,回答答题才可以注册哦~</title>
+<title>个人中心</title>
 <style type="text/css">
-	.question_bar {
+	.myself_bar {
 		width: 100%;
-		height: 300px;
-		background-color: orange;
+		height: 280px;
+		background-color: grey;
 		margin-top: -21px;
-		background: url(${pageContext.request.contextPath}/photo/account/question_bar.png) no-repeat center center;
+		background: url(${pageContext.request.contextPath}/${sessionScope.myselfBar.src}) no-repeat center center;
 		background-size: cover;
 	}
 	td p {
@@ -36,6 +39,14 @@
 	}
 	td h4 {
 		margin-left: 30px;
+	}
+	#icon {
+		width: 100px;
+		height: 100px;
+		margin-top: -50px;
+	}
+	#message p {
+		line-height: 2em;
 	}
 </style>
 </head>
@@ -50,7 +61,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>	
+      </button>
       <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
     </div>
 
@@ -62,7 +73,7 @@
         <li><a href="shop-shop-show"><i class="glyphicon glyphicon-shopping-cart" style="font-size:10px;"></i> 周边商城</a></li>
       	<li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="font-size:10px;"></i> 游戏</a></li>
       </ul>
-           <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
+            <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search">
         </div>
@@ -73,7 +84,7 @@
       <ul class="nav navbar-nav navbar-right">
         <c:if test="${sessionScope.user != null}">
         	<li><a href="account-collect-show">收藏夹</a></li>
-        </c:if>   
+        </c:if>
         <li class="dropdown">
           <!-- 用户未登录显示部分 -->
           <c:if test="${sessionScope.user == null}">
@@ -100,76 +111,94 @@
   </div><!-- /.container-fluid -->
 </nav>
 <!-- 网站主体导航栏 ]] -->
-
 <!-- bar图 [[ -->
-	<div class="question_bar"></div>
-<!-- bar图 ]] -->
-<br>
-<!-- 主体答题框 [[ -->
-<form action="account-question-execute" method="post">
+	<div class="myself_bar"></div>
+	<a href="#!" data-toggle="modal" title="点击我上传头像~" data-target="#myModal"><img src="${pageContext.request.contextPath }/${sessionScope.user.icon }" alt="..." class="img-circle center-block" id="icon"></a>
+	<h3 class="text-center" style="margin:0">${sessionScope.user.username }</h3>
+	<p class="text-center" style="margin:0">${sessionScope.user.introduce }</p>
+<br><br>
+<!-- 主体内容 [[ -->
 <div class="container">
 	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<table class="table table-bordered">
-				<tr>
-					<td><h3><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35"></img><span class="css72771182a5489">只有答对所有题才可以注册哦</span></h3></td>
-				</tr>
+		<div class="col-lg-8">
+			<table class="table table-bordered" style="background-color: white;">
 				<tr>
 					<td>
-						<h4>1. 复制UP主签名并发送弹幕会造成怎样结果?</h4>
-						<p><input type="radio" name="q1" value="A">&nbsp;&nbsp;A. 考试会100分</p>
-						<p><input type="radio" name="q1" value="B">&nbsp;&nbsp;B. 会被系统禁言</p>
-						<p><input type="radio" name="q1" value="C">&nbsp;&nbsp;C. 会中彩票</p>
-						<p><input type="radio" name="q1" value="D">&nbsp;&nbsp;D. 自己帐号会变成VIP</p>
+						<h4 class="css73bee384d5489"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>我最近收藏的视频</h4>
+
+						<c:forEach items="${sessionScope.user.videos }" var="v" begin="0" end="3">
+							<div class="col-lg-3 col-md-3 col-sm-3">
+							    <a href="index-play-show?id=${v.id }" class="thumbnail">
+							      <img src="${pageContext.request.contextPath }/${v.src }" alt="">
+							    </a>
+							 </div>
+						</c:forEach>
+
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<h4>2. 当观看过程中有发现有恶意黑自己喜欢角色的弹幕时应该?</h4>
-						<p><input type="radio" name="q2" value="A">&nbsp;&nbsp;A. 去黑别的角色</p>
-						<p><input type="radio" name="q2" value="B">&nbsp;&nbsp;B. 举报该弹幕</p>
-						<p><input type="radio" name="q2" value="C">&nbsp;&nbsp;C. 打穿屏幕</p>
-						<p><input type="radio" name="q2" value="D">&nbsp;&nbsp;D. 弹幕刷屏</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h4>3. 在视频中版聊会怎样?</h4>
-						<p><input type="radio" name="q3" value="A">&nbsp;&nbsp;A. 瞬间爆炸</p>
-						<p><input type="radio" name="q3" value="B">&nbsp;&nbsp;B. 生灵涂炭</p>
-						<p><input type="radio" name="q3" value="C">&nbsp;&nbsp;C. 关闭视频</p>
-						<p><input type="radio" name="q3" value="D">&nbsp;&nbsp;D. 遮挡屏幕影响别人观看</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h4>4. 在做科普的过程中应当怎样?</h4>
-						<p><input type="radio" name="q4" value="A">&nbsp;&nbsp;A. 遮挡字幕</p>
-						<p><input type="radio" name="q4" value="B">&nbsp;&nbsp;B. 有理有据</p>
-						<p><input type="radio" name="q4" value="C">&nbsp;&nbsp;C. 引起战争</p>
-						<p><input type="radio" name="q4" value="D">&nbsp;&nbsp;D. 涉及剧透</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h4>5. 看排行类视频的时候,以下那种弹幕比较适宜?</h4>
-						<p><input type="radio" name="q5" value="A">&nbsp;&nbsp;A. 剧透第一名</p>
-						<p><input type="radio" name="q5" value="B">&nbsp;&nbsp;B. xxx太低了</p>
-						<p><input type="radio" name="q5" value="C">&nbsp;&nbsp;C. 讨论关注作品信息</p>
-						<p><input type="radio" name="q5" value="D">&nbsp;&nbsp;D. 怎么没有xxx</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button type="submit" class="btn btn-info center-block">提交答案</button>
+						<h4 class="css73bee384d5489"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>我最近评论</h4>
+						<div class="list-group">
+						<c:forEach items="${requestScope.comments }" var="c">
+							<a href="#" class="list-group-item">${c.content } <span class="pull-right" style="color:grey"> <fmt:formatDate value="${c.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </span></a>
+						</c:forEach>
+						</div>
 					</td>
 				</tr>
 			</table>
 		</div>
+		<div class="col-lg-4">
+			<div class="list-group">
+			  <div class="list-group-item">
+			    <h4 class="list-group-item-heading css73bee384d5489"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>个人介绍</h4>
+			  </div>
+			  <div class="list-group-item" id="message">
+			  	<p class="list-group-item-text">昵称 : ${sessionScope.user.username }</p>
+			    <p class="list-group-item-text">个性签名 : ${sessionScope.user.introduce }</p>
+			    <p class="list-group-item-text">出生日期 : <fmt:formatDate value="${sessionScope.user.birth }" pattern="yyyy-MM-dd"/> </p>
+			    <p class="list-group-item-text">性别 : <c:if test="${sessionScope.user.sex == 'm' }">男</c:if> <c:if test="${sessionScope.user.sex == 'f' }">女</c:if> </p>
+			    <p class="list-group-item-text">注册时间 : <fmt:formatDate value="${sessionScope.user.createTime }" pattern="yyyy-MM-dd"/></p>
+			    <p class="list-group-item-text">硬币数 : ${sessionScope.user.dollar }</p>
+			    <p class="list-group-item-text">视频收藏数 : ${requestScope.videoCount }</p>
+			  </div>
+			</div>
+		</div>
 	</div>
 </div>
-</form>
-<!-- 主体答题框 ]] -->
+<!-- 主体内容 ]] -->
+
+<!-- 修改头像模态框 [[ -->
+<s:form action="account-icon-execute" method="post" enctype="multipart/form-data">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-picture"></i> 上传用户头像</h4>
+      </div>
+      <div class="modal-body">
+		    <input type="file" id="exampleInputFile" name="file">
+		    <p class="help-block">请上传小于10MB的图像文件</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">不了</button>
+        <button type="submit" class="btn btn-primary" style="background-color: #f36c60;" id="uploadBtn">上传头像</button>
+      </div>
+    </div>
+  </div>
+</div>
+</s:form>
+<script type="text/javascript">
+	$("#uploadBtn").on("click", function() {
+		if ($("#exampleInputFile").val() == "") {
+			return false;
+		}
+	});
+</script>
+<!-- 修改头像模态框 ]] -->
+
+
 <br><br><br>
 <!-- 友情链接部分 [[ -->
 <div class="container-fluid" style="background-color:rgb(236,236,236)" id="footer">

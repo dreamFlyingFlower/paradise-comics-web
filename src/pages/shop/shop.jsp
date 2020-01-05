@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- 引入Title图标 -->
-<link href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" rel="shortcut icon" /> 
+<link href="${pageContext.request.contextPath }/static/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 <!-- 声明页面信息与字符编码集 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 声明移动端响应式布局-->
@@ -15,24 +15,105 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/framework/bootstrap.min.css" />
 <!-- 引入该页面对应样式表 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css" />
-<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/46833/582d7e08f629d8136ca2db97.css' rel='stylesheet' type='text/css' />
 <!-- 引入logo使用的网络字库 -->
 <link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/46833/582d7e08f629d8136ca2db97.css' rel='stylesheet' type='text/css' />
 <!-- 引入类型标题使用的网络字库 -->
-<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/582db26ff629d8136ca2dbc5.css' rel='stylesheet' type='text/css' />
-<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/584044bff629d80748ce1c7d.css' rel='stylesheet' type='text/css' />
+<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/583304a6f629d816742d34f6.css' rel='stylesheet' type='text/css' />
 <!-- 引入jQuery库 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/jquery-2.0.2.js"></script>
 <!-- 引入Bootstrap框架js部分 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/bootstrap.min.js"></script>
-<title>游戏中心</title>
+<title>周边商城</title>
 <style type="text/css">
-#moreGame a {
-	color: grey;
-}
-#moreGame a:hover {
-	color: skyblue;
-}
+	.register_bar {
+		width: 100%;
+		height: 300px;
+		background-color: orange;
+		margin-top: -21px;
+		background: url(${pageContext.request.contextPath}/photo/account/register_bar.png) no-repeat center center;
+		background-size: cover;
+	}
+	td p {
+		margin-left: 40px;
+	}
+	td h4 {
+		margin-left: 30px;
+	}
+			/*
+			 * Description : 周边页面
+			 * Time : 2016 / 11 / 21
+			 * Author : li
+			 * */
+
+			/*通用样式, 消除默认外边距, 以body元素为基准*/
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				width: 100%;
+				height: 100%;
+				background-color: rgb(248, 248, 248);
+			}
+			/*  ----------------------------------------------------------------*/
+			/*轮播部分*/
+			.lunbo{
+				height: 400px;
+				width:100%;
+				vertical-align: middle;
+				display: table;
+				width: auto;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			/*  ----------------------------------------------------------------*/
+			/*menu bar 菜单部分*/
+			.menu{
+				padding: 10px 0px;
+				margin: 10px 0px;
+				display: table;
+				width: auto;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			/*  ----------------------------------------------------------------*/
+			/*goods 商品部分*/
+			.goods{
+				/*background-color: aquamarine;*/
+				display: table;
+				width: auto;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.goods_border{
+				border:1px solid gray;
+
+			}
+			.goods_img{
+				padding-left: 15px;
+			}
+			.goods_p1{
+				height:30px ;
+				font-size: 16px;
+				padding-bottom: 2px;
+				padding-left: 8px
+
+			}
+			.goods_p2{
+				padding-top: 15px;
+				color: red;
+				padding-left: 8px;
+			}
+			.goods_p3{
+				color: darkgray;
+				font-size: 14px;
+				padding-left: 8px;
+			}
+			p {
+				color:black;
+			}
+			/*  ----------------------------------------------------------------*/
+
 </style>
 </head>
 <body>
@@ -46,7 +127,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>	
+      </button>
       <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
     </div>
 
@@ -55,10 +136,10 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="index-index-show"><i class="glyphicon glyphicon-film" style="font-size:10px;"></i> 主站</a></li>
         <li><a href="palette-palette-show"><i class="glyphicon glyphicon-picture" style="font-size:10px;"></i> 画友</a></li>
-        <li><a href="shop-shop-show"><i class="glyphicon glyphicon-shopping-cart" style="font-size:10px;"></i> 周边商城</a></li>
-        <li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="color:#f36c60;font-size:10px;"></i> 游戏</a></li>
+        <li><a href="shop-shop-show"><i class="glyphicon glyphicon-shopping-cart" style="color:#f36c60; font-size:10px;"></i> 周边商城</a></li>
+      	<li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="font-size:10px;"></i> 游戏</a></li>
       </ul>
-      <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
+           <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search">
         </div>
@@ -69,7 +150,7 @@
       <ul class="nav navbar-nav navbar-right">
         <c:if test="${sessionScope.user != null}">
         	<li><a href="account-collect-show">收藏夹</a></li>
-        </c:if>   
+        </c:if>
         <li class="dropdown">
           <!-- 用户未登录显示部分 -->
           <c:if test="${sessionScope.user == null}">
@@ -97,116 +178,70 @@
 </nav>
 <!-- 网站主体导航栏 ]] -->
 
-	<!--轮播-->
-	<div id="myCarousel" class="carousel slide" style="margin-top:-20px;">
+<!-- 商城主站部分 [[ -->
+<!--        轮播部分                   -->
+		<div id="myCarousel" class="carousel slide hidden-xs" style="margin-top:-22px;">
 		<!-- 轮播（Carousel）指标 -->
 		<ol class="carousel-indicators">
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 		<li data-target="#myCarousel" data-slide-to="1"></li>
-		<li data-target="#myCarousel" data-slide-to="2"></li>
-		<li data-target="#myCarousel" data-slide-to="3"></li>
 		</ol>
 		<!-- 轮播（Carousel）项目 -->
 		<div class="carousel-inner">
 		<div class="item active">
-		<img src="${pageContext.request.contextPath }/${requestScope.gameShows[0].src}" alt="First slide">
+		<img src="${pageContext.request.contextPath }/${requestScope.shopShows[0].photoSrc }" alt="First slide">
 		</div>
 		<div class="item">
-		<img src="${pageContext.request.contextPath }/${requestScope.gameShows[1].src}" alt="Second slide">
+		<img src="${pageContext.request.contextPath }/${requestScope.shopShows[1].photoSrc }" alt="Second slide">
 		</div>
-		<div class="item">
-		<img src="${pageContext.request.contextPath }/${requestScope.gameShows[2].src}" alt="Third slide">
+
 		</div>
-		<div class="item">
-		<img src="${pageContext.request.contextPath }/${requestScope.gameShows[3].src}" alt="Third slide">
+		<!-- 轮播（Carousel）导航 -->
+<!-- 		<a class="carousel-control left" href="#myCarousel"
+		data-slide="prev">
+		</a>
+		<a class="carousel-control right" href="#myCarousel"
+		data-slide="next">
+		</a> -->
 		</div>
-		
-		</div>
-		</div>
-		<br /><br /><br />
-			<script type="text/javascript">
-			$('.carousel').carousel({
-				  interval: 3000
-				})
-		</script>
-		<!--轮播结束-->
-		<!--第三部分-->
-		
-		<c:forEach items="${requestScope.games }" var="g" varStatus="status">
+	<script type="text/javascript">
+	$('.carousel').carousel({
+		  interval: 3000
+		})
+	</script>
+		<br><br>
+	<!--       goods 商品部分                   -->
+
+	<c:forEach items="${requestScope.goods }" var="g" varStatus="status">
+	<c:if test="${status.count % 4 == 1}">
+		<div class="row goods">
+	</c:if>
+		<div class="col-md-3">
+			<div class="row goods_img">
+			<img src="${pageContext.request.contextPath }/${g.photoDesc}" class="img-rounded" />
+			</div>
+			<hr width="100%" style="border:1px solid gainsboro;"/>
 			<div class="row">
-			<div class="col-md-6 col-md-offset-2" >
-				<img src="${pageContext.request.contextPath }/${g.src}"  class="img-responsive" alt="Responsive image"/>
+			<a href="#myCarousel">
+			<p class="goods_p1">${g.name}</p>
+			</a>
 			</div>
-			<div class="col-md-2">
-				<span style="color: grey;font-size: 18px;font-weight: bold;">
-				${g.name}
-				</span>
-				<br/><br/>
-				<div style="background-color: lightseagreen;
-					height: 2px;width: 200px;">
-				</div>
-				<br/>
-				<p style="color: grey;">${g.title}</p>
-				<br/><br/>
+			<div class="row" style="margin-top:-25px;">
+			<p class="goods_p2"><strong><fmt:formatNumber value="${g.price}" type="currency" pattern="$.00"></fmt:formatNumber></strong></p>
+			</div>
+			<div class="row">
+			<p class="goods_p3" style="font-size: 12px;">市场价 <fmt:formatNumber value="${g.price*1.2}" type="currency" pattern="$.00"></fmt:formatNumber> </p>
 			</div>
 		</div>
-		<br>
-		</c:forEach>
-		
-		
-		<!--第三部分结束-->
-		<br /><br /><br />
-		<!--各种游戏-->
-		<div class="row" id="moreGame">
-			<div class="col-md-2 col-md-offset-2" style="border: 1px solid;border-color: darkgray;">
-				<div class="row" style="background-color:lightgray;
-					padding: 5px 0px 5px 8px;">
-					<b style="font-size: 20dp;">手机游戏</b>
-				</div>
-				<div class="row" style="padding:3px 0px 3px 8px;height: 350px;">
-					<p style="color: orange;">新游推荐</p>
-					<c:forEach items="${requestScope.intro1 }" var="i" >
-						<a href="#">${i.name }</a><br />
-					</c:forEach>
-				</div>
-			</div>
-			<div class="col-md-4" style="border: 1px solid;border-color: darkgray; margin-left:-1px; margin-right:-1px;">
-				<div class="row" style="background-color:lightgray;
-					padding: 5px 0px 5px 8px;height: 30.5px;">
-					<b style="font-size: 20dp;"></b>
-				</div>
-				<div class="row" style="padding:3px 0px 3px 8px;height: 350px;">
-					<p style="color: orange;">热门推荐</p>
-					<div class="row">
-						<c:forEach items="${requestScope.intro2 }" var="i" varStatus="status">
-						<c:if test="${status.count % (requestScope.intro2size/2)  == 1}">
-						<div class="col-md-6">
-						</c:if>
-							<a href="#">${i.name }</a><br />
-						<c:if test="${status.count % (requestScope.intro2size/2) == 0}">
-						</div>
-						</c:if>
-						</c:forEach>
-					</div>
-					
-				</div>
-			</div>
-			<div class="col-md-2" style="border: 1px solid;border-color: darkgray;">
-				<div class="row" style="background-color:lightgray;
-					padding: 5px 0px 5px 8px;">
-					<b style="font-size: 20dp;">网页游戏</b>
-				</div>
-				<div class="row" style="padding:3px 0px 3px 8px;height: 350px;">
-					<p style="color: orange;">网游推荐</p>
-					<c:forEach items="${requestScope.intro3 }" var="i" >
-						<a href="#">${i.name }</a><br />
-					</c:forEach>
-				</div>
-			</div>
-			
+	<c:if test="${status.count % 4 == 0}">
 		</div>
-		<!--各种游戏结束-->
-		<br><br><br>
+	</c:if>
+	</c:forEach>
+
+
+<!-- 商城主站部分 ]] -->
+
+<br><br><br>
 <!-- 友情链接部分 [[ -->
 <div class="container-fluid" style="background-color:rgb(236,236,236)" id="footer">
 <br>

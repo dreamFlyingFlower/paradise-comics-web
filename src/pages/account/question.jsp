@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- 引入Title图标 -->
-<link href="${pageContext.request.contextPath }/favicon.ico" type="image/x-icon" rel="shortcut icon" /> 
+<link href="${pageContext.request.contextPath }/static/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 <!-- 声明页面信息与字符编码集 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 声明移动端响应式布局-->
@@ -16,20 +16,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css" />
 <!-- 引入logo使用的网络字库 -->
 <link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/46833/582d7e08f629d8136ca2db97.css' rel='stylesheet' type='text/css' />
-<!-- 引入类型标题使用的网络字库 -->
-<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/583304a6f629d816742d34f6.css' rel='stylesheet' type='text/css' />
+<link href='//cdn.webfont.youziku.com/webfonts/nomal/21641/19673/5831bc5ef629d8120c37105b.css' rel='stylesheet' type='text/css' />
 <!-- 引入jQuery库 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/jquery-2.0.2.js"></script>
 <!-- 引入Bootstrap框架js部分 -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/framework/bootstrap.min.js"></script>
-<title>画友</title>
+<title>用户注册,回答答题才可以注册哦~</title>
 <style type="text/css">
-	.register_bar {
+	.question_bar {
 		width: 100%;
 		height: 300px;
 		background-color: orange;
 		margin-top: -21px;
-		background: url(${pageContext.request.contextPath}/photo/account/register_bar.png) no-repeat center center;
+		background: url(${pageContext.request.contextPath}/photo/account/question_bar.png) no-repeat center center;
 		background-size: cover;
 	}
 	td p {
@@ -38,16 +37,9 @@
 	td h4 {
 		margin-left: 30px;
 	}
-	#introduce {
-		color: #f36c60;
-	}
-	a:hover {
-		text-decoration: none;
-	}
 </style>
 </head>
 <body>
-
 <!-- 网站主体导航栏 [[ -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
@@ -58,19 +50,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>	
+      </button>
       <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class=""><a href="index-index-show"><i class="glyphicon glyphicon-film" style="font-size:10px;"></i> 主站</a></li>
-        <li><a href="palette-palette-show"><i class="glyphicon glyphicon-picture" style="color:#f36c60; font-size:10px;"></i> 画友</a></li>
+        <li class=""><a href="index-index-show"><i class="glyphicon glyphicon-film" style="color:#f36c60;font-size:10px;"></i> 主站</a></li>
+        <li><a href="palette-palette-show"><i class="glyphicon glyphicon-picture" style="font-size:10px;"></i> 画友</a></li>
         <li><a href="shop-shop-show"><i class="glyphicon glyphicon-shopping-cart" style="font-size:10px;"></i> 周边商城</a></li>
       	<li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="font-size:10px;"></i> 游戏</a></li>
       </ul>
-            <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
+           <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search">
         </div>
@@ -81,7 +73,7 @@
       <ul class="nav navbar-nav navbar-right">
         <c:if test="${sessionScope.user != null}">
         	<li><a href="account-collect-show">收藏夹</a></li>
-        </c:if>   
+        </c:if>
         <li class="dropdown">
           <!-- 用户未登录显示部分 -->
           <c:if test="${sessionScope.user == null}">
@@ -109,33 +101,75 @@
 </nav>
 <!-- 网站主体导航栏 ]] -->
 
-<!-- 网站主体 [[ -->
-<div class="container" style="border: 1px solid; border-color: #DDDDDD;">
-	<div class="row" style="background-color: #F5F5F5; border-bottom: 1px solid; border-color: #DDDDDD;">
-		<h4 style="margin-left: 20px;">${requestScope.paletteType.typeName }</h4>
-	</div>
-	<div style="background-color: #FFFFFF; padding-top: 20px;">
-	<c:forEach items="${requestScope.palette }" var="p" varStatus="status">
-	<c:if test="${status.count % 6 == 1}">
+<!-- bar图 [[ -->
+	<div class="question_bar"></div>
+<!-- bar图 ]] -->
+<br>
+<!-- 主体答题框 [[ -->
+<form action="account-question-execute" method="post">
+<div class="container">
 	<div class="row">
-	</c:if>
-		<div  class="col-lg-2 col-md-2 col-xs-4">
-				<a href="#" class="thumbnail">
-					<img src="${pageContext.request.contextPath }/${p.src}" datasrc="holder.js/100%x180"/>
-					<div class="caption">
-						<h5>${p.name}</h5>
-						<h6>${p.user.username }</h6>
-					</div>
-				</a>		
-			</div>
-	<c:if test="${status.count % 6 == 0}">
+		<div class="col-lg-10 col-lg-offset-1">
+			<table class="table table-bordered">
+				<tr>
+					<td><h3><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35"></img><span class="css72771182a5489">只有答对所有题才可以注册哦</span></h3></td>
+				</tr>
+				<tr>
+					<td>
+						<h4>1. 复制UP主签名并发送弹幕会造成怎样结果?</h4>
+						<p><input type="radio" name="q1" value="A">&nbsp;&nbsp;A. 考试会100分</p>
+						<p><input type="radio" name="q1" value="B">&nbsp;&nbsp;B. 会被系统禁言</p>
+						<p><input type="radio" name="q1" value="C">&nbsp;&nbsp;C. 会中彩票</p>
+						<p><input type="radio" name="q1" value="D">&nbsp;&nbsp;D. 自己帐号会变成VIP</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h4>2. 当观看过程中有发现有恶意黑自己喜欢角色的弹幕时应该?</h4>
+						<p><input type="radio" name="q2" value="A">&nbsp;&nbsp;A. 去黑别的角色</p>
+						<p><input type="radio" name="q2" value="B">&nbsp;&nbsp;B. 举报该弹幕</p>
+						<p><input type="radio" name="q2" value="C">&nbsp;&nbsp;C. 打穿屏幕</p>
+						<p><input type="radio" name="q2" value="D">&nbsp;&nbsp;D. 弹幕刷屏</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h4>3. 在视频中版聊会怎样?</h4>
+						<p><input type="radio" name="q3" value="A">&nbsp;&nbsp;A. 瞬间爆炸</p>
+						<p><input type="radio" name="q3" value="B">&nbsp;&nbsp;B. 生灵涂炭</p>
+						<p><input type="radio" name="q3" value="C">&nbsp;&nbsp;C. 关闭视频</p>
+						<p><input type="radio" name="q3" value="D">&nbsp;&nbsp;D. 遮挡屏幕影响别人观看</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h4>4. 在做科普的过程中应当怎样?</h4>
+						<p><input type="radio" name="q4" value="A">&nbsp;&nbsp;A. 遮挡字幕</p>
+						<p><input type="radio" name="q4" value="B">&nbsp;&nbsp;B. 有理有据</p>
+						<p><input type="radio" name="q4" value="C">&nbsp;&nbsp;C. 引起战争</p>
+						<p><input type="radio" name="q4" value="D">&nbsp;&nbsp;D. 涉及剧透</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h4>5. 看排行类视频的时候,以下那种弹幕比较适宜?</h4>
+						<p><input type="radio" name="q5" value="A">&nbsp;&nbsp;A. 剧透第一名</p>
+						<p><input type="radio" name="q5" value="B">&nbsp;&nbsp;B. xxx太低了</p>
+						<p><input type="radio" name="q5" value="C">&nbsp;&nbsp;C. 讨论关注作品信息</p>
+						<p><input type="radio" name="q5" value="D">&nbsp;&nbsp;D. 怎么没有xxx</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button type="submit" class="btn btn-info center-block">提交答案</button>
+					</td>
+				</tr>
+			</table>
 		</div>
-	</c:if>
-	</c:forEach>
-		
+	</div>
 </div>
-<!-- 网站主体 ]] -->
-
+</form>
+<!-- 主体答题框 ]] -->
 <br><br><br>
 <!-- 友情链接部分 [[ -->
 <div class="container-fluid" style="background-color:rgb(236,236,236)" id="footer">
@@ -168,5 +202,6 @@
 	<br>
 </div>
 <!-- 友情链接部分 ]] -->
+
 </body>
 </html>
