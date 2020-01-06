@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import {Message} from 'element-ui';
+import {Message} from 'element-ui';
 import store from '@/store';
-// import {showFullScreenLoading, tryHideFullScreenLoading} from './loading';
+import {showFullScreenLoading, tryHideFullScreenLoading} from './loading';
 
 /**
  * process是node的一个全局变量,哪里都可以用,如果是全局配置可写在config的dev.env.js和prod.env.js中

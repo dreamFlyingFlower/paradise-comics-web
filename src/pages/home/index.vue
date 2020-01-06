@@ -188,30 +188,32 @@
     <br>
     <div class="container">
       <div class="row">
-        <c:forEach items="${requestScope.videos1 }" var="v" begin="0" end="3">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos1">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间1-1
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
       <div class="row">
-        <c:forEach items="${requestScope.videos1 }" var="v" begin="4" end="7">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos1">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间1-2
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
     </div>
     <!-- 视频主体1 ]] -->
@@ -288,17 +290,18 @@
           </div>
       </div>
       <div class="row">
-        <c:forEach items="${requestScope.videos3 }" var="v" begin="4" end="7">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos3">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
+                  格式化时间3
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
     </div>
     <!-- 视频主体3 ]] -->
@@ -310,30 +313,32 @@
     <br>
     <div class="container">
       <div class="row">
-        <c:forEach items="${requestScope.videos4 }" var="v" begin="0" end="3">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos4">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
+                  格式化时间4-1
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
       <div class="row">
-        <c:forEach items="${requestScope.videos4 }" var="v" begin="4" end="7">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos4">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间4-2
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
     </div>
     <!-- 视频主体4 ]] -->
@@ -345,30 +350,32 @@
     <br>
     <div class="container">
       <div class="row">
-        <c:forEach items="${requestScope.videos5 }" var="v" begin="0" end="3">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos5">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化视频5-1
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
       <div class="row">
-        <c:forEach items="${requestScope.videos5 }" var="v" begin="4" end="7">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos5">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}"">
+              <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
+                  格式化时间5-2
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
     </div>
     <!-- 视频主体5 ]] -->
@@ -380,30 +387,32 @@
     <br>
     <div class="container">
       <div class="row">
-        <c:forEach items="${requestScope.videos6 }" var="v" begin="0" end="3">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos6">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间6-1
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
       <div class="row">
-        <c:forEach items="${requestScope.videos6 }" var="v" begin="4" end="7">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos6">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间6-2
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
     </div>
     <!-- 视频主体6 ]] -->
@@ -415,30 +424,32 @@
     <br>
     <div class="container">
       <div class="row">
-        <c:forEach items="${requestScope.videos7 }" var="v" begin="0" end="3">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos7">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间7-1
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
       <div class="row">
-        <c:forEach items="${requestScope.videos7 }" var="v" begin="4" end="7">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos7">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间7-2
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
     </div>
     <!-- 视频主体7 ]] -->
@@ -450,30 +461,32 @@
     <br>
     <div class="container">
       <div class="row">
-        <c:forEach items="${requestScope.videos8 }" var="v" begin="0" end="3">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos8">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
+                  格式化时间8-1
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
       <div class="row">
-        <c:forEach items="${requestScope.videos8 }" var="v" begin="4" end="7">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos8">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
+                  格式化时间8-2
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
     </div>
     <!-- 视频主体8 ]] -->
@@ -485,17 +498,8 @@
       <h4 style="color:#bbb">友情链接</h4>
       <div class="row">
         <div class="col-lg-4 col-md-4">
-          <ul style="list-style: none;">
-            <li><a href="${sessionScope.friendLinks[0].src }">${sessionScope.friendLinks[0].name }</a></li>
-            <li><a href="${sessionScope.friendLinks[1].src }">${sessionScope.friendLinks[1].name }</a></li>
-            <li><a href="${sessionScope.friendLinks[2].src }">${sessionScope.friendLinks[2].name }</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-4">
-          <ul style="list-style: none;">
-            <li><a href="${sessionScope.friendLinks[3].src }">${sessionScope.friendLinks[3].name }</a></li>
-            <li><a href="${sessionScope.friendLinks[4].src }">${sessionScope.friendLinks[4].name }</a></li>
-            <li><a href="${sessionScope.friendLinks[5].src }">${sessionScope.friendLinks[5].name }</a></li>
+          <ul style="list-style: none;" v-for="item in friendLinks">
+            <li><a href="item.linkSrc">{{item.linkName}}</a></li>
           </ul>
         </div>
         <div class="col-lg-4 col-md-4" style="font-size:16px;">
@@ -516,13 +520,29 @@
       name: "index",
       data(){
         return {
-          videos2:[{id:1,name:"test",src:"http1"},{id:2,name:"test1",src:"http2"}]
+          videos1:[{id:1,name:"test",src:"http1"},{id:2,name:"test1",src:"http2"}],
+          videos2:[{id:1,name:"test",src:"http1"},{id:2,name:"test1",src:"http2"}],
+          videos3:[{id:1,name:"test2",src:"http1"},{id:2,name:"test3",src:"http2"}],
+          videos4:[{id:1,name:"test4",src:"http1"},{id:2,name:"test5",src:"http2"}],
+          videos5:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
+          videos6:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
+          videos7:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
+          videos8:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
+          friendLinks:[]
         }
       },
       created() {
         // $('.carousel').carousel({
         //   interval: 3000
         // })
+        this.getFriendLinks();
+      },
+      methods:{
+        getFriendLinks(){
+          this.$getEntitys('friendLink').then((resp)=>{
+            this.friendLinks = resp.data;
+          });
+        }
       }
     }
 </script>
