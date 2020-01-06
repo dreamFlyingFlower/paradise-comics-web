@@ -11,4 +11,7 @@ export default {
 </script>
 
 <style>
+  @import 'assets/css/admin.css';
+  @import "assets/css/index.css";
+  @import "assets/css/main.css";
 </style>

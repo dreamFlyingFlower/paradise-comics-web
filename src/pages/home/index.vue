@@ -3,12 +3,12 @@
   <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+<!--        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+<!--          <span class="sr-only">Toggle navigation</span>-->
+<!--          <span class="icon-bar"></span>-->
+<!--          <span class="icon-bar"></span>-->
+<!--          <span class="icon-bar"></span>-->
+<!--        </button>-->
         <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
       </div>
 
@@ -28,22 +28,20 @@
             <i class="glyphicon glyphicon-search" style="color:white;"></i>
           </button>
         </form>
-        <ul class="nav navbar-nav navbar-right">
-          <c:if test="${sessionScope.user != null}">
-            <li><a href="account-collect-show">收藏夹</a></li>
-          </c:if>
+        <ul class="nav navbar-nav navbar-right" >
+          <li v-if="$store.state.user"><a href="account-collect-show">收藏夹</a></li>
           <li class="dropdown">
             <!-- 用户未登录显示部分 -->
-            <c:if test="${sessionScope.user == null}">
+            <template v-if="$store.state.user">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" >登录/注册 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="account-login-show"><i class="glyphicon glyphicon-user" style="color:#f36c60;"></i> 用户登录</a></li>
                 <li class="divider"></li>
                 <li><a href="account-question-show"><i class="glyphicon glyphicon-plus-sign" style="color:#f36c60;"></i> 注册账号</a></li>
               </ul>
-            </c:if>
+            </template>
             <!-- 用户已登录显示部分 -->
-            <c:if test="${sessionScope.user != null}">
+            <template v-if="$store.state.user">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" >${sessionScope.user.username } <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="account-myself-show"><i class="glyphicon glyphicon-home" style="color:#f36c60;"></i> 个人中心</a></li>
@@ -51,7 +49,7 @@
                 <li class="divider"></li>
                 <li><a href="account-exit-execute"><i class="glyphicon glyphicon-circle-arrow-left" style="color:#f36c60;"></i> 退出登录</a></li>
               </ul>
-            </c:if>
+            </template>
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
@@ -224,31 +222,47 @@
     </div>
     <br>
     <div class="container">
+<!--      展示视频,每行3个-->
       <div class="row">
-        <c:forEach items="${requestScope.videos2 }" var="v" begin="0" end="3">
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
+<!--        <template v-for="item in videos2">-->
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="item in videos2">
+            <a href="index-play-show?id=${item.id }" class="thumbnail">
+              <img src="${pageContext.request.contextPath }/${item.src}">
               <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center">{{item.name }}</p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${item.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
+<!--        </template>-->
+<!--        <c:forEach items="${requestScope.videos2 }" var="v" begin="0" end="3">-->
+<!--          <div class="col-lg-3 col-md-3 col-sm-3">-->
+<!--            <a href="index-play-show?id=${v.id }" class="thumbnail">-->
+<!--              <img src="${pageContext.request.contextPath }/${v.src}">-->
+<!--              <div class="caption">-->
+<!--                <p class="text-center">${v.name }</p>-->
+<!--                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>-->
+<!--              </div>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </c:forEach>-->
       </div>
       <div class="row">
-        <c:forEach items="${requestScope.videos2 }" var="v" begin="4" end="7">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="item in videos2">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}"">
+              <img src="${pageContext.request.contextPath }/${item.src}"">
               <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center">{{item.name}}</p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间1
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
     </div>
     <!-- 视频主体2 ]] -->
@@ -260,17 +274,18 @@
     <br>
     <div class="container">
       <div class="row">
-        <c:forEach items="${requestScope.videos3 }" var="v" begin="0" end="3">
-          <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="item in videos3">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
+              <img src="${pageContext.request.contextPath }/${item.src}">
               <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+                <p class="text-center">{{item.name }}</p>
+                <p class="text-center" style="color:grey; font-size: 2px;">
+<!--                  <fmt:formatDate value="${item.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  格式化时间2
+                </p>
               </div>
             </a>
           </div>
-        </c:forEach>
       </div>
       <div class="row">
         <c:forEach items="${requestScope.videos3 }" var="v" begin="4" end="7">
@@ -501,13 +516,13 @@
       name: "index",
       data(){
         return {
-
+          videos2:[{id:1,name:"test",src:"http1"},{id:2,name:"test1",src:"http2"}]
         }
       },
       created() {
-        $('.carousel').carousel({
-          interval: 3000
-        })
+        // $('.carousel').carousel({
+        //   interval: 3000
+        // })
       }
     }
 </script>
