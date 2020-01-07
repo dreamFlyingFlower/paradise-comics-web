@@ -1,403 +1,471 @@
 <template>
-<div>
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class=""><a href="index-index-show"><i class="glyphicon glyphicon-film" style="color:#f36c60;font-size:10px;"></i> 主站</a></li>
-          <li><a href="palette-palette-show"><i class="glyphicon glyphicon-picture" style="font-size:10px;"></i> 画友</a></li>
-          <li><a href="shop-shop-show"><i class="glyphicon glyphicon-shopping-cart" style="font-size:10px;"></i> 周边商城</a></li>
-          <li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="font-size:10px;"></i> 游戏</a></li>
-        </ul>
-        <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search">
-          </div>
-          <button type="submit" class="btn btn-default" style="background-color:#f36c60;">
-            <i class="glyphicon glyphicon-search" style="color:white;"></i>
+  <div>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                  data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </button>
-        </form>
-        <ul class="nav navbar-nav navbar-right" >
-          <li v-if="$store.state.user"><a href="account-collect-show">收藏夹</a></li>
-          <li class="dropdown">
-            <!-- 用户未登录显示部分 -->
-            <template v-if="$store.state.user">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" >登录/注册 <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="account-login-show"><i class="glyphicon glyphicon-user" style="color:#f36c60;"></i> 用户登录</a></li>
-                <li class="divider"></li>
-                <li><a href="account-question-show"><i class="glyphicon glyphicon-plus-sign" style="color:#f36c60;"></i> 注册账号</a></li>
-              </ul>
-            </template>
-            <!-- 用户已登录显示部分 -->
-            <template v-if="$store.state.user">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" >${sessionScope.user.username } <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="account-myself-show"><i class="glyphicon glyphicon-home" style="color:#f36c60;"></i> 个人中心</a></li>
-                <li><a href="account-edit-show"><i class="glyphicon glyphicon-pencil" style="color:#f36c60;"></i> 修改资料</a></li>
-                <li class="divider"></li>
-                <li><a href="account-exit-execute"><i class="glyphicon glyphicon-circle-arrow-left" style="color:#f36c60;"></i> 退出登录</a></li>
-              </ul>
-            </template>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-  <!-- 网站主体导航栏 ]] -->
+          <a class="navbar-brand css716dd981b5489" href="index-index-show"
+             style="color:#f36c60; font-size:28px;">ACGFAN</a>
+        </div>
 
-  <!-- 主站bar图 [[ -->
-  <div class="index_bar"></div>
-  <!-- 主站bar图 ]] -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class=""><a href="index-index-show"><i class="glyphicon glyphicon-film"
+                                                       style="color:#f36c60;font-size:10px;"></i> 主站</a></li>
+            <li><a href="palette-palette-show"><i class="glyphicon glyphicon-picture" style="font-size:10px;"></i>
+              画友</a></li>
+            <li><a href="shop-shop-show"><i class="glyphicon glyphicon-shopping-cart" style="font-size:10px;"></i> 周边商城</a>
+            </li>
+            <li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="font-size:10px;"></i>
+              游戏</a></li>
+          </ul>
+          <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search">
+            </div>
+            <button type="submit" class="btn btn-default" style="background-color:#f36c60;">
+              <i class="glyphicon glyphicon-search" style="color:white;"></i>
+            </button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li v-if="$store.state.user"><a href="account-collect-show">收藏夹</a></li>
+            <li class="dropdown">
+              <!-- 用户未登录显示部分 -->
+              <template v-if="$store.state.user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录/注册 <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="account-login-show"><i class="glyphicon glyphicon-user" style="color:#f36c60;"></i> 用户登录</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li><a href="account-question-show"><i class="glyphicon glyphicon-plus-sign"
+                                                         style="color:#f36c60;"></i> 注册账号</a></li>
+                </ul>
+              </template>
+              <!-- 用户已登录显示部分 -->
+              <template v-if="$store.state.user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username } <span
+                  class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="account-myself-show"><i class="glyphicon glyphicon-home" style="color:#f36c60;"></i> 个人中心</a>
+                  </li>
+                  <li><a href="account-edit-show"><i class="glyphicon glyphicon-pencil" style="color:#f36c60;"></i> 修改资料</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li><a href="account-exit-execute"><i class="glyphicon glyphicon-circle-arrow-left"
+                                                        style="color:#f36c60;"></i> 退出登录</a></li>
+                </ul>
+              </template>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <!-- 网站主体导航栏 ]] -->
 
-  <!-- 视频分类导航栏 [[ -->
-  <div class="container-fluid" style="background-color: white; color:red;">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-        <ul class="nav nav-tabs">
-          <li role="presentation" style="border-bottom:1px solid #f36c60"><a href="index-index-show" style="color:#f36c60">首页<i class="glyphicon glyphicon-home hidden-xs" ></i></a></li>
-          <li class="hidden-xs" role="presentation" v-for="v in videoTypes">
-            <a href="index-more-show?typeId=${sessionScope.videoTypes[0].id }">{{v.typeName}}
-              <div class="type_number hidden-xs">${sessionScope.videoCount[0] }</div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!-- 视频分类导航栏 ]] -->
-  <br>
-  <!-- 视频展示区 [[ -->
-  <div class="container">
-    <div class="row">
-      <!-- 视频轮播图 [[ -->
-      <!-- 大屏轮播图 -->
-      <div class="col-lg-6 visible-lg">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-          </ol>
+    <!-- 主站bar图 [[ -->
+    <div class="index_bar"></div>
+    <!-- 主站bar图 ]] -->
 
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[0].src}" alt="${requestScope.indexShows[0].title}"></a>
-              <div class="carousel-caption">
-                <p>${requestScope.indexShows[0].title}</p>
-              </div>
-            </div>
-            <div class="item">
-              <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[1].src}" alt="${requestScope.indexShows[1].title}"></a>
-              <div class="carousel-caption">
-                <p>${requestScope.indexShows[1].title}</p>
-              </div>
-            </div>
-            <div class="item">
-              <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[2].src}" alt="${requestScope.indexShows[2].title}"></a>
-              <div class="carousel-caption">
-                <p>${requestScope.indexShows[2].title}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 小屏轮播图 -->
-      <div class="col-md-6 col-md-offset-3 hidden-lg">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-          </ol>
-
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[0].src}" alt="${requestScope.indexShows[0].src}"></a>
-              <div class="carousel-caption">
-                <p>${requestScope.indexShows[0].title}</p>
-              </div>
-            </div>
-            <div class="item">
-              <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[1].src}" alt="${requestScope.indexShows[1].src}"></a>
-              <div class="carousel-caption">
-                <p>${requestScope.indexShows[1].title}</p>
-              </div>
-            </div>
-            <div class="item">
-              <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[2].src}" alt="${requestScope.indexShows[2].src}"></a>
-              <div class="carousel-caption">
-                <p>${requestScope.indexShows[2].title}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
-      </div>
-      <!-- 视频轮播图 ]] -->
-      <div class="col-lg-6 col-md-12 hidden-xs">
-        <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="index-play-show?id=${requestScope.videos6[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos6[0].src })"></div></a></div>
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="index-play-show?id=${requestScope.videos2[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos2[0].src })"></div></a></div>
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="index-play-show?id=${requestScope.videos7[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos7[0].src })"></div></a></div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="index-play-show?id=${requestScope.videos4[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos4[0].src })"></div></a></div>
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="index-play-show?id=${requestScope.videos5[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos5[0].src })"></div></a></div>
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a href="index-play-show?id=${requestScope.videos8[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos8[0].src })"></div></a></div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-12 visible-xs">
-        <br>
-        <div class="row">
-          <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos6[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos6[0].src })"></div></a></div>
-          <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos2[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos2[0].src })"></div></a></div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos7[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos7[0].src })"></div></a></div>
-          <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos4[0].id }"><div class="topPhoto" style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos4[0].src })"></div></a></div>
+    <!-- 视频分类导航栏 [[ -->
+    <div class="container-fluid" style="background-color: white; color:red;">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+          <ul class="nav nav-tabs">
+            <li role="presentation" style="border-bottom:1px solid #f36c60"><a href="index-index-show"
+                                                                               style="color:#f36c60">首页<i
+              class="glyphicon glyphicon-home hidden-xs"></i></a></li>
+            <li class="hidden-xs" role="presentation" v-for="v in videoTypes">
+              <a href="index-more-show?typeId=${sessionScope.videoTypes[0].id }">{{v.typeName}}
+                <div class="type_number hidden-xs">${sessionScope.videoCount[0] }</div>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-    <!-- 视频展示区 ]] -->
-
-    <!-- 视频主体1 [[ -->
-    <div class="container" style="border-bottom:1px solid #dddddd">
-      <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>${sessionScope.videoTypes[0].typeName }</h3>
-    </div>
+    <!-- 视频分类导航栏 ]] -->
     <br>
+    <!-- 视频展示区 [[ -->
     <div class="container">
       <div class="row">
+        <!-- 视频轮播图 [[ -->
+        <!-- 大屏轮播图 -->
+        <div class="col-lg-6 visible-lg">
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[0].src}"
+                                  alt="${requestScope.indexShows[0].title}"></a>
+                <div class="carousel-caption">
+                  <p>${requestScope.indexShows[0].title}</p>
+                </div>
+              </div>
+              <div class="item">
+                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[1].src}"
+                                  alt="${requestScope.indexShows[1].title}"></a>
+                <div class="carousel-caption">
+                  <p>${requestScope.indexShows[1].title}</p>
+                </div>
+              </div>
+              <div class="item">
+                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[2].src}"
+                                  alt="${requestScope.indexShows[2].title}"></a>
+                <div class="carousel-caption">
+                  <p>${requestScope.indexShows[2].title}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 小屏轮播图 -->
+        <div class="col-md-6 col-md-offset-3 hidden-lg">
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <div class="item active">
+                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[0].src}"
+                                  alt="${requestScope.indexShows[0].src}"></a>
+                <div class="carousel-caption">
+                  <p>${requestScope.indexShows[0].title}</p>
+                </div>
+              </div>
+              <div class="item">
+                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[1].src}"
+                                  alt="${requestScope.indexShows[1].src}"></a>
+                <div class="carousel-caption">
+                  <p>${requestScope.indexShows[1].title}</p>
+                </div>
+              </div>
+              <div class="item">
+                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[2].src}"
+                                  alt="${requestScope.indexShows[2].src}"></a>
+                <div class="carousel-caption">
+                  <p>${requestScope.indexShows[2].title}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+        <!-- 视频轮播图 ]] -->
+        <div class="col-lg-6 col-md-12 hidden-xs">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
+              href="index-play-show?id=${requestScope.videos6[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos6[0].src })"></div>
+            </a></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
+              href="index-play-show?id=${requestScope.videos2[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos2[0].src })"></div>
+            </a></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
+              href="index-play-show?id=${requestScope.videos7[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos7[0].src })"></div>
+            </a></div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
+              href="index-play-show?id=${requestScope.videos4[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos4[0].src })"></div>
+            </a></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
+              href="index-play-show?id=${requestScope.videos5[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos5[0].src })"></div>
+            </a></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
+              href="index-play-show?id=${requestScope.videos8[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos8[0].src })"></div>
+            </a></div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 visible-xs">
+          <br>
+          <div class="row">
+            <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos6[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos6[0].src })"></div>
+            </a></div>
+            <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos2[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos2[0].src })"></div>
+            </a></div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos7[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos7[0].src })"></div>
+            </a></div>
+            <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos4[0].id }">
+              <div class="topPhoto"
+                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos4[0].src })"></div>
+            </a></div>
+          </div>
+        </div>
+      </div>
+      <!-- 视频展示区 ]] -->
+
+      <!-- 视频主体1 [[ -->
+      <div class="container" style="border-bottom:1px solid #dddddd">
+        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
+          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
+          ${sessionScope.videoTypes[0].typeName }</h3>
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos1">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
                   格式化时间1-1
                 </p>
               </div>
             </a>
           </div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos1">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
                   格式化时间1-2
                 </p>
               </div>
             </a>
           </div>
+        </div>
       </div>
-    </div>
-    <!-- 视频主体1 ]] -->
+      <!-- 视频主体1 ]] -->
 
-    <!-- 视频主体2 [[ -->
-    <div class="container" style="border-bottom:1px solid #dddddd">
-      <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>${sessionScope.videoTypes[1].typeName }</h3>
-    </div>
-    <br>
-    <div class="container">
-<!--      展示视频,每行3个-->
-      <div class="row">
-<!--        <template v-for="item in videos2">-->
+      <!-- 视频主体2 [[ -->
+      <div class="container" style="border-bottom:1px solid #dddddd">
+        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
+          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
+          ${sessionScope.videoTypes[1].typeName }</h3>
+      </div>
+      <br>
+      <div class="container">
+        <!--      展示视频,每行3个-->
+        <div class="row">
+          <!--        <template v-for="item in videos2">-->
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="item in videos2">
             <a href="index-play-show?id=${item.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${item.src}">
               <div class="caption">
                 <p class="text-center">{{item.name }}</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${item.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  <!--                  <fmt:formatDate value="${item.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
                   格式化时间
                 </p>
               </div>
             </a>
           </div>
-<!--        </template>-->
-<!--        <c:forEach items="${requestScope.videos2 }" var="v" begin="0" end="3">-->
-<!--          <div class="col-lg-3 col-md-3 col-sm-3">-->
-<!--            <a href="index-play-show?id=${v.id }" class="thumbnail">-->
-<!--              <img src="${pageContext.request.contextPath }/${v.src}">-->
-<!--              <div class="caption">-->
-<!--                <p class="text-center">${v.name }</p>-->
-<!--                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>-->
-<!--              </div>-->
-<!--            </a>-->
-<!--          </div>-->
-<!--        </c:forEach>-->
-      </div>
-      <div class="row">
+          <!--        </template>-->
+          <!--        <c:forEach items="${requestScope.videos2 }" var="v" begin="0" end="3">-->
+          <!--          <div class="col-lg-3 col-md-3 col-sm-3">-->
+          <!--            <a href="index-play-show?id=${v.id }" class="thumbnail">-->
+          <!--              <img src="${pageContext.request.contextPath }/${v.src}">-->
+          <!--              <div class="caption">-->
+          <!--                <p class="text-center">${v.name }</p>-->
+          <!--                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>-->
+          <!--              </div>-->
+          <!--            </a>-->
+          <!--          </div>-->
+          <!--        </c:forEach>-->
+        </div>
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="item in videos2">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${item.src}"">
               <div class="caption">
                 <p class="text-center">{{item.name}}</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
                   格式化时间1
                 </p>
               </div>
             </a>
           </div>
+        </div>
       </div>
-    </div>
-    <!-- 视频主体2 ]] -->
+      <!-- 视频主体2 ]] -->
 
-    <!-- 视频主体3 [[ -->
-    <div class="container" style="border-bottom:1px solid #dddddd">
-      <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>${sessionScope.videoTypes[2].typeName }</h3>
-    </div>
-    <br>
-    <div class="container">
-      <div class="row">
+      <!-- 视频主体3 [[ -->
+      <div class="container" style="border-bottom:1px solid #dddddd">
+        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
+          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
+          ${sessionScope.videoTypes[2].typeName }</h3>
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="item in videos3">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${item.src}">
               <div class="caption">
                 <p class="text-center">{{item.name }}</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${item.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  <!--                  <fmt:formatDate value="${item.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
                   格式化时间2
                 </p>
               </div>
             </a>
           </div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos3">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
                   格式化时间3
                 </p>
               </div>
             </a>
           </div>
+        </div>
       </div>
-    </div>
-    <!-- 视频主体3 ]] -->
+      <!-- 视频主体3 ]] -->
 
-    <!-- 视频主体4 [[ -->
-    <div class="container" style="border-bottom:1px solid #dddddd">
-      <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>${sessionScope.videoTypes[3].typeName }</h3>
-    </div>
-    <br>
-    <div class="container">
-      <div class="row">
+      <!-- 视频主体4 [[ -->
+      <div class="container" style="border-bottom:1px solid #dddddd">
+        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
+          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
+          ${sessionScope.videoTypes[3].typeName }</h3>
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos4">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
                   格式化时间4-1
                 </p>
               </div>
             </a>
           </div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos4">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
                   格式化时间4-2
                 </p>
               </div>
             </a>
           </div>
+        </div>
       </div>
-    </div>
-    <!-- 视频主体4 ]] -->
+      <!-- 视频主体4 ]] -->
 
-    <!-- 视频主体5 [[ -->
-    <div class="container" style="border-bottom:1px solid #dddddd">
-      <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>${sessionScope.videoTypes[4].typeName }</h3>
-    </div>
-    <br>
-    <div class="container">
-      <div class="row">
+      <!-- 视频主体5 [[ -->
+      <div class="container" style="border-bottom:1px solid #dddddd">
+        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
+          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
+          ${sessionScope.videoTypes[4].typeName }</h3>
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos5">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
                   格式化视频5-1
                 </p>
               </div>
             </a>
           </div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos5">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
                   格式化时间5-2
                 </p>
               </div>
             </a>
           </div>
+        </div>
       </div>
-    </div>
-    <!-- 视频主体5 ]] -->
+      <!-- 视频主体5 ]] -->
 
-    <!-- 视频主体6 [[ -->
-    <div class="container" style="border-bottom:1px solid #dddddd">
-      <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>${sessionScope.videoTypes[5].typeName }</h3>
-    </div>
-    <br>
-    <div class="container">
-      <div class="row">
+      <!-- 视频主体6 [[ -->
+      <div class="container" style="border-bottom:1px solid #dddddd">
+        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
+          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
+          ${sessionScope.videoTypes[5].typeName }</h3>
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos6">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
                   格式化时间6-1
                 </p>
               </div>
             </a>
           </div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos6">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
@@ -410,17 +478,19 @@
               </div>
             </a>
           </div>
+        </div>
       </div>
-    </div>
-    <!-- 视频主体6 ]] -->
+      <!-- 视频主体6 ]] -->
 
-    <!-- 视频主体7 [[ -->
-    <div class="container" style="border-bottom:1px solid #dddddd">
-      <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>${sessionScope.videoTypes[6].typeName }</h3>
-    </div>
-    <br>
-    <div class="container">
-      <div class="row">
+      <!-- 视频主体7 [[ -->
+      <div class="container" style="border-bottom:1px solid #dddddd">
+        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
+          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
+          ${sessionScope.videoTypes[6].typeName }</h3>
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos7">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
@@ -433,8 +503,8 @@
               </div>
             </a>
           </div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos7">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
@@ -447,31 +517,33 @@
               </div>
             </a>
           </div>
+        </div>
       </div>
-    </div>
-    <!-- 视频主体7 ]] -->
+      <!-- 视频主体7 ]] -->
 
-    <!-- 视频主体8 [[ -->
-    <div class="container" style="border-bottom:1px solid #dddddd">
-      <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>${sessionScope.videoTypes[7].typeName }</h3>
-    </div>
-    <br>
-    <div class="container">
-      <div class="row">
+      <!-- 视频主体8 [[ -->
+      <div class="container" style="border-bottom:1px solid #dddddd">
+        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
+          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
+          ${sessionScope.videoTypes[7].typeName }</h3>
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos8">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
-<!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
+                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
                   格式化时间8-1
                 </p>
               </div>
             </a>
           </div>
-      </div>
-      <div class="row">
+        </div>
+        <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos8">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
               <img src="${pageContext.request.contextPath }/${v.src}"">
@@ -484,73 +556,83 @@
               </div>
             </a>
           </div>
-      </div>
-    </div>
-    <!-- 视频主体8 ]] -->
-  </div>
-  <!-- 友情链接部分 [[ -->
-  <div class="container-fluid" style="background-color:rgb(236,236,236)" id="footer">
-    <br>
-    <div class="container">
-      <h4 style="color:#bbb">友情链接</h4>
-      <div class="row">
-        <div class="col-lg-4 col-md-4">
-          <ul style="list-style: none;" v-for="item in friendLinks">
-            <li><a href="item.linkSrc">{{item.linkName}}</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-4" style="font-size:16px;">
-          <ul>
-            <li>您可以下载我们的移动客户端</li>
-            <li>也欢迎您关注我们的微博和微信<img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img></li>
-          </ul>
         </div>
       </div>
+      <!-- 视频主体8 ]] -->
     </div>
-    <br>
+    <!-- 友情链接部分 [[ -->
+    <div class="container-fluid" style="background-color:rgb(236,236,236)" id="footer">
+      <br>
+      <div class="container">
+        <h4 style="color:#bbb">友情链接</h4>
+        <div class="row">
+          <div class="col-lg-4 col-md-4">
+            <ul style="list-style: none;" v-for="item in friendLinks">
+              <li><a href="item.linkSrc">{{item.linkName}}</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-4" style="font-size:16px;">
+            <ul>
+              <li>您可以下载我们的移动客户端</li>
+              <li>也欢迎您关注我们的微博和微信<img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50"
+                                     height="35""></img></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
-    export default {
-      name: "index",
-      data(){
-        return {
-          videos1:[{id:1,name:"test",src:"http1"},{id:2,name:"test1",src:"http2"}],
-          videos2:[{id:1,name:"test",src:"http1"},{id:2,name:"test1",src:"http2"}],
-          videos3:[{id:1,name:"test2",src:"http1"},{id:2,name:"test3",src:"http2"}],
-          videos4:[{id:1,name:"test4",src:"http1"},{id:2,name:"test5",src:"http2"}],
-          videos5:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
-          videos6:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
-          videos7:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
-          videos8:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
-          videoTypes:[],
-          friendLinks:[]
-        }
+  import {getIndexVideo} from "../../api/video";
+
+  export default {
+    name: "index",
+    data() {
+      return {
+        videos1: [{id: 1, name: "test", src: "http1"}, {id: 2, name: "test1", src: "http2"}],
+        videos2: [{id: 1, name: "test", src: "http1"}, {id: 2, name: "test1", src: "http2"}],
+        videos3: [{id: 1, name: "test2", src: "http1"}, {id: 2, name: "test3", src: "http2"}],
+        videos4: [{id: 1, name: "test4", src: "http1"}, {id: 2, name: "test5", src: "http2"}],
+        videos5: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
+        videos6: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
+        videos7: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
+        videos8: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
+        videoTypes: [],
+        indexVideos:[],
+        friendLinks: []
+      }
+    },
+    created() {
+      // $('.carousel').carousel({
+      //   interval: 3000
+      // })
+      this.getVideoTypes();
+      this.getIndexVideo();
+      this.getFriendLinks();
+    },
+    methods: {
+      // 获得所有最上级类型的视频分类
+      getVideoTypes() {
+        this.$getEntitys('videoType', {pid: 1}).then((resp) => {
+          this.videoTypes = resp.data;
+        });
       },
-      created() {
-        // $('.carousel').carousel({
-        //   interval: 3000
-        // })
-        this.getVideoTypes();
-        this.getFriendLinks();
+      getIndexVideo(){
+        getIndexVideo({pageSize:6}).then((resp)=>{
+          this.indexVideos = resp.data;
+        })
       },
-      methods:{
-        // 获得所有最上级类型的视频分类
-        getVideoTypes(){
-          this.$getEntitys('videoType',{pid:1}).then((resp)=>{
-            this.videoTypes = resp.data;
-          });
-        },
-        // 获得所有的友情链接
-        getFriendLinks(){
-          this.$getEntitys('friendLink').then((resp)=>{
-            this.friendLinks = resp.data;
-          });
-        }
+      // 获得所有的友情链接
+      getFriendLinks() {
+        this.$getEntitys('friendLink').then((resp) => {
+          this.friendLinks = resp.data;
+        });
       }
     }
+  }
 </script>
 
 <style scoped>
