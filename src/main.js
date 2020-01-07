@@ -6,6 +6,8 @@ import router from './router'
 import store from './store'
 import Api from './global/api'
 import Funcs from './global/funcs'
+import 'bootstrap'
+import $ from 'jquery'
 
 Vue.config.productionTip = false;
 

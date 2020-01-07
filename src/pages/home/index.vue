@@ -3,12 +3,12 @@
   <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
-<!--        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
-<!--          <span class="sr-only">Toggle navigation</span>-->
-<!--          <span class="icon-bar"></span>-->
-<!--          <span class="icon-bar"></span>-->
-<!--          <span class="icon-bar"></span>-->
-<!--        </button>-->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand css716dd981b5489" href="index-index-show" style="color:#f36c60; font-size:28px;">ACGFAN</a>
       </div>
 
@@ -67,14 +67,11 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
         <ul class="nav nav-tabs">
           <li role="presentation" style="border-bottom:1px solid #f36c60"><a href="index-index-show" style="color:#f36c60">首页<i class="glyphicon glyphicon-home hidden-xs" ></i></a></li>
-          <li role="presentation"><a href="index-more-show?typeId=${sessionScope.videoTypes[0].id }">${sessionScope.videoTypes[0].typeName }<div class="type_number hidden-xs">${sessionScope.videoCount[0] }</div></a></li>
-          <li role="presentation"><a href="index-more-show?typeId=${sessionScope.videoTypes[1].id }"><div class="type_number hidden-xs">${sessionScope.videoCount[1] }</div>${sessionScope.videoTypes[1].typeName }</a></li>
-          <li role="presentation"><a href="index-more-show?typeId=${sessionScope.videoTypes[2].id }"><div class="type_number hidden-xs">${sessionScope.videoCount[2] }</div>${sessionScope.videoTypes[2].typeName }</a></li>
-          <li role="presentation"><a href="index-more-show?typeId=${sessionScope.videoTypes[3].id }"><div class="type_number hidden-xs">${sessionScope.videoCount[3] }</div>${sessionScope.videoTypes[3].typeName }</a></li>
-          <li class="hidden-xs" role="presentation"><a href="index-more-show?typeId=${sessionScope.videoTypes[4].id }"><div class="type_number hidden-xs">${sessionScope.videoCount[4] }</div>${sessionScope.videoTypes[4].typeName }</a></li>
-          <li class="hidden-xs" role="presentation"><a href="index-more-show?typeId=${sessionScope.videoTypes[5].id }"><div class="type_number hidden-xs">${sessionScope.videoCount[5] }</div>${sessionScope.videoTypes[5].typeName }</a></li>
-          <li class="hidden-xs" role="presentation"><a href="index-more-show?typeId=${sessionScope.videoTypes[6].id }"><div class="type_number hidden-xs">${sessionScope.videoCount[6] }</div>${sessionScope.videoTypes[6].typeName }</a></li>
-          <li class="hidden-xs" role="presentation"><a href="index-more-show?typeId=${sessionScope.videoTypes[7].id }"><div class="type_number hidden-xs">${sessionScope.videoCount[7] }</div>${sessionScope.videoTypes[7].typeName }</a></li>
+          <li class="hidden-xs" role="presentation" v-for="v in videoTypes">
+            <a href="index-more-show?typeId=${sessionScope.videoTypes[0].id }">{{v.typeName}}
+              <div class="type_number hidden-xs">${sessionScope.videoCount[0] }</div>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -292,7 +289,7 @@
       <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos3">
             <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}"">
+              <img src="${pageContext.request.contextPath }/${v.src}">
               <div class="caption">
                 <p class="text-center">${v.name }</p>
                 <p class="text-center" style="color:grey; font-size: 2px;">
@@ -528,6 +525,7 @@
           videos6:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
           videos7:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
           videos8:[{id:1,name:"test6",src:"http1"},{id:2,name:"test7",src:"http2"}],
+          videoTypes:[],
           friendLinks:[]
         }
       },
@@ -535,9 +533,17 @@
         // $('.carousel').carousel({
         //   interval: 3000
         // })
+        this.getVideoTypes();
         this.getFriendLinks();
       },
       methods:{
+        // 获得所有最上级类型的视频分类
+        getVideoTypes(){
+          this.$getEntitys('videoType',{pid:1}).then((resp)=>{
+            this.videoTypes = resp.data;
+          });
+        },
+        // 获得所有的友情链接
         getFriendLinks(){
           this.$getEntitys('friendLink').then((resp)=>{
             this.friendLinks = resp.data;
