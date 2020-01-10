@@ -234,331 +234,30 @@
       </div>
       <!-- 视频展示区 ]] -->
 
-      <!-- 视频主体1 [[ -->
-      <div class="container" style="border-bottom:1px solid #dddddd">
-        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
-          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
-          ${sessionScope.videoTypes[0].typeName }</h3>
-      </div>
-      <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos1">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间1-1
-                </p>
-              </div>
-            </a>
+      <!-- 视频主体 [[ -->
+      <template v-for="v in indexVideos">
+        <div class="container" style="border-bottom:1px solid #dddddd">
+          <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
+            :src="API_ROOT+'/photo/index/title_logo.png'" width="50" height="35"></img>
+            {{v.typeName}}</h3>
+        </div>
+        <br>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3" v-for="c in v.videos">
+              <a href="index-play-show?id=${c.id }" class="thumbnail">
+                <img :src="API_ROOT+'/'+c.cover">
+                <div class="caption">
+                  <p class="text-center">{{c.name}}</p>
+                  <p class="text-center" style="color:grey; font-size: 2px;">
+                    {{c.createtime}}
+                  </p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos1">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}"">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间1-2
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 视频主体1 ]] -->
-
-      <!-- 视频主体2 [[ -->
-      <div class="container" style="border-bottom:1px solid #dddddd">
-        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
-          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
-          ${sessionScope.videoTypes[1].typeName }</h3>
-      </div>
-      <br>
-      <div class="container">
-        <!--      展示视频,每行3个-->
-        <div class="row">
-          <!--        <template v-for="item in videos2">-->
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="item in videos2">
-            <a href="index-play-show?id=${item.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${item.src}">
-              <div class="caption">
-                <p class="text-center">{{item.name }}</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${item.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间
-                </p>
-              </div>
-            </a>
-          </div>
-          <!--        </template>-->
-          <!--        <c:forEach items="${requestScope.videos2 }" var="v" begin="0" end="3">-->
-          <!--          <div class="col-lg-3 col-md-3 col-sm-3">-->
-          <!--            <a href="index-play-show?id=${v.id }" class="thumbnail">-->
-          <!--              <img src="${pageContext.request.contextPath }/${v.src}">-->
-          <!--              <div class="caption">-->
-          <!--                <p class="text-center">${v.name }</p>-->
-          <!--                <p class="text-center" style="color:grey; font-size: 2px;"><fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> </p>-->
-          <!--              </div>-->
-          <!--            </a>-->
-          <!--          </div>-->
-          <!--        </c:forEach>-->
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="item in videos2">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${item.src}"">
-              <div class="caption">
-                <p class="text-center">{{item.name}}</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间1
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 视频主体2 ]] -->
-
-      <!-- 视频主体3 [[ -->
-      <div class="container" style="border-bottom:1px solid #dddddd">
-        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
-          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
-          ${sessionScope.videoTypes[2].typeName }</h3>
-      </div>
-      <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="item in videos3">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${item.src}">
-              <div class="caption">
-                <p class="text-center">{{item.name }}</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${item.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间2
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos3">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
-                  格式化时间3
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 视频主体3 ]] -->
-
-      <!-- 视频主体4 [[ -->
-      <div class="container" style="border-bottom:1px solid #dddddd">
-        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
-          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
-          ${sessionScope.videoTypes[3].typeName }</h3>
-      </div>
-      <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos4">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
-                  格式化时间4-1
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos4">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}"">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间4-2
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 视频主体4 ]] -->
-
-      <!-- 视频主体5 [[ -->
-      <div class="container" style="border-bottom:1px solid #dddddd">
-        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
-          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
-          ${sessionScope.videoTypes[4].typeName }</h3>
-      </div>
-      <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos5">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化视频5-1
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos5">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
-                  格式化时间5-2
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 视频主体5 ]] -->
-
-      <!-- 视频主体6 [[ -->
-      <div class="container" style="border-bottom:1px solid #dddddd">
-        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
-          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
-          ${sessionScope.videoTypes[5].typeName }</h3>
-      </div>
-      <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos6">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间6-1
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos6">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}"">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间6-2
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 视频主体6 ]] -->
-
-      <!-- 视频主体7 [[ -->
-      <div class="container" style="border-bottom:1px solid #dddddd">
-        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
-          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
-          ${sessionScope.videoTypes[6].typeName }</h3>
-      </div>
-      <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos7">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间7-1
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos7">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}"">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/> -->
-                  格式化时间7-2
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 视频主体7 ]] -->
-
-      <!-- 视频主体8 [[ -->
-      <div class="container" style="border-bottom:1px solid #dddddd">
-        <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
-          src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50" height="35""></img>
-          ${sessionScope.videoTypes[7].typeName }</h3>
-      </div>
-      <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos8">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
-                  格式化时间8-1
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3" v-for="v in videos8">
-            <a href="index-play-show?id=${v.id }" class="thumbnail">
-              <img src="${pageContext.request.contextPath }/${v.src}"">
-              <div class="caption">
-                <p class="text-center">${v.name }</p>
-                <p class="text-center" style="color:grey; font-size: 2px;">
-                  <!--                  <fmt:formatDate value="${v.createTime }" pattern="yyyy-MM-dd hh:mm:ss"/>-->
-                  格式化时间8-2
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 视频主体8 ]] -->
+      </template>
     </div>
     <!-- 友情链接部分 [[ -->
     <div class="container-fluid" style="background-color:rgb(236,236,236)" id="footer">
@@ -574,8 +273,8 @@
           <div class="col-lg-4 col-md-4" style="font-size:16px;">
             <ul>
               <li>您可以下载我们的移动客户端</li>
-              <li>也欢迎您关注我们的微博和微信<img src="${pageContext.request.contextPath }/photo/index/title_logo.png" width="50"
-                                     height="35""></img></li>
+              <li>也欢迎您关注我们的微博和微信<img :src="API_ROOT+'/photo/index/title_logo.png'" width="50"
+                                     height="35"></img></li>
             </ul>
           </div>
         </div>
@@ -587,6 +286,7 @@
 
 <script>
   import {getIndexVideo} from "../../api/video";
+  import {formatDateTime} from '../../utils'
 
   export default {
     name: "index",
@@ -600,8 +300,9 @@
         videos6: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
         videos7: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
         videos8: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
+        API_ROOT: process.env.API_ROOT,
         videoTypes: [],
-        indexVideos:[],
+        indexVideos: [],
         friendLinks: []
       }
     },
@@ -620,8 +321,9 @@
           this.videoTypes = resp.data;
         });
       },
-      getIndexVideo(){
-        getIndexVideo({pageSize:6}).then((resp)=>{
+      // 根据最上级视频分类查询最新的视频
+      getIndexVideo() {
+        getIndexVideo({pageSize: 6}).then((resp) => {
           this.indexVideos = resp.data;
         })
       },
