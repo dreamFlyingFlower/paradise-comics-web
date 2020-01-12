@@ -1,90 +1,15 @@
 <template>
   <div>
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                  data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand css716dd981b5489" href="index-index-show"
-             style="color:#f36c60; font-size:28px;">ACGFAN</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class=""><a href="index-index-show"><i class="glyphicon glyphicon-film"
-                                                       style="color:#f36c60;font-size:10px;"></i> 主站</a></li>
-            <li><a href="palette-palette-show"><i class="glyphicon glyphicon-picture" style="font-size:10px;"></i>
-              画友</a></li>
-            <li><a href="shop-shop-show"><i class="glyphicon glyphicon-shopping-cart" style="font-size:10px;"></i> 周边商城</a>
-            </li>
-            <li><a href="game-game-show"><i class="glyphicon glyphicon glyphicon-fire" style="font-size:10px;"></i>
-              游戏</a></li>
-          </ul>
-          <form class="navbar-form navbar-right" role="search" action="index-search-execute" method="post">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search">
-            </div>
-            <button type="submit" class="btn btn-default" style="background-color:#f36c60;">
-              <i class="glyphicon glyphicon-search" style="color:white;"></i>
-            </button>
-          </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li v-if="$store.state.user"><a href="account-collect-show">收藏夹</a></li>
-            <li class="dropdown">
-              <!-- 用户未登录显示部分 -->
-              <template v-if="$store.state.user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">登录/注册 <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="account-login-show"><i class="glyphicon glyphicon-user" style="color:#f36c60;"></i> 用户登录</a>
-                  </li>
-                  <li class="divider"></li>
-                  <li><a href="account-question-show"><i class="glyphicon glyphicon-plus-sign"
-                                                         style="color:#f36c60;"></i> 注册账号</a></li>
-                </ul>
-              </template>
-              <!-- 用户已登录显示部分 -->
-              <template v-if="$store.state.user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.username } <span
-                  class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="account-myself-show"><i class="glyphicon glyphicon-home" style="color:#f36c60;"></i> 个人中心</a>
-                  </li>
-                  <li><a href="account-edit-show"><i class="glyphicon glyphicon-pencil" style="color:#f36c60;"></i> 修改资料</a>
-                  </li>
-                  <li class="divider"></li>
-                  <li><a href="account-exit-execute"><i class="glyphicon glyphicon-circle-arrow-left"
-                                                        style="color:#f36c60;"></i> 退出登录</a></li>
-                </ul>
-              </template>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-    <!-- 网站主体导航栏 ]] -->
-
-    <!-- 主站bar图 [[ -->
-    <div class="index_bar"></div>
-    <!-- 主站bar图 ]] -->
-
     <!-- 视频分类导航栏 [[ -->
     <div class="container-fluid" style="background-color: white; color:red;">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
           <ul class="nav nav-tabs">
-            <li role="presentation" style="border-bottom:1px solid #f36c60"><a href="index-index-show"
-                                                                               style="color:#f36c60">首页<i
-              class="glyphicon glyphicon-home hidden-xs"></i></a></li>
+            <li role="presentation" style="border-bottom:1px solid #f36c60">
+              <a href="/" style="color:#f36c60">首页</a>
+            </li>
             <li class="hidden-xs" role="presentation" v-for="v in videoTypes">
-              <a href="index-more-show?typeId=${sessionScope.videoTypes[0].id }">{{v.typeName}}
-                <div class="type_number hidden-xs">${sessionScope.videoCount[0] }</div>
-              </a>
+              <a href="index-more-show?typeId=${sessionScope.videoTypes[0].id }">{{v.typeName}}</a>
             </li>
           </ul>
         </div>
@@ -97,139 +22,24 @@
       <div class="row">
         <!-- 视频轮播图 [[ -->
         <!-- 大屏轮播图 -->
-        <div class="col-lg-6 visible-lg">
-          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-              <div class="item active">
-                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[0].src}"
-                                  alt="${requestScope.indexShows[0].title}"></a>
-                <div class="carousel-caption">
-                  <p>${requestScope.indexShows[0].title}</p>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[1].src}"
-                                  alt="${requestScope.indexShows[1].title}"></a>
-                <div class="carousel-caption">
-                  <p>${requestScope.indexShows[1].title}</p>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[2].src}"
-                                  alt="${requestScope.indexShows[2].title}"></a>
-                <div class="carousel-caption">
-                  <p>${requestScope.indexShows[2].title}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <template>
+        <div class="block" style="width: 500px;background-color: #00ee00">
+            <!-- 轮播图 -->
+          <el-carousel >
+            <el-carousel-item v-for="o in carousets" :key="o.id">
+              <a :href="o.videoSrc"><img :src="API_ROOT+'/'+o.src" :alt="o.title"></a>
+              <h3 class="small" style="font-size: 14px;opacity: 0.75;line-height: 175px;margin: 0;">{{o.title}}</h3>
+            </el-carousel-item>
+          </el-carousel>
         </div>
-        <!-- 小屏轮播图 -->
-        <div class="col-md-6 col-md-offset-3 hidden-lg">
-          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-              <div class="item active">
-                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[0].src}"
-                                  alt="${requestScope.indexShows[0].src}"></a>
-                <div class="carousel-caption">
-                  <p>${requestScope.indexShows[0].title}</p>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[1].src}"
-                                  alt="${requestScope.indexShows[1].src}"></a>
-                <div class="carousel-caption">
-                  <p>${requestScope.indexShows[1].title}</p>
-                </div>
-              </div>
-              <div class="item">
-                <a href="#!"><img src="${pageContext.request.contextPath }/${requestScope.indexShows[2].src}"
-                                  alt="${requestScope.indexShows[2].src}"></a>
-                <div class="carousel-caption">
-                  <p>${requestScope.indexShows[2].title}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-        </div>
+        </template>
         <!-- 视频轮播图 ]] -->
         <div class="col-lg-6 col-md-12 hidden-xs">
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
-              href="index-play-show?id=${requestScope.videos6[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos6[0].src })"></div>
-            </a></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
-              href="index-play-show?id=${requestScope.videos2[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos2[0].src })"></div>
-            </a></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
-              href="index-play-show?id=${requestScope.videos7[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos7[0].src })"></div>
-            </a></div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
-              href="index-play-show?id=${requestScope.videos4[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos4[0].src })"></div>
-            </a></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
-              href="index-play-show?id=${requestScope.videos5[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos5[0].src })"></div>
-            </a></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><a
-              href="index-play-show?id=${requestScope.videos8[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos8[0].src })"></div>
-            </a></div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-12 visible-xs">
-          <br>
-          <div class="row">
-            <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos6[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos6[0].src })"></div>
-            </a></div>
-            <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos2[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos2[0].src })"></div>
-            </a></div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos7[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos7[0].src })"></div>
-            </a></div>
-            <div class="col-xs-6"><a href="index-play-show?id=${requestScope.videos4[0].id }">
-              <div class="topPhoto"
-                   style="background-image: url(${pageContext.request.contextPath}/${requestScope.videos4[0].src })"></div>
-            </a></div>
-          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" v-for="o in indexVideos"><a
+            :href="'index-play-show?id='+o.videos[0].videoId">
+            <div class="topPhoto"
+                 :style="'background-image: url('+API_ROOT+o.videos[0].cover+')'"></div>
+          </a></div>
         </div>
       </div>
       <!-- 视频展示区 ]] -->
@@ -294,27 +104,29 @@
       return {
         videos1: [{id: 1, name: "test", src: "http1"}, {id: 2, name: "test1", src: "http2"}],
         videos2: [{id: 1, name: "test", src: "http1"}, {id: 2, name: "test1", src: "http2"}],
-        videos3: [{id: 1, name: "test2", src: "http1"}, {id: 2, name: "test3", src: "http2"}],
-        videos4: [{id: 1, name: "test4", src: "http1"}, {id: 2, name: "test5", src: "http2"}],
-        videos5: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
-        videos6: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
-        videos7: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
-        videos8: [{id: 1, name: "test6", src: "http1"}, {id: 2, name: "test7", src: "http2"}],
         API_ROOT: process.env.API_ROOT,
-        videoTypes: [],
-        indexVideos: [],
-        friendLinks: []
+        carousets: [],// 轮播图
+        videoTypes: [],// 视频类型
+        indexVideos: [],// 首页视频展示
+        friendLinks: [] // 友情链接
       }
     },
     created() {
       // $('.carousel').carousel({
       //   interval: 3000
       // })
+      this.getCarousets();
       this.getVideoTypes();
       this.getIndexVideo();
       this.getFriendLinks();
     },
     methods: {
+      // 获得轮播图
+      getCarousets() {
+        this.$getEntitys('carouset').then((resp) => {
+          this.carousets = resp.data;
+        });
+      },
       // 获得所有最上级类型的视频分类
       getVideoTypes() {
         this.$getEntitys('videoType', {pid: 1}).then((resp) => {
@@ -323,7 +135,7 @@
       },
       // 根据最上级视频分类查询最新的视频
       getIndexVideo() {
-        getIndexVideo({pageSize: 6}).then((resp) => {
+        getIndexVideo({pageSize: 8}).then((resp) => {
           this.indexVideos = resp.data;
         })
       },

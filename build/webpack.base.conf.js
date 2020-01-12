@@ -31,6 +31,9 @@ module.exports = {
       '@utils': resolve('src/utils'),
       '@is': resolve('src/components'),
       '@pages': resolve('src/pages'),
+      '@img': resolve('src/assets/img'),
+      '@css': resolve('src/assets/css'),
+      '@mixin': resolve('src/mixin')
     }
   },
   module: {
