@@ -1,109 +1,77 @@
 <template>
   <div>
     <!-- 视频分类导航栏 [[ -->
-    <div class="container-fluid" style="background-color: white; color:red;">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
-          <ul class="nav nav-tabs">
-            <li role="presentation" style="border-bottom:1px solid #f36c60">
-              <a href="/" style="color:#f36c60">首页</a>
-            </li>
-            <li class="hidden-xs" role="presentation" v-for="v in videoTypes">
-              <a href="index-more-show?typeId=${sessionScope.videoTypes[0].id }">{{v.typeName}}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div style="background-color: white; color:red;">
+      <ul>
+        <li style="border-bottom:1px solid #f36c60">
+          <a href="/" style="color:#f36c60">首页</a>
+        </li>
+        <li v-for="v in videoTypes">
+          <a href="index-more-show?typeId=${sessionScope.videoTypes[0].id }">{{v.typeName}}</a>
+        </li>
+      </ul>
     </div>
-    <!-- 视频分类导航栏 ]] -->
-    <br>
-    <!-- 视频展示区 [[ -->
-    <div class="container">
-      <div class="row">
-        <!-- 视频轮播图 [[ -->
-        <!-- 大屏轮播图 -->
-        <template>
-        <div class="block" style="width: 500px;background-color: #00ee00">
-            <!-- 轮播图 -->
-          <el-carousel >
-            <el-carousel-item v-for="o in carousets" :key="o.id">
-              <a :href="o.videoSrc"><img :src="API_ROOT+'/'+o.src" :alt="o.title"></a>
-              <h3 class="small" style="font-size: 14px;opacity: 0.75;line-height: 175px;margin: 0;">{{o.title}}</h3>
-            </el-carousel-item>
-          </el-carousel>
-        </div>
-        </template>
-        <!-- 视频轮播图 ]] -->
-        <div class="col-lg-6 col-md-12 hidden-xs">
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" v-for="o in indexVideos"><a
-            :href="'index-play-show?id='+o.videos[0].videoId">
-            <div class="topPhoto"
-                 :style="'background-image: url('+API_ROOT+o.videos[0].cover+')'"></div>
-          </a></div>
-        </div>
-      </div>
-      <!-- 视频展示区 ]] -->
 
-      <!-- 视频主体 [[ -->
-      <template v-for="v in indexVideos">
-        <div class="container" style="border-bottom:1px solid #dddddd">
-          <h3 class="css76035d43b5489" style="color:#f36c60; font-weight: bold;"><img
-            :src="API_ROOT+'/photo/index/title_logo.png'" width="50" height="35"></img>
-            {{v.typeName}}</h3>
-        </div>
-        <br>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3" v-for="c in v.videos">
-              <a href="index-play-show?id=${c.id }" class="thumbnail">
-                <img :src="API_ROOT+'/'+c.cover">
-                <div class="caption">
-                  <p class="text-center">{{c.name}}</p>
-                  <p class="text-center" style="color:grey; font-size: 2px;">
-                    {{c.createtime}}
-                  </p>
-                </div>
-              </a>
+    <!-- 轮播图 -->
+    <div class="block" style="width: 500px;background-color: #00ee00">
+      <el-carousel v-if="carousets && carousets.length > 0">
+        <el-carousel-item v-for="o in carousets" :key="o.id">
+          <a :href="o.videoSrc"><img :src="API_ROOT+'/'+o.src" :alt="o.title"></a>
+          <h3 class="small" style="font-size: 14px;opacity: 0.75;line-height: 175px;margin: 0;">{{o.title}}</h3>
+        </el-carousel-item>
+      </el-carousel>
+    </div>
+
+    <!-- 视频主体 [[ -->
+    <el-row :gutter="2" v-for="o in indexVideos" :key="o.typeId">
+      <h3 style="color:#f36c60; font-weight: bold;"><img
+        :src="API_ROOT+'/photo/index/title_logo.png'" width="50" height="35"></img>
+        {{o.typeName}}</h3>
+      <el-col :span="6" v-for="v in o.videos" :key="v.videoId">
+        <el-card :body-style="{ padding: '0px' }">
+          <a :href="API_ROOT+v.videoSrc">
+            <img :src="API_ROOT+v.cover" :alt="v.title" class="image" style="height: 250px;">
+            <div style="padding: 14px;">
+              <span class="font-ellipsis" :title="v.name">{{v.name}}</span>
+              <div class="bottom clearfix">
+                <time class="time">{{v.createtime}}</time>
+              </div>
             </div>
-          </div>
-        </div>
-      </template>
-    </div>
+          </a>
+        </el-card>
+      </el-col>
+    </el-row>
+
     <!-- 友情链接部分 [[ -->
-    <div class="container-fluid" style="background-color:rgb(236,236,236)" id="footer">
-      <br>
-      <div class="container">
-        <h4 style="color:#bbb">友情链接</h4>
-        <div class="row">
-          <div class="col-lg-4 col-md-4">
-            <ul style="list-style: none;" v-for="item in friendLinks">
-              <li><a href="item.linkSrc">{{item.linkName}}</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-4 col-md-4" style="font-size:16px;">
-            <ul>
-              <li>您可以下载我们的移动客户端</li>
-              <li>也欢迎您关注我们的微博和微信<img :src="API_ROOT+'/photo/index/title_logo.png'" width="50"
-                                     height="35"></img></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <br>
-    </div>
+    <el-container>
+      <el-header style="color:#bbb">友情链接</el-header>
+      <el-container>
+        <el-main>
+          <el-row :gutter="10">
+           <el-col :span="12" v-for="item in friendLinks" :key="item.friendLinkId">
+             <a href="item.linkSrc">{{item.linkName}}</a>
+           </el-col>
+          </el-row>
+        </el-main>
+        <el-aside width="300px">
+          <ul style="font-size:16px;">
+            <li>您可以下载我们的移动客户端</li>
+            <li>也欢迎您关注我们的微博和微信<img :src="API_ROOT+'/photo/index/title_logo.png'" width="50"
+                                   height="35"></img></li>
+          </ul>
+        </el-aside>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <script>
   import {getIndexVideo} from "../../api/video";
-  import {formatDateTime} from '../../utils'
 
   export default {
     name: "index",
     data() {
       return {
-        videos1: [{id: 1, name: "test", src: "http1"}, {id: 2, name: "test1", src: "http2"}],
-        videos2: [{id: 1, name: "test", src: "http1"}, {id: 2, name: "test1", src: "http2"}],
         API_ROOT: process.env.API_ROOT,
         carousets: [],// 轮播图
         videoTypes: [],// 视频类型
@@ -112,9 +80,6 @@
       }
     },
     created() {
-      // $('.carousel').carousel({
-      //   interval: 3000
-      // })
       this.getCarousets();
       this.getVideoTypes();
       this.getIndexVideo();
@@ -150,5 +115,56 @@
 </script>
 
 <style scoped>
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
 
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+  .image {
+    width: 100%;
+    display: block;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+
+  .clearfix:after {
+    clear: both
+  }
+  .el-header, .el-footer {
+    color: #333;
+    line-height: 60px;
+    text-align: center;
+  }
+
+  .el-aside {
+    color: #333;
+    text-align: center;
+  }
+
+  .el-main {
+    color: #333;
+    text-align: center;
+  }
+
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }
 </style>
