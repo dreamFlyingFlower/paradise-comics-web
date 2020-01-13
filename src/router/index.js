@@ -15,6 +15,12 @@ export default new Router({
           path:'index',
           component: ()=>import('@pages/home'),
           meta:{title:"首页"}
+        },
+        {
+          path:'videos/:typeId',
+          name:"videos",
+          component:()=>import('@pages/videos'),
+          meta: {title: "视频"}
         }
       ]
     }

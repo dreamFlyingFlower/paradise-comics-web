@@ -2,11 +2,12 @@
   <div>
     <navbar/>
     <app-content/>
+    <link-footer/>
   </div>
 </template>
 
 <script>
-  import {appContent, navbar} from '../../components'
+  import {navbar,appContent,linkFooter} from '../../components'
   import {resize} from '@mixin'
   import {mapState} from 'vuex'
 
@@ -16,7 +17,9 @@
       // 上方导航栏
       navbar,
       // 主体router-view
-      appContent
+      appContent,
+      // 下方友情连接
+      linkFooter
     },
     mixins: [resize],
     computed: {

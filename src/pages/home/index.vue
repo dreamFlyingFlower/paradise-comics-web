@@ -2,14 +2,12 @@
   <div>
     <!-- 视频分类导航栏 [[ -->
     <div style="background-color: white; color:red;">
-      <ul>
-        <li style="border-bottom:1px solid #f36c60">
-          <a href="/" style="color:#f36c60">首页</a>
-        </li>
-        <li v-for="v in videoTypes">
-          <a href="index-more-show?typeId=${sessionScope.videoTypes[0].id }">{{v.typeName}}</a>
-        </li>
-      </ul>
+      <el-menu :default-active="'1'" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu-item style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a></el-menu-item>
+        <el-menu-item v-for="(v,pos) in videoTypes" index="pos" :key="pos">
+          <router-link :to="{name:'videos',params:{typeId:v.typeId}}">{{v.typeName}}</router-link>
+        </el-menu-item>
+      </el-menu>
     </div>
 
     <!-- 轮播图 -->
@@ -41,27 +39,6 @@
         </el-card>
       </el-col>
     </el-row>
-
-    <!-- 友情链接部分 [[ -->
-    <el-container>
-      <el-header style="color:#bbb">友情链接</el-header>
-      <el-container>
-        <el-main>
-          <el-row :gutter="10">
-           <el-col :span="12" v-for="item in friendLinks" :key="item.friendLinkId">
-             <a href="item.linkSrc">{{item.linkName}}</a>
-           </el-col>
-          </el-row>
-        </el-main>
-        <el-aside width="300px">
-          <ul style="font-size:16px;">
-            <li>您可以下载我们的移动客户端</li>
-            <li>也欢迎您关注我们的微博和微信<img :src="API_ROOT+'/photo/index/title_logo.png'" width="50"
-                                   height="35"></img></li>
-          </ul>
-        </el-aside>
-      </el-container>
-    </el-container>
   </div>
 </template>
 
@@ -75,20 +52,22 @@
         API_ROOT: process.env.API_ROOT,
         carousets: [],// 轮播图
         videoTypes: [],// 视频类型
-        indexVideos: [],// 首页视频展示
-        friendLinks: [] // 友情链接
+        indexVideos: []// 首页视频展示
       }
     },
     created() {
       this.getCarousets();
       this.getVideoTypes();
       this.getIndexVideo();
-      this.getFriendLinks();
     },
     methods: {
+      // 菜单点击事件
+      handleSelect(key, keyPath) {
+
+      },
       // 获得轮播图
       getCarousets() {
-        this.$getEntitys('carouset').then((resp) => {
+        this.$getEntitys('carouset',{type:1}).then((resp) => {
           this.carousets = resp.data;
         });
       },
@@ -103,12 +82,6 @@
         getIndexVideo({pageSize: 8}).then((resp) => {
           this.indexVideos = resp.data;
         })
-      },
-      // 获得所有的友情链接
-      getFriendLinks() {
-        this.$getEntitys('friendLink').then((resp) => {
-          this.friendLinks = resp.data;
-        });
       }
     }
   }
@@ -128,43 +101,5 @@
   .image {
     width: 100%;
     display: block;
-  }
-
-  .clearfix:before,
-  .clearfix:after {
-    display: table;
-    content: "";
-  }
-
-  .clearfix:after {
-    clear: both
-  }
-  .el-header, .el-footer {
-    color: #333;
-    line-height: 60px;
-    text-align: center;
-  }
-
-  .el-aside {
-    color: #333;
-    text-align: center;
-  }
-
-  .el-main {
-    color: #333;
-    text-align: center;
-  }
-
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
   }
 </style>
