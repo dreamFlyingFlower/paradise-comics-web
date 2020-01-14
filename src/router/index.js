@@ -21,6 +21,12 @@ export default new Router({
           name:"videos",
           component:()=>import('@pages/videos'),
           meta: {title: "视频"}
+        },
+        {
+          path:'play/:videoId/:src',
+          name:"play",
+          component:()=>import('@pages/videos/play'),
+          meta: {title:"播放视频"}
         }
       ]
     }
