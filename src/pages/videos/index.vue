@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 视频主体 [[ -->
-    <el-row :gutter="2">
+    <el-row>
       <el-col :span="6" v-for="v in videos" :key="v.videoId">
         <el-card :body-style="{ padding: '0px' }">
           <a :href="API_ROOT+v.videoSrc">

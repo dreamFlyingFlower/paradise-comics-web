@@ -35,7 +35,17 @@
       </el-col>
     </el-row>
     <img v-if="carouset" :src="API_ROOT +'/'+ carouset.src" :alt="carouset.title"
-         style="width: 100%;height: 180px;background-color: orange;margin-top: -21px;background-size: cover;">
+         style="width: 100%;height: 180px;background-color: orange;background-size: cover;">
+    <!-- 视频分类导航栏 [[ -->
+    <div style="background-color: white; color:red;">
+      <el-menu :default-active="'1'" class="el-menu-demo" mode="horizontal" @select="handlerSelect">
+        <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a>
+        </el-menu-item>
+        <el-menu-item v-for="(v,pos) in videoTypes" :index="v.typeId+''" :key="pos">
+          <router-link :to="{name:'videos',params:{typeId:v.typeId}}">{{v.typeName}}</router-link>
+        </el-menu-item>
+      </el-menu>
+    </div>
   </div>
 </template>
 
@@ -45,15 +55,17 @@
     data() {
       return {
         API_ROOT: process.env.API_ROOT,
-        carouset: ""
+        carouset: "",// 首页大图
+        videoTypes: []// 视频类型
       }
     },
     created() {
       this.getCarousets();
+      this.getVideoTypes();
     },
     methods: {
-      handlerSelect() {
-
+      handlerSelect(key, keyPath) {
+        console.log(key, keyPath)
       },
       // 获得首页大图
       getCarousets() {
@@ -61,9 +73,16 @@
           this.carouset = resp && resp.data.length > 0 ? resp.data[0] : "";
         });
       },
+      // 获得所有最上级类型的视频分类
+      getVideoTypes() {
+        this.$getEntitys('videoType', {pid: 1}).then((resp) => {
+          this.videoTypes = resp.data;
+        });
+      },
     }
   }
 </script>
 
-<style scoped>
+<style type="scss" scoped>
+
 </style>

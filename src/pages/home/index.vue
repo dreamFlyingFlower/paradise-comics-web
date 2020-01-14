@@ -1,15 +1,5 @@
 <template>
   <div>
-    <!-- 视频分类导航栏 [[ -->
-    <div style="background-color: white; color:red;">
-      <el-menu :default-active="'1'" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a></el-menu-item>
-        <el-menu-item v-for="(v,pos) in videoTypes" index="pos" :key="pos">
-          <router-link :to="{name:'videos',params:{typeId:v.typeId}}">{{v.typeName}}</router-link>
-        </el-menu-item>
-      </el-menu>
-    </div>
-
     <!-- 轮播图 -->
     <div class="block" style="width: 500px;background-color: #00ee00">
       <el-carousel v-if="carousets && carousets.length > 0">
@@ -51,13 +41,11 @@
       return {
         API_ROOT: process.env.API_ROOT,
         carousets: [],// 轮播图
-        videoTypes: [],// 视频类型
         indexVideos: []// 首页视频展示
       }
     },
     created() {
       this.getCarousets();
-      this.getVideoTypes();
       this.getIndexVideo();
     },
     methods: {
@@ -69,12 +57,6 @@
       getCarousets() {
         this.$getEntitys('carouset',{type:1}).then((resp) => {
           this.carousets = resp.data;
-        });
-      },
-      // 获得所有最上级类型的视频分类
-      getVideoTypes() {
-        this.$getEntitys('videoType', {pid: 1}).then((resp) => {
-          this.videoTypes = resp.data;
         });
       },
       // 根据最上级视频分类查询最新的视频
