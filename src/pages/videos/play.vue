@@ -1,5 +1,6 @@
 <template>
   <div class="player">
+    <h3 style="text-align: center">视频的名字</h3>
     <!-- 视频播放 -->
     <video-player class="video-player vjs-custom-skin"
                   ref="videoPlayer"
@@ -8,20 +9,29 @@
                   @play="playIt($event)"
                   @pause="pauseIt($event)"></video-player>
     <!-- 评论 -->
-    <template v-if="$store.state.user.username">
-
+    <template v-if="!$store.state.user.username">
+      <el-row>
+        <el-col :span="24" v-for="c in comments" :key="c.commentId">{{c.content}}</el-col>
+      </el-row>
     </template>
     <template v-else>
-      登录之后才能评论,请<router-link :to="{path:'/login'}">登录</router-link>
+      登录之后才能评论,请
+      <router-link :to="{path:'/login',params:{}}">登录</router-link>
     </template>
   </div>
 </template>
 
 <script>
+  import {videoPlayer} from 'vue-video-player'
+  import 'videojs-contrib-hls'
+  import 'video.js/dist/video-js.css'
+  import 'vue-video-player/src/custom-theme.css'
+
   export default {
     name: "play",
     data() {
       return {
+        detail:{},
         playerOptions: {
           playbackRates: [0.5, 1.0, 1.5, 2.0], //播放速度
           autoplay: true, //如果true,浏览器准备好时开始回放。
@@ -45,11 +55,15 @@
             fullscreenToggle: true //全屏按钮
           }
         },
-        comments:[]
+        comments: []
       }
     },
+    components: {
+      videoPlayer
+    },
     created() {
-      this.playerOptions.sources[0].src = this.$route.params.src;
+      console.log(this.$route.params.videoId)
+      this.getVideoById();
       this.getComments();
     },
     methods: {
@@ -59,19 +73,28 @@
       pauseIt() {
 
       },
+      // 获得视频的详细信息
+      getVideoById(){
+        this.$getById('video',this.$route.params.videoId).then(resp=>{
+          this.detail = resp.data;
+          this.playerOptions.sources[0].src = this.detail.videoSrc;
+        });
+      },
       // 获得该视频的评论,未登录不显示
-      getComments(){
-        if (!this.$store.state.user.username){
+      getComments() {
+        if (!this.$store.state.user.username) {
           // return;
         }
-        this.$getEntitys('comment').then(resp=>{
+        this.$getEntitys('comment').then(resp => {
           this.comments = resp.data;
         })
       }
     }
   }
 </script>
-
-<style scoped>
-
+<style lang="scss">
+  .video-player {
+    margin: 20px 25%;
+    width: 50%;
+  }
 </style>

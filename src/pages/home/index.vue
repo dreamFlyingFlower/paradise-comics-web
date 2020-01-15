@@ -4,7 +4,7 @@
     <div class="block" style="width: 500px;background-color: #00ee00">
       <el-carousel v-if="carousets && carousets.length > 0">
         <el-carousel-item v-for="o in carousets" :key="o.id">
-          <router-link :to="{name:'play',params:{videoId:o.videoId,src:API_ROOT+o.videoSrc}}">
+          <router-link :to="{name:'play',params:{videoId:o.videoId}}">
             <img :src="API_ROOT+'/'+o.src" :alt="o.title">
           </router-link>
           <h3 class="small" style="font-size: 14px;opacity: 0.75;line-height: 175px;margin: 0;">{{o.title}}</h3>
@@ -19,7 +19,7 @@
         {{o.typeName}}</h3>
       <el-col :span="6" v-for="v in o.videos" :key="v.videoId">
         <el-card :body-style="{ padding: '0px' }">
-          <router-link :to="{name:'play',params:{videoId:v.videoId,src:API_ROOT+v.videoSrc}}">
+          <router-link :to="{name:'play',params:{videoId:v.videoId}}">
             <img :src="API_ROOT+v.cover" :alt="v.title" class="image" style="height: 250px;">
             <div style="padding: 14px;">
               <span class="font-ellipsis" :title="v.name">{{v.name}}</span>

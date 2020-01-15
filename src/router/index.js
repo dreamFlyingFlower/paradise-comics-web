@@ -23,7 +23,7 @@ export default new Router({
           meta: {title: "视频"}
         },
         {
-          path:'play/:videoId/:src',
+          path:'play/:videoId',
           name:"play",
           component:()=>import('@pages/videos/play'),
           meta: {title:"播放视频"}

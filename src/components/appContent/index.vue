@@ -29,5 +29,5 @@
   }
 </style>
 <style scoped>
-@import "./_index.scss";
+/*@import "./_index.scss";*/
 </style>
