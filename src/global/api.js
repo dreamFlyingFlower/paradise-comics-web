@@ -18,7 +18,7 @@ export default {
      * @returns {*}
      */
     Vue.prototype.$common = function (url, params, method, msg, handler, callback, fresh,
-        freshTree) {
+                                      freshTree) {
       if (!handler) {
         if (callback) {
           if (method.toLowerCase() === 'get') {
@@ -51,7 +51,7 @@ export default {
         }
       } else {
         return method.toLowerCase() === 'get' ? service.get(url, params)
-            : service.post(url, params);
+          : service.post(url, params);
       }
     };
     /**
@@ -135,13 +135,14 @@ export default {
      */
     Vue.prototype.$hasValue = function (api, params, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/hasValue`, params, 'post', null,
-          handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined ? true : false, callback, fresh, freshTree);
     };
     /**
      * 通用根据主键编号查询详情,主键必须是数字类型
      */
     Vue.prototype.$getById = function (api, id, handler, callback, fresh, freshTree) {
-      return new Vue().$common(`${api}/getById/${id}`, {}, 'get', null, handler, callback, fresh, freshTree);
+      return new Vue().$common(`${api}/getById/${id}`, {}, 'get', null,
+        handler === undefined ? true : false, callback, fresh, freshTree);
     };
     /**
      * 通用根据主键编号查询详情,主键必须是字符串
@@ -154,28 +155,28 @@ export default {
      */
     Vue.prototype.$getTree = function (api, id, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/getTree/${id}`, {}, 'get', null,
-          handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined ? true : false, callback, fresh, freshTree);
     };
     /**
      * 通用单表数据分页/不分页查询,参数是表中非null字段的值,且条件只能是相等
      */
     Vue.prototype.$getEntitys = function (api, params, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/getEntitys`, params, 'get', null,
-          handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined ? true : false, callback, fresh, freshTree);
     };
     /**
      * 通用联表数据分页/不分页查询,参数根据后台接口而定,且参数类型必须是基本类型或字符串
      */
     Vue.prototype.$getPage = function (api, params, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/getPage`, params, 'get', null,
-          handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined ? true : false, callback, fresh, freshTree);
     };
     /**
      * 通用联表数据分页/不分页查询,参数根据后台接口而定,参数可是任意类型
      */
     Vue.prototype.$getList = function (api, params, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/getList`, params, 'post', null,
-          handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined ? true : false, callback, fresh, freshTree);
     };
     // 文件上传,未测试
     Vue.prototype.$upload = (api, files, params) => {
@@ -208,7 +209,7 @@ export default {
         queryString.push(key + "=" + params[key]);
       }
       window.location.href = `${process.env.API_URL}export/${api}` + (queryString.length > 0
-          ? "?" + queryString.join("&") : "");
+        ? "?" + queryString.join("&") : "");
     }
   }
 };

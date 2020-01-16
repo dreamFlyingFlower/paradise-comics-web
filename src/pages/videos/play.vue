@@ -1,6 +1,6 @@
 <template>
   <div class="player">
-    <h3 style="text-align: center">视频的名字</h3>
+    <h3 style="text-align: center">{{detail.name}}</h3>
     <!-- 视频播放 -->
     <video-player class="video-player vjs-custom-skin"
                   ref="videoPlayer"
@@ -9,12 +9,12 @@
                   @play="playIt($event)"
                   @pause="pauseIt($event)"></video-player>
     <!-- 评论 -->
-    <template v-if="!$store.state.user.username">
+    <template >
       <el-row>
-        <el-col :span="24" v-for="c in comments" :key="c.commentId">{{c.content}}</el-col>
+        <el-col :span="24" v-for="c in comments" :key="c.commentId" class="comment">{{c.content}}</el-col>
       </el-row>
     </template>
-    <template v-else>
+    <template v-if="!$store.state.user.username">
       登录之后才能评论,请
       <router-link :to="{path:'/login',params:{}}">登录</router-link>
     </template>
@@ -62,7 +62,6 @@
       videoPlayer
     },
     created() {
-      console.log(this.$route.params.videoId)
       this.getVideoById();
       this.getComments();
     },
@@ -77,8 +76,9 @@
       getVideoById(){
         this.$getById('video',this.$route.params.videoId).then(resp=>{
           this.detail = resp.data;
-          this.playerOptions.sources[0].src = this.detail.videoSrc;
-        });
+          this.$set(this.playerOptions.sources[0],"src",process.env.API_ROOT+this.detail.videoSrc);
+          this.$set(this.playerOptions,"poster",process.env.API_ROOT + this.detail.cover);
+        })
       },
       // 获得该视频的评论,未登录不显示
       getComments() {
@@ -94,7 +94,10 @@
 </script>
 <style lang="scss">
   .video-player {
-    margin: 20px 25%;
-    width: 50%;
+    margin: 20px 5%;
+    width: 90%;
+  }
+  .comment{
+    text-align: center;
   }
 </style>
