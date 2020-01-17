@@ -65,7 +65,6 @@
     },
     methods: {
       handlerSelect(key, keyPath) {
-        console.log(key, keyPath)
       },
       // 获得首页大图
       getCarousets() {

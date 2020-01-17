@@ -27,6 +27,18 @@ export default new Router({
           name:"play",
           component:()=>import('@pages/videos/play'),
           meta: {title:"播放视频"}
+        },
+        {
+          path:'register',
+          name:'register',
+          component:()=>import('@pages/user/register'),
+          meta:{title:"注册"}
+        },
+        {
+          path:"login",
+          name:"login",
+          component:()=>import('@pages/user/login'),
+          meta:{title:"登录"}
         }
       ]
     }

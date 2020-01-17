@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- 视频主体 [[ -->
-    <el-row>
+    <el-row :gutter="5">
       <el-col :span="6" v-for="v in videos" :key="v.videoId">
         <el-card :body-style="{ padding: '0px' }">
           <router-link :to="{name:'play',params:{videoId:v.videoId}}">
-            <img :src="API_ROOT+v.cover" :alt="v.title" class="image" style="height: 250px;">
+            <img :src="API_ROOT+v.cover" :alt="v.title" class="image">
             <div style="padding: 14px;">
               <span class="font-ellipsis" :title="v.name">{{v.name}}</span>
               <div class="bottom clearfix">
@@ -43,6 +43,9 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.image{
+  height: 15.625rem;
+  border-radius: 0.625rem;
+}
 </style>
