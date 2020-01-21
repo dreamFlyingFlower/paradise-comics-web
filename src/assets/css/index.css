@@ -85,3 +85,10 @@ li{
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* 登录页面 */
+.login{
+  background-image: url(./icon.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

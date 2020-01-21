@@ -7,9 +7,14 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
+      path:'/login',
+      component:()=>import('@pages/user/login'),
+      meta:{title:"登录"}
+    },
+    {
       path: '/',
       component:Layout,
-      redirect:'index',
+      redirect:'/index',
       children:[
         {
           path:'index',
