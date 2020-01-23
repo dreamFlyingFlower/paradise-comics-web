@@ -1,6 +1,6 @@
 /*!*页面整体颜色为淡灰色*!*/
 body {
-	background-color: rgb(248, 248, 248);
+	background-color: #fff;
   margin: 0;
   padding: 0;
 }
@@ -63,7 +63,6 @@ body {
 /*	-webkit-box-shadow: 0 0 0px 1000px white inset !important;*/
 /*}*/
 a{
-  color: black;
   text-decoration: none;
 }
 li{
@@ -84,11 +83,4 @@ li{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-/* 登录页面 */
-.login{
-  background-image: url(./icon.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
