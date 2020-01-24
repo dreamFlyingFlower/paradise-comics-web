@@ -15,21 +15,16 @@
         <router-link class="tip-right" :to="{ path: '/forget' }">忘记密码?</router-link>
       </div>
       <el-form-item>
-        <el-row :gutter="10">
-          <el-col :span="12">
-            <el-button style="width: 100%;" :loading="loading" type="primary" @click.native.prevent="login">登录</el-button>
-          </el-col>
-          <el-col :span="12">
-            <el-button style="width: 100%;" @click="register">注册</el-button>
-          </el-col>
-        </el-row>
+        <el-button style="width: 100%;" :loading="loading" type="primary" @click.native.prevent="login">登录</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+  // 管理页面登录
   export default {
+    name: "manager-login",
     data() {
       return {
         passwordType: 'password', // 密码类型
@@ -61,7 +56,7 @@
               resp => {
                 if (resp === 1) {
                   this.$nextTick(() => {
-                    this.$router.push('/');
+                    this.$router.push('/manager');
                     this.loading = false;
                   });
                 } else {
@@ -77,15 +72,11 @@
             return false;
           }
         });
-      },
-      // 跳转注册页面
-      register() {
-        this.$router.push({path: 'register'});
       }
     }
-  };
+  }
 </script>
 
-<style lang="scss">
-  @import "../../assets/css/user.scss";
+<style scoped>
+
 </style>

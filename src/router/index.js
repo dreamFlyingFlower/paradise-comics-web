@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '../pages/layout'
+import Manager from '../pages/layout/manager'
 
 Vue.use(Router);
 
@@ -56,5 +57,26 @@ export default new Router({
         }
       }
     ]
-  }]
+  },
+    {
+      path: "/manager/login",
+      name: "manager-login",
+      component: () => import("@pages/manager/user/login"),
+      meta: {title: "管理登录页"}
+    },
+    {
+      path:"/manager",
+      name:"manager",
+      component:Manager,
+      redirect: "/manager/index",
+      children:[
+        {
+          path:"index",
+          name:"manager-index",
+          component:() => import("@pages/manager"),
+          meta:{title:"管理首页"},
+        }
+      ]
+    }
+  ]
 })

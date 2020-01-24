@@ -14,16 +14,22 @@ export default {
   LOGIN({commit}, params) {
     return new Promise((resolve, reject) => {
       apiUser.login(params).then(resp => {
-        let data = resp.data;
         commit('USER', resp.data);
         cookie.setUser(resp.data);
-        cookie.setToken(data.token);
+        cookie.setToken(resp.data.token);
         resolve(resp.code);
       }).catch(error => {
         reject(error);
       });
     })
   },
+  /**
+   * 退出登录
+   * @param commit
+   * @param state
+   * @returns {Promise<unknown>}
+   * @constructor
+   */
   LOGOUT({commit, state}) {
     return new Promise((resolve, reject) => {
       apiUser.logout(state.user.userId).then(resp => {
@@ -36,6 +42,22 @@ export default {
         reject(error);
       });
     });
+  },
+  /**
+   * 用户注册
+   * @constructor
+   */
+  REGISTER({commit},params){
+    return new Promise((resolve,reject) =>{
+      apiUser.create(params).then(resp => {
+        commit('USER', resp.data);
+        cookie.setUser(resp.data);
+        cookie.setToken(resp.data.token);
+        resolve(resp.code);
+      }).catch(error => {
+        reject(error);
+      });
+    })
   },
   /**
    * 获得用户角色权限

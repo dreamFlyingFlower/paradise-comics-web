@@ -14,7 +14,7 @@ export default {
      * @param val 需要存储的值
      */
     Vue.prototype.$setSession = (key, val) => {
-      if (!typeof key === "string") {
+      if (typeof key !== "string") {
         console.log("key only string type");
         return;
       }
@@ -67,44 +67,74 @@ export default {
      */
     Vue.prototype.$isBlank = function (param) {
       if (new Vue().$isString(param)) {
-        return param.trim().length === 0 ? true : false;
+        return param.trim().length === 0;
       }
-      if (param && Object.keys(param) && Object.keys(param).length > 0) {
-        return false;
-      }
-      return true;
+      return !(param && Object.keys(param) && Object.keys(param).length > 0);
     };
     Vue.prototype.$nonBlank = function (param) {
       return !new Vue().$isBlank(param);
     };
     /**
-     * 对参数进行逻辑判断.==和===不一样,===必须类型和值完全一样,内存地址要一样
-     * 在js中0,'',undefined的逻辑判断为false.
-     * es6(可能es5)之前的版本中,0==undefined,''==undefined为true,但是es6之后为false
-     * 0==''仍判断为true,0===''为false,es6之前'0'也判断为false,es6后判断为true
-     * '0','   ','undefined'的逻辑判断中为true,都是字符串,即便字符画中是空格
-     * 本方法中将剔除逻辑判断0为false的情况,''逻辑判断仍为false
-     * 注意:[],{}仍然是存在的,只是为null,判断结果仍为true
+     * 判断是否为一个数字
      * @param param 参数
+     * @returns {boolean} true是,false不是
      */
-    Vue.prototype.$exist = function (param) {
-      // 必须用===,因为''==0也为true
-      if (param === 0 || param === '0') {
-        return true;
-      } else {
-        return param ? true : false;
-      }
+    Vue.prototype.$isNumber = function (param) {
+      return typeof param === "number" && !isNaN(param);
     };
+    /**
+     * 判断是否为一个字符串
+     * @param param 参数
+     * @returns {boolean} true是,false不是
+     */
     Vue.prototype.$isString = function (param) {
-      return typeof param === 'string' || param instanceof String ? true : false;
+      return typeof param === 'string' || param instanceof String;
     };
+    /**
+     * 判断是否为一个数组
+     * @param param 参数
+     * @returns {boolean} true是,false不是
+     */
     Vue.prototype.$isArray = function (param) {
       return typeof Array.isArray === 'undefined' ?
         Object.prototype.toString.call(param) === "[object Array]"
         : Array.isArray(param);
     };
+    /**
+     * 判断是否为一个方法
+     * @param param 参数
+     * @returns {boolean} true是,false不是
+     */
+    Vue.prototype.$isFunc = (param) => {
+      return typeof param === 'function'
+        || Object.prototype.toString.call(param) === '[object Function]';
+    };
+    /**
+     * 判断参数是否存在,其中数字0,null,undefined,""是不存在,逻辑判断为false.
+     * 本方法中,除了本身为不存在的值之外,还将"undefined","null","   ",[],{}认为是不存在
+     * es6(可能es5)之前的版本中,0==undefined,''==undefined为true,但是es6之后为false,0==''仍判断为true
+     * 注意:[],{}仍然是存在的,只是为null,判断结果仍为true
+     * @param param 参数
+     */
+    Vue.prototype.$exist = function (param) {
+      if (!param) {
+        return false;
+      }
+      // 判断字符串,"  ","0","undefined","null"为不存在,但js默认该值逻辑上为true
+      if (new Vue().$isString(param)) {
+        if (!param.trim() || param.trim() === '0' || param.trim() === "undefined" || param.trim() === "null") {
+          return false;
+        }
+      }
+      if (new Vue().$isNumber(param)) {
+        return true;
+      }
+      // 判断{},[],认为该值为不存在,但js默认该值逻辑上为true
+      return !!(param && Object.keys(param) && Object.keys(param).length > 0);
+    };
+
     Vue.prototype.$isExternal = function (path) {
-      return /^(https?:|mailto:|tel:)/.test(path)
+      return /^(https?:|mailto:|tel:)/.test(path);
     };
     Vue.prototype.$getToken = function () {
       return Cookies.get(TokenKey);
@@ -114,10 +144,6 @@ export default {
     };
     Vue.prototype.$removeToken = function () {
       return Cookies.remove(TokenKey);
-    };
-    Vue.prototype.$isFunc = (param) => {
-      return typeof params === 'function'
-        || Object.prototype.toString.call(param) === '[object Function]';
     };
     Vue.prototype.$formatDateTime = (date = new Date()) => {
       let ymd = new Vue().$formatDate(date);

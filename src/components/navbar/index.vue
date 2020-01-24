@@ -35,9 +35,9 @@
         </el-menu>
       </el-col>
     </el-row>
-    <img v-if="carouset" :src="API_ROOT + '/' + carouset.src" :alt="carouset.title" style="width: 100%;height: 180px;background-color: orange;background-size: cover;" />
+    <img v-if="showCarouset && carouset" :src="API_ROOT + '/' + carouset.src" :alt="carouset.title" style="width: 100%;height: 180px;background-color: orange;background-size: cover;" />
     <!-- 视频分类导航栏 [[ -->
-    <div v-if="$store.getters.user.token" style="background-color: white; color:red;">
+    <div v-if="showVideoTypes && $store.getters.user.token" style="background-color: white; color:red;">
       <el-menu :default-active="'1'" class="el-menu-demo" mode="horizontal" @select="handlerSelect">
         <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a></el-menu-item>
         <el-menu-item v-for="(v, pos) in videoTypes" :index="v.typeId + ''" :key="pos">
@@ -51,6 +51,7 @@
 <script>
 export default {
   name: 'navbar',
+  props:["showCarouset","showVideoTypes"],
   data() {
     return {
       API_ROOT: process.env.API_ROOT,
