@@ -1,5 +1,4 @@
 import service from '../utils/service';
-import crypto from '../utils/crypto';
 
 export default {
   login,

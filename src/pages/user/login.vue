@@ -17,7 +17,8 @@
       <el-form-item>
         <el-row :gutter="10">
           <el-col :span="12">
-            <el-button style="width: 100%;" :loading="loading" type="primary" @click.native.prevent="login">登录</el-button>
+            <el-button style="width: 100%;" :loading="loading" type="primary" @click.native.prevent="login">登录
+            </el-button>
           </el-col>
           <el-col :span="12">
             <el-button style="width: 100%;" @click="register">注册</el-button>
@@ -29,6 +30,8 @@
 </template>
 
 <script>
+  import Crypto from "../../utils/crypto";
+
   export default {
     data() {
       return {
@@ -40,8 +43,10 @@
           password: null
         },
         rules: {
-          username: [{required: true, message: '用户名/邮箱/手机号不能为空', max: '16'}],
-          password: [{required: true, message: '密码不能为空'}]
+          username: [{required: true, message: '用户名/邮箱/手机号不能为空', trigger: "blur"},
+            {max: '16', message: "用户名长度不能超过16", trigger: "blur"}],
+          password: [{required: true, message: '密码不能为空', trigger: "blur"},
+            {max: 12, message: '密码不得超过12位', trigger: "blur"}, {min: 6, message: '密码不得少于6位', trigger: "blur"}]
         }
       };
     },
@@ -57,7 +62,10 @@
         this.$refs.formData.validate(valid => {
           if (valid) {
             this.loading = true;
-            this.$store.dispatch('LOGIN', this.formData).then(
+            this.$store.dispatch('LOGIN', {
+              username: this.formData.username,
+              password: Crypto.AESEncode(this.formData.password + "_" + new Date().getTime())
+            }).then(
               resp => {
                 if (resp === 1) {
                   this.$nextTick(() => {

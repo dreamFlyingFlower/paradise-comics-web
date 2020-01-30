@@ -52,10 +52,6 @@
     methods: {
       // 验证重复输入密码
       validPassword2(rule, value, callback) {
-        if (this.type === "2") {
-          callback();
-          return;
-        }
         // 用户名,邮箱注册
         if (!this.$exist(value)) {
           callback(new Error("请再次输入密码"));

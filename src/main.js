@@ -7,15 +7,11 @@ import store from './store'
 import ElementUI from 'element-ui'
 import Api from './global/api'
 import Funcs from './global/funcs'
-// import VideoPlayer from 'vue-video-player'
 import 'videojs-contrib-hls'
+import axios from 'axios';
 // import 'bootstrap'
 import $ from 'jquery'
-
 import 'element-ui/lib/theme-chalk/index.css'
-// import 'video.js/dist/video-js.css'
-// import 'vue-video-player/src/custom-theme.css'
-
 
 // 取消vue的所有日志和警告,true取消,false不取消
 Vue.config.silent = false;
@@ -32,12 +28,14 @@ Vue.use(Api);
 // 注入全局通用函数
 Vue.use(Funcs);
 
-
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
+axios.get('http://localhost:12346/static/config.json').then(resp =>{
+  store.state.config = resp.data;
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
+  });
 });

@@ -37,7 +37,7 @@
     </el-row>
     <img v-if="showCarouset && carouset" :src="API_ROOT + '/' + carouset.src" :alt="carouset.title" style="width: 100%;height: 180px;background-color: orange;background-size: cover;" />
     <!-- 视频分类导航栏 [[ -->
-    <div v-if="showVideoTypes && $store.getters.user.token" style="background-color: white; color:red;">
+    <div v-if="showVideoTypes" style="background-color: white; color:red;">
       <el-menu :default-active="'1'" class="el-menu-demo" mode="horizontal" @select="handlerSelect">
         <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a></el-menu-item>
         <el-menu-item v-for="(v, pos) in videoTypes" :index="v.typeId + ''" :key="pos">
@@ -67,12 +67,18 @@ export default {
     handlerSelect(key, keyPath) {},
     // 获得首页大图
     getCarousets() {
+      if (!this.showCarouset){
+        return;
+      }
       this.$getEntitys('carouset', { type: 2 }).then(resp => {
         this.carouset = resp && resp.data.length > 0 ? resp.data[0] : '';
       });
     },
     // 获得所有最上级类型的视频分类
     getVideoTypes() {
+      if (!this.showVideoTypes){
+        return;
+      }
       this.$getEntitys('videoType', { pid: 1 }).then(resp => {
         this.videoTypes = resp.data;
       });

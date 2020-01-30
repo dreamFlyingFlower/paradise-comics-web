@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  import Crypto from "../../utils/crypto";
   // 管理页面登录
   export default {
     name: "manager-login",
@@ -52,7 +53,10 @@
         this.$refs.formData.validate(valid => {
           if (valid) {
             this.loading = true;
-            this.$store.dispatch('LOGIN', this.formData).then(
+            this.$store.dispatch('LOGIN', {
+              username: this.formData.username,
+              password: Crypto.AESEncode(this.formData.password + "_" + new Date())
+            }).then(
               resp => {
                 if (resp === 1) {
                   this.$nextTick(() => {
@@ -76,7 +80,3 @@
     }
   }
 </script>
-
-<style scoped>
-
-</style>

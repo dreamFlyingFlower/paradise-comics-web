@@ -50,7 +50,9 @@ export default {
     createFormData() {
       if (this.editType === 2) {
         for (let key in this.editData) {
-          this.formData[key] = this.editData[key];
+          if (this.editData[key]){
+            this.formData[key] = this.editData[key];
+          }
         }
       }
     },
@@ -97,10 +99,10 @@ export default {
         } else {
           if (this.editType === 1) {
             if (validCreate && this.$isFunc(validCreate)) {
-              this.$create(this.api, this.formData);
-              this.close();
               let validFlag = validCreate(this.formData);
               if (validFlag) {
+                this.$create(this.api, this.formData);
+                this.close();
               } else {
                 this.$message("校验失败");
               }

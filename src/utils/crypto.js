@@ -3,7 +3,7 @@
 // node自带的crypt加密模块,无需其他依赖
 const crypto = require("crypto");
 // key必须是16的倍数
-const key = "#$%fet!@*";
+const key = "#@brave-comics#@";
 const encoding="utf-8";
 const byteEncoding = "hex";
 
@@ -69,7 +69,7 @@ export default class Crypto {
     iv = iv ? iv : '';
     const cipher = crypto.createCipheriv('aes-128-ecb', key, iv);
     let result = [];
-    result.push(cipher.update(data, encoding, byteEncoding));
+    result.push(cipher.update(str, encoding, byteEncoding));
     result.push(cipher.final(byteEncoding));
     return result.join("");
   }

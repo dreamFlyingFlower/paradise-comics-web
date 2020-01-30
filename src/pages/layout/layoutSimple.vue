@@ -11,7 +11,7 @@
   import {mapState} from 'vuex'
 
   export default {
-    name: 'layout-indexNoVideoTypes',
+    name: 'layout-simple',
     components: {
       // 上方导航栏
       navbar,

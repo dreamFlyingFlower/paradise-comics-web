@@ -1,32 +1,32 @@
 <template>
-  <div style="height: available">
-    <el-menu :default-active="activeIndex" class="el-menu-vertical" mode="vertical"
-             menu-trigger="click" @select="handleSelect">
-      <menu-item v-for="item in menus" :treeData="item" :key="item.treeId"></menu-item>
+  <div>
+    <el-menu :default-active="'1'" class="el-menu-demo" mode="vertical"
+             menu-trigger="click" @select="handleSelect" :collapse="collapse">
+      <menu-leaf v-for="item in menus" :treeData="item" :key="item.treeId"></menu-leaf>
     </el-menu>
   </div>
 </template>
 
 <script>
-  import menuItem from './menuItem'
+  import menuLeaf from "./menuLeaf";
   export default {
     name: "menuTree",
-    props:["type"],
     data(){
       return {
         activeIndex:'3',
+        collapse:false,
         menus:[]
       }
     },
     components:{
-      menuItem
+      menuLeaf
     },
     created() {
       this.getMenus();
     },
     methods:{
       getMenus(){
-        this.$getTree('menu',{id:this.$store.getters.user.userId,type:this.type ? this.type : 1}).then(resp=>{
+        this.$getTree('menu',{id:this.$store.getters.user.userId}).then(resp=>{
           this.menus = resp.data;
         });
       },
