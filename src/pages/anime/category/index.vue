@@ -9,7 +9,7 @@
       <el-table-column prop="categoryName" label="名称"></el-table-column>
       <el-table-column prop="pid" label="上级编号"></el-table-column>
       <el-table-column prop="sort" label="排序"></el-table-column>
-      <el-table-column prop="comicNum" label="动漫数"></el-table-column>
+      <el-table-column prop="categoryNum" label="动漫数"></el-table-column>
       <el-table-column prop="setting" label="操作">
         <template slot-scope="scope">
           <el-button type="text" size="small" icon="el-icon-edit" @click="openEditDialog(scope.row,2)">编辑
@@ -29,7 +29,6 @@
   import {mixinIndex} from "@mixin";
   import {navOperates, pagination} from "@is";
   import edit from './edit'
-  import {getSelfChildrenCode} from '@api/dic'
 
   export default {
     name: "content-category",
@@ -45,8 +44,6 @@
       edit
     },
     mixins: [mixinIndex],
-    created() {
-    },
     methods: {
       getTableDatas() {
         let param = {

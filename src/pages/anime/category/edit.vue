@@ -1,11 +1,11 @@
 <template>
   <el-dialog :title="title" center :visible.sync="showEditDialog" width="30%" :before-close="beforeClose">
     <el-form ref="formData" :model="formData" :rules="rules" class="demo-ruleForm" label-width="100px">
+      <el-form-item label="所属类别" prop="pid">
+        <tree-category @curData="curData" @clickNode="clickNode"></tree-category>
+      </el-form-item>
       <el-form-item label="名称" prop="categoryName">
         <el-input v-model="formData.categoryName" auto-complete="off" placeholder="请输入名称"></el-input>
-      </el-form-item>
-      <el-form-item label="子分类" prop="content">
-        <el-input v-model="formData.content" auto-complete="off" placeholder="请输入子分类"></el-input>
       </el-form-item>
       <el-form-item label="排序">
         <el-input v-model="formData.sort" auto-complete="off" placeholder="请输入排序编号"></el-input>
@@ -19,9 +19,8 @@
 </template>
 
 <script>
+  import { treeCategory } from "@is";
   import mixinEdit from "@mixin/mixinEdit";
-  import {getSelfChildrenCode} from '@api/dic';
-  import Crypto from "../../../utils/crypto";
 
   export default {
     name: "edit",
@@ -32,23 +31,32 @@
         formData: {
           categoryId: null,
           categoryName: null,
-          content: null,
-          sort: null,
+          pid:null,
+          sort: null
         },
         rules: {
-          categoryName: [{required: true, message: "名称不能为空", trigger: "blur"},
-            {max: 12, message: "最大长度不得超过12位", trigger: "blur"}],
+          pid: { required: true, message: "所属类型不能为空", trigger: "change" },
+          categoryName: [{ required: true, message: "名称不能为空", trigger: "blur" },
+            { max: 12, message: "最大长度不得超过12位", trigger: "blur" }
+          ],
         }
       }
     },
+    components: {
+      treeCategory
+    },
     // 通用属性和方法
     mixins: [mixinEdit],
-    created() {
-    },
-    methods: {}
+    created() {},
+    methods: {
+      // 分类树加载之后初次显示
+      curData(treeData){
+        this.formData.pid = treeData.categoryId;
+      },
+      // 点击分类树节点处理数据
+      clickNode(node){
+        this.formData.pid = node.categoryId;
+      }
+    }
   }
 </script>
-
-<style scoped>
-
-</style>
