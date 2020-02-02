@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss">
   /*@import 'assets/css/admin.css';*/
-  @import "assets/css/elimentui";
+  @import "assets/css/elimentui.scss";
   @import "assets/css/index.scss";
   /*@import "assets/css/main.css";*/
 </style>

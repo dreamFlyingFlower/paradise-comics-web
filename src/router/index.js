@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '../pages/layout'
 import LayoutSimple from "../pages/layout/layoutSimple"
+import LayoutUser from "../pages/layout/layoutUser"
 import Manager from '../pages/layout/manager'
 
 Vue.use(Router);
@@ -34,6 +35,21 @@ export default new Router({
           component: () => import("@pages/user/register"),
           meta: {
             title: "注册"
+          }
+        },
+      ]
+    },
+    {
+      path: "/detail",
+      component: LayoutUser,
+      redirect: "/detail",
+      children: [
+        {
+          path:"",
+          name: "detail",
+          component: () => import("@pages/user/detail"),
+          meta: {
+            title: "个人信息"
           }
         },
       ]

@@ -51,6 +51,11 @@
           </el-form-item>
         </el-col>
         <el-col :span="8">
+          <el-form-item label="个性签名">
+            <el-input v-model="formData.introduce" auto-complete="off" placeholder="请输入个性签名"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
           <el-form-item label="真实姓名">
             <el-input v-model="formData.userinfo.realname" auto-complete="off" placeholder="请输入真实姓名"></el-input>
           </el-form-item>
@@ -123,6 +128,7 @@
           email: null,
           mobile: null,
           avatar: null,
+          introduce:this.$store.getters.config.USER_INTRODUCE,
           type: 2,
           state: 1,
           userinfo: {

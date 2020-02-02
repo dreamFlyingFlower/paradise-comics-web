@@ -41,6 +41,10 @@
                 <el-form-item label="兴趣爱好"><span>{{props.row.userinfo ? props.row.userinfo.interest :null}}</span>
                 </el-form-item>
               </el-col>
+              <el-col :span="24">
+                <el-form-item label="个性签名"><span>{{props.row.introduce}}</span>
+                </el-form-item>
+              </el-col>
             </el-row>
           </el-form>
         </template>
