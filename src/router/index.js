@@ -17,6 +17,16 @@ export default new Router({
           meta:{title:"首页"}
         },
         {
+          path:"category",
+          component:()=>import("@pages/category"),
+          meta:{title:"分类"}
+        },
+        {
+          path:"category/search",
+          component:()=>import("@pages/category/search"),
+          meta:{title:"分类搜索"}
+        },
+        {
           path:'videos/:typeId',
           name:"videos",
           component:()=>import('@pages/videos'),
