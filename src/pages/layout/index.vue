@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar/>
+    <navbar :showCarouset="true" :showVideoTypes="true"/>
     <app-content/>
     <link-footer/>
   </div>
@@ -8,7 +8,6 @@
 
 <script>
   import {navbar,appContent,linkFooter} from '../../components'
-  import {resize} from '@mixin'
   import {mapState} from 'vuex'
 
   export default {
@@ -21,7 +20,6 @@
       // 下方友情连接
       linkFooter
     },
-    mixins: [resize],
     computed: {
       ...mapState([
         'fixedHeader'

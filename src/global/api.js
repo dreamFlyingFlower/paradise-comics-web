@@ -61,6 +61,7 @@ export default {
      * @param handler 是否对promise结果进行通用处理,若不传或传false则使用通用结果处理,true则返回Promise
      * @param callback 回调方法.该参数只能是handler判断为false时使用,将通用结果处理的结果传入回调方法的参数中
      * @param fresh 是否修改store中的fresh为刷新状态,不传或传false则刷新,传true不刷新
+     * @param freshTree 若有树形结构,是否刷新树形结构数据,不传或false刷新,传true不刷新
      */
     Vue.prototype.$create = function (api, params, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/create`, params, "post", '新增成功', handler, callback, fresh, freshTree);
@@ -135,14 +136,14 @@ export default {
      */
     Vue.prototype.$hasValue = function (api, params, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/hasValue`, params, 'post', null,
-        handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined , callback, fresh, freshTree);
     };
     /**
      * 通用根据主键编号查询详情,主键必须是数字类型
      */
     Vue.prototype.$getById = function (api, id, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/getById/${id}`, {}, 'get', null,
-        handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined , callback, fresh, freshTree);
     };
     /**
      * 通用根据主键编号查询详情,主键必须是字符串
@@ -153,30 +154,30 @@ export default {
     /**
      * 通用根据主键编号查询树形结构数据,主键为数字类型
      */
-    Vue.prototype.$getTree = function (api, id, handler, callback, fresh, freshTree) {
-      return new Vue().$common(`${api}/getTree/${id}`, {}, 'get', null,
-        handler === undefined ? true : false, callback, fresh, freshTree);
+    Vue.prototype.$getTree = function (api, params, handler, callback, fresh, freshTree) {
+      return new Vue().$common(`${api}/getTree/${params.id}`, params, 'get', null,
+        handler === undefined , callback, fresh, freshTree);
     };
     /**
      * 通用单表数据分页/不分页查询,参数是表中非null字段的值,且条件只能是相等
      */
     Vue.prototype.$getEntitys = function (api, params, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/getEntitys`, params, 'get', null,
-        handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined , callback, fresh, freshTree);
     };
     /**
      * 通用联表数据分页/不分页查询,参数根据后台接口而定,且参数类型必须是基本类型或字符串
      */
     Vue.prototype.$getPage = function (api, params, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/getPage`, params, 'get', null,
-        handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined, callback, fresh, freshTree);
     };
     /**
      * 通用联表数据分页/不分页查询,参数根据后台接口而定,参数可是任意类型
      */
     Vue.prototype.$getList = function (api, params, handler, callback, fresh, freshTree) {
       return new Vue().$common(`${api}/getList`, params, 'post', null,
-        handler === undefined ? true : false, callback, fresh, freshTree);
+        handler === undefined , callback, fresh, freshTree);
     };
     // 文件上传,未测试
     Vue.prototype.$upload = (api, files, params) => {

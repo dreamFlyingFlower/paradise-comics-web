@@ -2,15 +2,16 @@ import cookie from '../utils/cookie'
 
 export default {
   user: {},
-  avatar: cookie.getUser() ? cookie.getUser().userphoto : null,
+  avatar: cookie.getUser() ? cookie.getUser().avatar : null,
   roles: cookie.getUser() && Object.keys(cookie.getUser()).length > 0 ? cookie.getUser().roles : [],
   routes: [],
   buttons: [],
+  // 前端配置文件
+  config:{},
   // 是否刷新当前页面
   fresh: false,
   // 若当前页面中有树形结构,是否刷新
   freshTree: false,
-  language: cookie.get('language') || 'cn',
   pageIndex: 1,
   pageSize: 10,
   total: 0,

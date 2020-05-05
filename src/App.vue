@@ -12,8 +12,9 @@ export default {
   // import 'bootstrap/dist/js/bootstrap.js'
 </script>
 
-<style>
+<style lang="scss">
   /*@import 'assets/css/admin.css';*/
-  @import "assets/css/index.css";
+  @import "assets/css/elimentui.scss";
+  @import "assets/css/index.scss";
   /*@import "assets/css/main.css";*/
 </style>

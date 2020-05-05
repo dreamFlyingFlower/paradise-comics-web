@@ -16,52 +16,49 @@ const service = axios.create({
   }
 });
 // 请求拦截
-service.interceptors.request.use(
-    config => {
-      // 全局请求遮罩层
-      showFullScreenLoading();
-      if (store.getters.token) {
-        // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-        config.headers['X-Token'] = sessionStorage.getItem("SET_TOKEN");
-      }
-      return config;
-    },
-    error => {
-      console.log(error);
-      Promise.reject(error);
+service.interceptors.request.use(config => {
+    // 全局请求遮罩层
+    showFullScreenLoading();
+    if (store.getters.token) {
+      // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
+      config.headers['X-Token'] = sessionStorage.getItem("SET_TOKEN");
     }
+    return config;
+  }, error => {
+    console.log(error);
+    Promise.reject(error);
+  }
 );
 
 // response interceptor
-service.interceptors.response.use(
-    response => {
-      tryHideFullScreenLoading();
-      // 请求失败
-      let resp = response.data;
-      if (resp.code !== 1) {
-        Message({
-          message: resp.msg,
-          type: 'error',
-          duration: 3000
-        });
-        // -9998:非法的token; -9997:其他客户端登录了;  -9996:Token 过期了;
-        if (resp.code === -9998 || resp.code === -9997 || resp.code === -9996) {
-          this.$router.push("/login");
-        }
-        return Promise.resolve(response.data);
-      } else {
-        return response.data;
-      }
-    },
-    error => {
-      tryHideFullScreenLoading();
+service.interceptors.response.use(response => {
+    tryHideFullScreenLoading();
+    // 请求失败
+    let resp = response.data;
+    if (resp.code !== 1) {
       Message({
-        message: error,
+        message: resp.msg,
         type: 'error',
         duration: 3000
       });
-      return Promise.reject(error);
+      // -9998:非法的token; -9997:其他客户端登录了;  -9996:Token 过期了;
+      if (resp.code === -9998 || resp.code === -9997 || resp.code === -9996) {
+        this.$router.push("/login");
+      }
+      return Promise.resolve(response.data);
+    } else {
+      return response.data;
     }
+  },
+  error => {
+    tryHideFullScreenLoading();
+    Message({
+      message: error,
+      type: 'error',
+      duration: 3000
+    });
+    return Promise.reject(error);
+  }
 );
 
 export default {

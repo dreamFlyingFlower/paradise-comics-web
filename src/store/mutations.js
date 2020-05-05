@@ -25,9 +25,6 @@ export default {
   FRESH_TREE(state, freshTree) {
     state.freshTree = freshTree;
   },
-  LANGUAGE(state, language) {
-    state.language = language;
-  },
   PAGE_INDEX(state, pageIndex) {
     state.pageIndex = pageIndex;
   },

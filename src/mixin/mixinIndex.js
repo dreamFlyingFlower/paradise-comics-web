@@ -32,7 +32,7 @@ export default {
   computed: {
     // 分页参数
     ...mapGetters(
-        ["pageIndex", "pageSize", "total", "fresh", "freshTree"]
+      ["pageIndex", "pageSize", "total", "fresh", "freshTree"]
     )
   },
   watch: {
@@ -113,6 +113,7 @@ export default {
      * 子组件必须在页面中重写该方法,该方法在子组件中的分页操作.若无分页可不重写
      */
     refresh() {
+      this.getTableDatas();
     },
     /**
      * 同refresh方法,刷新的是页面中的树形结构数据
@@ -127,7 +128,7 @@ export default {
       if (!this.api) {
         throw new Error("上级组件的api属性不可为空");
       }
-      if(!this.primaryKey){
+      if (!this.primaryKey) {
         throw new Error("子组件所对应的api的主键字段不可为空")
       }
     },
@@ -167,6 +168,16 @@ export default {
         ids.push(item[this.primaryKey]);
       }
       this.$removes(this.api, ids);
+    },
+    getTableDatas() {
+      let param = {
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize,
+      };
+      this.$getEntitys(this.api, param).then(resp => {
+        this.tableDatas = resp.data;
+        this.$store.commit('TOTAL', resp.total);
+      });
     }
   }
 };

@@ -7,6 +7,7 @@ export default {
       : cookie.getUser().roles,
   routes: state => state.routes,
   buttons: state => state.buttons,
+  config: state => state.config,
   fresh: state => state.fresh,
   freshTree: state => state.freshTree,
   language: state => state.language,

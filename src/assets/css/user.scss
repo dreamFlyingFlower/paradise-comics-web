@@ -1,0 +1,91 @@
+.user {
+  /* background-image: url("assets/css/icon.jpg"); */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.divider {
+  width: 70%;
+  margin: 2.5rem 15%;
+
+  .el-divider__text {
+    font-size: 2rem;
+  }
+}
+
+.login-form {
+  margin: 1.875rem 35%;
+
+  .login-rem {
+    margin: 0 auto 10px auto;
+  }
+
+  .login-notice {
+    color: #bbb;
+    margin-left: 10px;
+    font-size: 0.625rem;
+  }
+}
+
+.tip-right {
+  margin: 5px;
+  float: right;
+  font-size: 0.75rem;
+  color: #0000FF;
+}
+
+// user/detail
+.detail-avatar {
+  display: block;
+  text-align: center;
+  margin-top: -50px;
+}
+
+.detail-aside {
+  margin: 0 20px;
+  border: 1px solid lightgrey;
+}
+
+.detail-main {
+  margin: auto 20px;
+  border: 1px solid lightgrey;
+
+  .el-container {
+    text-align: center;
+    border-bottom: 1px solid lightgrey;
+
+    .el-header {
+      text-align: left;
+    }
+  }
+
+  .el-container:nth-child(1) {
+    a img {
+      display: inline-block;
+      height: 200px;
+      width: 20%;
+      margin: auto 20px;
+    }
+  }
+
+  .el-container:nth-child(2) {
+    li {
+      margin: 15px auto;
+      text-align: left;
+      font-size: 18px;
+      span{
+        display: inline-block;
+      }
+
+      span:nth-child(1),span:nth-child(3){
+        width: 15%;
+      }
+      span:nth-child(2){
+        width: 65%;
+      }
+    }
+  }
+}
+
+// user/detail

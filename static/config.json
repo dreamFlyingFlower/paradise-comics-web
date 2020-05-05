@@ -1,3 +1,17 @@
 {
-  "API_ROOT": "http://127.0.0.1:12345/"
+  "API_ROOT": "http://127.0.0.1:12345/",
+  "ROOT_MENU_ID": 0,
+  "ROOT_DIC_ID": 0,
+  "ROOT_CATEGORY_ID": 0,
+  "USER_INTRODUCE": "我就是我,不一样的烟火",
+  "USER_SEX": [
+    {
+      "id": "SEX1",
+      "label": "男"
+    },
+    {
+      "id": "SEX2",
+      "label": "女"
+    }
+  ]
 }
