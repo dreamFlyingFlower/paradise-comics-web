@@ -12,6 +12,7 @@ import axios from 'axios';
 // import 'bootstrap'
 import $ from 'jquery'
 import 'element-ui/lib/theme-chalk/index.css'
+import 'normalize.css/normalize.css'
 
 // 取消vue的所有日志和警告,true取消,false不取消
 Vue.config.silent = false;

@@ -52,14 +52,10 @@
         </el-container>
       </el-main>
     </el-container>
-
-    <upload></upload>
   </div>
 </template>
 
 <script>
-  import upload from "./upload";
-
   export default {
     name: "detail",
     data() {
@@ -71,11 +67,9 @@
         // 用户最近的10条收藏
         userComic: null,
         // 用户最近的10条评论
-        comments: []
+        comments: [],
+        showUploadDialog: false
       }
-    },
-    components: {
-      upload
     },
     created() {
       this.getCarousets();
@@ -92,8 +86,10 @@
       },
       // 获得用户头像
       getUserAvatarSrc() {
-        if (this.$store.getters.user.avatar) {
-          this.userAvatarSrc = process.env.API_ROOT_IMAGE + this.$store.getters.user.avatar;
+        let avatarName = this.$store.getters.user.avatar;
+        if (avatarName) {
+          this.userAvatarSrc = this.$store.getters.config.API_ROOT_IMAGE
+            + avatarName.substring(avatarName.indexOf("_") + 1, avatarName.lastIndexOf(".")) + '/' + avatarName;
         } else {
           if (this.$store.getters.user.sex === '女') {
             this.userAvatarSrc = 'static/images/girl.jpg';
@@ -124,10 +120,4 @@
 
 <style lang="scss" scoped>
   @import "../../assets/css/user.scss";
-
-  /*.carouset {*/
-  /*  width: 100%;*/
-  /*  height: 180px;*/
-  /*  background-size: cover;*/
-  /*}*/
 </style>

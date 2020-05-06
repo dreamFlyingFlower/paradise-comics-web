@@ -55,6 +55,21 @@ export default new Router({
       ]
     },
     {
+      path: "/userinfo",
+      component: LayoutUser,
+      redirect: "/userinfo",
+      children: [
+        {
+          path:"",
+          name: "userinfo",
+          component: () => import("@pages/user/userinfo"),
+          meta: {
+            title: "个人信息"
+          }
+        },
+      ]
+    },
+    {
       path: "/",
       component: Layout,
       redirect: "/index",

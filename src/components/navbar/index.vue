@@ -29,7 +29,9 @@
             <el-menu-item index="5">
               <router-link :to="{path:'/detail'}">个人中心</router-link>
             </el-menu-item>
-            <el-menu-item index="6"><a href="account-myself-show">修改资料</a></el-menu-item>
+            <el-menu-item index="6">
+              <router-link :to="{path:'/userinfo'}">修改资料</router-link>
+            </el-menu-item>
             <el-menu-item index="7"><a href="account-exit-execute">退出登录</a></el-menu-item>
           </el-submenu>
           <el-menu-item index="4"><input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search"

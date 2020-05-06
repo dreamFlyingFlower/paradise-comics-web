@@ -1,7 +1,7 @@
 import cookie from '../utils/cookie'
 
 export default {
-  user: {},
+  user: cookie.getUser() ? cookie.getUser() : {},
   avatar: cookie.getUser() ? cookie.getUser().avatar : null,
   roles: cookie.getUser() && Object.keys(cookie.getUser()).length > 0 ? cookie.getUser().roles : [],
   routes: [],

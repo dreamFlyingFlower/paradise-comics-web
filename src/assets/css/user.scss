@@ -66,6 +66,7 @@
       height: 200px;
       width: 20%;
       margin: auto 20px;
+      line-height: 200px;
     }
   }
 
@@ -74,17 +75,44 @@
       margin: 15px auto;
       text-align: left;
       font-size: 18px;
-      span{
+
+      span {
         display: inline-block;
       }
 
-      span:nth-child(1),span:nth-child(3){
+      span:nth-child(1), span:nth-child(3) {
         width: 15%;
       }
-      span:nth-child(2){
+
+      span:nth-child(2) {
         width: 65%;
       }
     }
+  }
+}
+.el-upload  {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.el-dialog {
+
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+
+  .avatar {
+    width: 180px;
+    height: 180px;
+    display: block;
   }
 }
 
