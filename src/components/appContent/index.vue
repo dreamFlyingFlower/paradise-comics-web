@@ -28,6 +28,6 @@
     }
   }
 </style>
-<style scoped>
+<style scoped lang="scss">
 /*@import "./_index.scss";*/
 </style>

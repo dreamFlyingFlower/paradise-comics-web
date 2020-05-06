@@ -1,26 +1,30 @@
 <template>
   <div>
-  	<div>
-	  	<div v-for="p in showDatas" :key="p.categoryId" v-show="p.children && p.children.length > 0">
-	  		{{p.categoryName}} : 
-	  		<el-button type="text" plain v-for="c in p.children" :key="c.categoryId" v-text="c.categoryName" @click="searchComics"></el-button>
-	  	</div>
-  	</div>
-  	<div>
-  		<!-- 搜索的动画展示 -->
-  	</div>
+    <div>
+      <div v-for="p in showCategoryDatas" :key="p.categoryId" v-show="p.children && p.children.length > 0">
+        {{p.categoryName}} :
+        <el-button type="text" plain v-for="c in p.children" :key="c.categoryId" v-text="c.categoryName"
+                   @click="searchComics(c)"></el-button>
+      </div>
+    </div>
+    <div>
+      <!-- 搜索的动画展示 -->
+      <img v-for="item in showComicDatas" :src="baseUrl+item.cover" alt="loading...">
+    </div>
   </div>
 </template>
 
 <script>
-  import mixinIndex from '@/mixin/mixinIndex';
-  import {pagination, navOperates} from '@is';
+  import {navOperates, pagination} from '@is';
 
   export default {
     name: "category-search",
     data() {
       return {
-      	showDatas:[]
+        baseUrl:"http://localhost:12345/upload/20200203/",
+        showCategoryDatas: [], // 分类数据展示
+        showComicDatas:[], // 动漫数据展示
+        params: []    // 参数
       }
     },
     components: {
@@ -29,15 +33,34 @@
     },
     created() {
       this.getTree();
+      this.searchComics();
     },
     methods: {
       getTree() {
-        this.$getTree('category',{id:0}).then(resp => {
-          this.showDatas = resp.data;
+        this.$getTree('category', {id: 0}).then(resp => {
+          this.showCategoryDatas = resp.data;
         });
       },
-      searchComics(){
-
+      // 点击选中或取消分类,每次点击都查询一次
+      searchComics(c) {
+        let ids = null;
+        if (c) {
+          let exist = this.params.find(item => item === c.categoryId);
+          if (exist) {
+            let index = this.params.findIndex(item => item === c.categoryId);
+            this.params.splice(index, 1);
+          } else {
+            this.params.push(c.categoryId);
+          }
+          if (this.params.length !== 0){
+            ids = this.params.join(",");
+          }else{
+            ids = null;
+          }
+        }
+        this.$getPage('comic', {categories: ids}).then(resp=>{
+          this.showComicDatas =  resp.data;
+        });
       }
     }
   }

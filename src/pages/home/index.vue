@@ -11,26 +11,6 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-
-    <!-- 视频主体 [[ -->
-    <el-row :gutter="2" v-for="o in indexVideos" :key="o.typeId">
-      <h3 style="color:#f36c60; font-weight: bold;"><img
-        :src="API_ROOT+'/photo/index/title_logo.png'" width="50" height="35"></img>
-        {{o.typeName}}</h3>
-      <el-col :span="6" v-for="v in o.videos" :key="v.videoId">
-        <el-card :body-style="{ padding: '0px' }">
-          <router-link :to="{name:'play',params:{videoId:v.videoId}}">
-            <img :src="API_ROOT+v.cover" :alt="v.title" class="image" style="height: 250px;">
-            <div style="padding: 14px;">
-              <span class="font-ellipsis" :title="v.name">{{v.name}}</span>
-              <div class="bottom clearfix">
-                <time class="time">{{v.createtime}}</time>
-              </div>
-            </div>
-          </router-link>
-        </el-card>
-      </el-col>
-    </el-row>
   </div>
 </template>
 

@@ -15,10 +15,10 @@ export default new Router({
       redirect: "/login",
       children: [
         {
-          path:"",
+          path: "",
           name: "login",
           component: () => import("@pages/user/login"),
-          meta: { title: "登录" }
+          meta: {title: "登录"}
         }
       ]
     },
@@ -28,10 +28,10 @@ export default new Router({
       redirect: "/register",
       children: [
         {
-          path:"",
+          path: "",
           name: "register",
           component: () => import("@pages/user/register"),
-          meta: { title: "注册" }
+          meta: {title: "注册"}
         },
       ]
     },
@@ -41,10 +41,10 @@ export default new Router({
       redirect: "/detail",
       children: [
         {
-          path:"",
+          path: "",
           name: "detail",
           component: () => import("@pages/user/detail"),
-          meta: {title: "个人信息" }
+          meta: {title: "个人信息"}
         },
       ]
     },
@@ -56,7 +56,7 @@ export default new Router({
         {
           path: "index",
           component: () => import("@pages/home"),
-          meta: { title: "首页" }
+          meta: {title: "首页"}
         },
         {
           path: "forget",
@@ -65,106 +65,21 @@ export default new Router({
           meta: {title: "忘记密码"}
         },
         {
-          path:"category",
-          component:()=>import("@pages/category"),
-          meta:{title:"分类搜索"}
-        }
+          path: "category",
+          component: () => import("@pages/category"),
+          meta: {title: "分类搜索"}
+        },
+        {
+          path: "timeaxis",
+          component: () => import("@pages/timeaxis"),
+          meta: {title: "分类搜索"}
+        },
+        {
+          path: "community",
+          component: () => import("@pages/community"),
+          meta: {title: "社区"}
+        },
       ]
     },
-    // 管理页面登录
-    {
-      path: "/login-manager",
-      name: "login-manager",
-      component: () => import("@pages/system"),
-      meta: {title: "管理登录页"}
-    },
-    // 系统设置
-    {
-      path: "/system",
-      name: "system",
-      component: Manager,
-      redirect: "/system/user",
-      children: [
-        {
-          path:"menu",
-          name:"system-menu",
-          component:()=>import("@pages/system/menu"),
-          meta:{title:"菜单管理"}
-        },
-        {
-          path:"user",
-          name:"system-user",
-          component:()=>import("@pages/system/user"),
-          meta:{title:"用户管理"}
-        },
-        {
-          path:"role",
-          name:"system-role",
-          component:()=>import("@pages/system/role"),
-          meta:{title:"角色管理"}
-        },
-        {
-          path:"dic",
-          name:"system-dic",
-          component:()=>import("@pages/system/dic"),
-          meta:{title:"字典管理"}
-        },
-        {
-          path: "video",
-          name: "system-video",
-          component: () => import("@pages/video"),
-          meta: {title: "管理首页"},
-        }
-      ]
-    },
-    {
-      path:"/anime",
-      name:"anime",
-      component:Manager,
-      redirect:"/anime/comic",
-      children:[
-        {
-          path:"comic",
-          name:"comic",
-          component:()=>import("@pages/anime/comic"),
-          meta:{title:"文章管理"}
-        },
-        {
-          path:"file",
-          name:"file",
-          component:()=>import("@pages/anime/file"),
-          meta:{title:"文件管理"}
-        },
-        {
-          path:"category",
-          component:()=>import("@pages/category"),
-          meta:{title:"分类"}
-        },
-        {
-          path:'videos/:typeId',
-          name:"videos",
-          component:()=>import('@pages/videos'),
-          meta: {title: "视频"}
-        },
-        {
-          path:"label",
-          name:"label",
-          component:()=>import("@pages/anime/label"),
-          meta:{title:"标签管理"}
-        },
-        {
-          path:"comment",
-          name:"comment",
-          component:()=>import("@pages/anime/comment"),
-          meta:{title:"文章管理"}
-        },
-        {
-          path:"friend",
-          name:"friend",
-          component:()=>import("@pages/anime/friend"),
-          meta:{title:"友联管理"}
-        }
-      ]
-    }
   ]
 })
