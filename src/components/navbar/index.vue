@@ -2,15 +2,21 @@
   <div>
     <el-row type="flex" class="header-navbar">
       <el-col :span="12">
-        <el-menu :default-active="'1'" mode="horizontal" style="display: inline-block" @select="handlerSelect">
-          <el-menu-item index="0"><a href="/">ACGFAN</a></el-menu-item>
-          <el-menu-item index="1"><a href="/">主站</a></el-menu-item>
+        <el-menu :default-active="'0'" class="el-menu-demo" mode="horizontal" style="display: inline-block"
+                 @select="handlerSelect">
+          <el-menu-item index="0" style="color:#f36c60; font-size:28px;"><a href="/">勇者部</a></el-menu-item>
+          <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a>
+          </el-menu-item>
+          <el-menu-item v-for="item in userMenus" :index="item.menuId + ''" :key="item.menuId">
+            <router-link :to="{ path:item.menuPath}" v-text="item.menuName"></router-link>
+          </el-menu-item>
         </el-menu>
       </el-col>
       <el-col :span="12">
         <el-menu :default-active="'8'" mode="horizontal" style="display: inline-block;float: right;"
                  @select="handlerSelect">
-          <!--          <el-menu-item index="1"><a v-if="$store.getters.user.token" href="account-collect-show">收藏夹</a></el-menu-item>-->
+          <el-menu-item index="1"><a href="account-collect-show">收藏夹</a>
+          </el-menu-item>
           <el-submenu index="8" v-if="!$store.getters.user.token">
             <template slot="title" style="float: right">
               登录/注册
@@ -34,27 +40,17 @@
             </el-menu-item>
             <el-menu-item index="7"><a href="account-exit-execute">退出登录</a></el-menu-item>
           </el-submenu>
-          <el-menu-item index="4"><input type="text" class="form-control" placeholder="来啊, 搜我呀~" name="search"
-                                         action="index-search-execute"/></el-menu-item>
         </el-menu>
       </el-col>
     </el-row>
     <!-- 首页大图-->
     <img v-if="showCarouset && carouset" class="carouset" :src="API_ROOT+carouset.src" :alt="carouset.title"/>
-    <!-- 视频分类导航栏 [[ -->
-    <div v-if="showVideoTypes" style="background-color: white; color:red;">
-      <el-menu :default-active="'1'" class="el-menu-demo" mode="horizontal" @select="handlerSelect">
-        <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a>
-        </el-menu-item>
-        <el-menu-item v-for="(v, pos) in videoTypes" :index="v.typeId + ''" :key="pos">
-          <router-link :to="{ name: 'videos', params: { typeId: v.typeId } }">{{ v.typeName }}</router-link>
-        </el-menu-item>
-      </el-menu>
-    </div>
   </div>
 </template>
 
 <script>
+  import {getUserMenus} from "../../api/menu";
+
   export default {
     name: 'navbar',
     props: ["showCarouset", "showVideoTypes"],
@@ -62,12 +58,12 @@
       return {
         API_ROOT: process.env.API_ROOT,
         carouset: '', // 首页大图
-        videoTypes: [] // 视频类型
+        userMenus: []// 菜单类型
       };
     },
     created() {
       this.getCarousets();
-      this.getVideoTypes();
+      this.getUserMenus();
     },
     methods: {
       handlerSelect(key, keyPath) {
@@ -81,15 +77,15 @@
           this.carouset = resp && resp.data.length > 0 ? resp.data[0] : '';
         });
       },
-      // 获得所有最上级类型的视频分类
-      getVideoTypes() {
-        if (!this.showVideoTypes) {
-          return;
-        }
-        this.$getEntitys('videoType', {pid: 1}).then(resp => {
-          this.videoTypes = resp.data;
+      // 获得用户菜单
+      getUserMenus() {
+        getUserMenus().then(resp => {
+          this.userMenus = resp.data;
         });
       }
     }
   };
 </script>
+<style scoped lang="scss">
+@import "_index.scss";
+</style>
