@@ -94,6 +94,11 @@ export default new Router({
           component: () => import("@pages/community"),
           meta: {title: "社区"}
         },
+        {
+          path: "about",
+          component: () => import("@pages/about"),
+          meta: {title: "关于我们"}
+        },
       ]
     },
   ]
