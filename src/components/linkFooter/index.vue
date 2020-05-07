@@ -1,23 +1,77 @@
 <template>
-  <el-container>
-    <el-header style="color:#bbb">友情链接</el-header>
-    <el-container>
-      <el-main>
-        <el-row :gutter="10">
-          <el-col :span="8" v-for="item in friendLinks" :key="item.friendLinkId">
-            <a href="item.linkSrc">{{item.linkName}}</a>
-          </el-col>
-        </el-row>
-      </el-main>
-      <el-aside width="300px">
-        <ul style="font-size:16px;">
-          <li>您可以下载我们的移动客户端</li>
-          <li>也欢迎您关注我们的微博和微信<img :src="API_ROOT+'/photo/index/title_logo.png'" width="50"
-                                 height="35"></img></li>
-        </ul>
-      </el-aside>
-    </el-container>
-  </el-container>
+  <div class="footer">
+    <div class="footer-link-a">
+      <span>动漫百科</span>
+      <ul>
+        <li>关于我们</li>
+        <li>加入我们</li>
+        <li>联系我们</li>
+        <li>友情链接</li>
+      </ul>
+    </div>
+    <div class="footer-link-b">
+      <ul>
+        <li>
+          <img class="footer-qrcode" src="http://localhost:12345/upload/20200203/2djof4o5h2ipdqabfuucjetitd_20200203.jpg" alt="loading">
+          <img src="http://localhost:12345/upload/20200203/2djof4o5h2ipdqabfuucjetitd_20200203.jpg" alt="loading">
+          <span>官方微信</span>
+        </li>
+        <li>
+          <img class="footer-qrcode" src="http://localhost:12345/upload/20200203/2djof4o5h2ipdqabfuucjetitd_20200203.jpg" alt="loading">
+          <img src="http://localhost:12345/upload/20200203/2djof4o5h2ipdqabfuucjetitd_20200203.jpg" alt="loading">
+          <span>公众号</span>
+        </li>
+        <li>
+          <img class="footer-qrcode" src="http://localhost:12345/upload/20200203/2djof4o5h2ipdqabfuucjetitd_20200203.jpg" alt="loading">
+          <img src="http://localhost:12345/upload/20200203/2djof4o5h2ipdqabfuucjetitd_20200203.jpg" alt="loading">
+          <span>QQ群</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+<!--  <el-container class="footer">-->
+<!--    <el-container>-->
+<!--      <el-header style="color:#bbb">动漫百科</el-header>-->
+<!--      <el-main>-->
+<!--        <el-row :gutter="10">-->
+<!--          <el-col :span="5">关于我们</el-col>-->
+<!--          <el-col :span="5">加入我们</el-col>-->
+<!--          <el-col :span="5">联系我们</el-col>-->
+<!--          <el-col :span="5">友情链接</el-col>-->
+<!--        </el-row>-->
+<!--      </el-main>-->
+<!--    </el-container>-->
+<!--    <el-aside style="width: 300px;">-->
+<!--      <el-main>-->
+<!--        <el-row :gutter="12">-->
+<!--          <el-col :span="8">-->
+<!--            <el-card class="box-card">-->
+<!--              <img src="http://localhost:12345/upload/20200203/2djof4o5h2ipdqabfuucjetitd_20200203.jpg" alt="loading">-->
+<!--              <div slot="header" class="clearfix">-->
+<!--                <span>官方微信</span>-->
+<!--              </div>-->
+<!--            </el-card>-->
+<!--          </el-col>-->
+<!--          <el-col :span="8">-->
+<!--            <el-card class="box-card">-->
+<!--              <img src="http://localhost:12345/upload/20200203/2djof4o5h2ipdqabfuucjetitd_20200203.jpg" alt="loading">-->
+<!--              <div slot="header" class="clearfix">-->
+<!--                <span>公众号</span>-->
+<!--              </div>-->
+<!--            </el-card>-->
+<!--          </el-col>-->
+<!--          <el-col :span="8">-->
+<!--            <el-card class="box-card">-->
+<!--              <img src="http://localhost:12345/upload/20200203/2djof4o5h2ipdqabfuucjetitd_20200203.jpg" alt="loading">-->
+<!--              <div slot="header" class="clearfix">-->
+<!--                <span>QQ群</span>-->
+<!--              </div>-->
+<!--            </el-card>-->
+<!--          </el-col>-->
+<!--        </el-row>-->
+<!--      </el-main>-->
+<!--    </el-aside>-->
+<!--  </el-container>-->
 </template>
 
 <script>
@@ -43,33 +97,6 @@
   }
 </script>
 
-<style scoped>
-  .el-header, .el-footer {
-    color: #333;
-    line-height: 60px;
-    text-align: center;
-  }
-
-  .el-aside {
-    color: #333;
-    text-align: center;
-  }
-
-  .el-main {
-    color: #333;
-    text-align: center;
-  }
-
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
+<style lang="scss" scoped>
+  @import "./index";
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <!-- 轮播图 -->
     <div class="block" style="width: 500px;background-color: #00ee00">
       <el-carousel v-if="carousets && carousets.length > 0">

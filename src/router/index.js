@@ -87,7 +87,7 @@ export default new Router({
         {
           path: "timeaxis",
           component: () => import("@pages/timeaxis"),
-          meta: {title: "分类搜索"}
+          meta: {title: "时间轴"}
         },
         {
           path: "community",
