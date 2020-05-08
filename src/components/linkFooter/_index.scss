@@ -1,5 +1,4 @@
 .footer {
-  height: 200px;
   margin: 10px;
   padding: 10px;
   min-width: 1200px;
@@ -22,10 +21,7 @@
 
   float: right;
   width: 30%;
-
-  .footer-qrcode {
-    display: none;
-  }
+  position: relative;
 
   li {
     display: inline-block;
@@ -41,10 +37,6 @@
       text-align: center;
       margin: 5px 0;
     }
-  }
-
-  li:hover .footer-qrcode {
-    display: block;
   }
 }
 

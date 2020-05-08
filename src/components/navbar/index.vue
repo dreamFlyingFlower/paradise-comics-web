@@ -1,10 +1,16 @@
 <template>
   <div>
+    <!-- 首页大图 -->
+    <img v-if="showCarouset && carouset" class="carouset" :src="API_ROOT+carouset.src" :alt="carouset.title"/>
+
+    <!-- 头部菜单 -->
     <el-row type="flex" class="header-navbar">
+
+      <!-- 用户菜单 -->
       <el-col :span="12">
-        <el-menu :default-active="'0'" class="el-menu-demo" mode="horizontal" style="display: inline-block"
+        <el-menu :default-active="'0'" mode="horizontal" style="display: inline-block"
                  @select="handlerSelect">
-          <el-menu-item index="0" style="color:#f36c60; font-size:28px;"><a href="/">勇者部</a></el-menu-item>
+          <el-menu-item index="0" style="color:#f36c60; font-size:28px;"><a href="/">动漫百科</a></el-menu-item>
           <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a>
           </el-menu-item>
           <el-menu-item v-for="item in userMenus" :index="item.menuId + ''" :key="item.menuId">
@@ -12,13 +18,24 @@
           </el-menu-item>
         </el-menu>
       </el-col>
+
+      <!-- 搜索 -->
+      <el-col :span="12" style="margin: auto;">
+        <el-input v-model="searchKey" placeholder="请输入关键字"
+                  style="width: 85%;display: inline-block;" @keyup.enter.native="search">
+        </el-input>
+        <el-button type="info" icon="el-icon-search" style="margin-left: -5px;">
+        </el-button>
+      </el-col>
+
+      <!-- 用户信息 -->
       <el-col :span="12">
         <el-menu :default-active="'8'" mode="horizontal" style="display: inline-block;float: right;"
                  @select="handlerSelect">
-          <el-menu-item index="1"><a href="account-collect-show">收藏夹</a>
-          </el-menu-item>
+          <!--          <el-menu-item index="1"><a href="account-collect-show">收藏夹</a>-->
+          <!--          </el-menu-item>-->
           <el-submenu index="8" v-if="!$store.getters.user.token">
-            <template slot="title" style="float: right">
+            <template slot="title" style="float: right;">
               登录/注册
             </template>
             <el-menu-item index="2">
@@ -43,8 +60,6 @@
         </el-menu>
       </el-col>
     </el-row>
-    <!-- 首页大图-->
-    <img v-if="showCarouset && carouset" class="carouset" :src="API_ROOT+carouset.src" :alt="carouset.title"/>
   </div>
 </template>
 
@@ -57,8 +72,9 @@
     data() {
       return {
         API_ROOT: process.env.API_ROOT,
-        carouset: '', // 首页大图
-        userMenus: []// 菜单类型
+        carouset: '',     // 首页大图
+        userMenus: [],    // 菜单类型
+        searchKey: ""     // 搜索关键字
       };
     },
     created() {
@@ -82,10 +98,13 @@
         getUserMenus().then(resp => {
           this.userMenus = resp.data;
         });
+      },
+      search() {
+        console.log(this.searchKey)
       }
     }
   };
 </script>
 <style scoped lang="scss">
-@import "_index.scss";
+  @import "_index.scss";
 </style>

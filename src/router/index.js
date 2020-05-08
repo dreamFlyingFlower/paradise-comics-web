@@ -99,6 +99,17 @@ export default new Router({
           component: () => import("@pages/about"),
           meta: {title: "关于我们"}
         },
+        {
+          path: "friendLinks",
+          component: () => import("@pages/friendLinks"),
+          meta: {title: "友情链接"}
+        },
+        {
+          path:"comic/:id",
+          name:"comic",
+          component:()=>import("@pages/comic"),
+          meta:{title:"动漫详情"}
+        }
       ]
     },
   ]

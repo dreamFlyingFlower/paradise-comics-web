@@ -1,70 +1,105 @@
 <template>
   <div>
-
-    <!-- 轮播图 -->
-    <div class="block" style="width: 500px;background-color: #00ee00">
-      <el-carousel v-if="carousets && carousets.length > 0">
-        <el-carousel-item v-for="o in carousets" :key="o.id">
-          <router-link :to="{name:'play',params:{videoId:o.videoId}}">
-            <img :src="API_ROOT+'/'+o.src" :alt="o.title">
+    <!-- 番剧推荐 -->
+    <el-row :gutter="2">
+      <h3 style="color:#f36c60; font-weight: bold;">番剧推荐</h3>
+      <el-col :span="6" v-for="item in dramas" :key="item.id">
+        <el-card :body-style="{ padding: '0px' }">
+          <router-link target="_blank" :to="{name:'comic',params:{id:item.id}}">
+            <img :src="API_ROOT+item.cover" :alt="item.name" class="image" style="height: 250px;">
+            <div style="padding: 14px;">
+              <span class="font-ellipsis" :title="item.name" v-text="item.name"></span>
+              <div class="bottom clearfix">
+                <time class="time">{{item.createtime}}</time>
+              </div>
+            </div>
           </router-link>
-          <h3 class="small" style="font-size: 14px;opacity: 0.75;line-height: 175px;margin: 0;">{{o.title}}</h3>
-        </el-carousel-item>
-      </el-carousel>
-    </div>
+        </el-card>
+      </el-col>
+    </el-row>
+    <!-- 热门作品 -->
+    <el-row :gutter="2">
+      <h3 style="color:#f36c60; font-weight: bold;">热门作品</h3>
+      <el-col :span="6" v-for="item in hots" :key="item.id">
+        <el-card :body-style="{ padding: '0px' }">
+          <router-link target="_blank" :to="{name:'comic',params:{id:item.id}}"  >
+            <img :src="API_ROOT+item.cover" :alt="item.name" class="image" style="height: 250px;">
+            <div style="padding: 14px;">
+              <span class="font-ellipsis" :title="item.name" v-text="item.name"></span>
+              <div class="bottom clearfix">
+                <time class="time">{{item.createtime}}</time>
+              </div>
+            </div>
+          </router-link>
+        </el-card>
+      </el-col>
+    </el-row>
+    <!-- 最新连载 -->
+    <el-row :gutter="2">
+      <h3 style="color:#f36c60; font-weight: bold;">最新连载</h3>
+      <el-col :span="6" v-for="item in news" :key="item.id">
+        <el-card :body-style="{ padding: '0px' }">
+          <router-link target="_blank" :to="{name:'comic',params:{id:item.id}}">
+            <img :src="API_ROOT+item.cover" :alt="item.name" class="image" style="height: 250px;">
+            <div style="padding: 14px;">
+              <span class="font-ellipsis" :title="item.name" :text="item.name"></span>
+              <div class="bottom clearfix">
+                <time class="time">{{item.createtime}}</time>
+              </div>
+            </div>
+          </router-link>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-  import {getIndexVideo} from "../../api/video";
+import { getRecommends } from "../../api/comic";
 
-  export default {
-    name: "index",
-    data() {
-      return {
-        API_ROOT: process.env.API_ROOT,
-        carousets: [],// 轮播图
-        indexVideos: []// 首页视频展示
-      }
-    },
-    created() {
-      this.getCarousets();
-      this.getIndexVideo();
-    },
-    methods: {
-      // 菜单点击事件
-      handleSelect(key, keyPath) {
-
-      },
-      // 获得轮播图
-      getCarousets() {
-        this.$getEntitys('carouset',{type:1}).then((resp) => {
-          this.carousets = resp.data;
-        });
-      },
-      // 根据最上级视频分类查询最新的视频
-      getIndexVideo() {
-        getIndexVideo({pageSize: 8}).then((resp) => {
-          this.indexVideos = resp.data;
-        })
-      }
+export default {
+  name: "index",
+  data() {
+    return {
+      API_ROOT: process.env.API_ROOT+"upload/20200203/",
+      // 番剧
+      dramas: [],
+      // 热门
+      hots: [],
+      // 最新连载
+      news: []
+    }
+  },
+  created() {
+    this.getRecommends();
+  },
+  methods: {
+    // 获得番剧推荐
+    getRecommends() {
+      getRecommends().then(resp => {
+        let result = resp.data;
+        this.dramas = result.HOME_RECOMMEND1;
+        this.hots = result.HOME_RECOMMEND2;
+        this.news = result.HOME_RECOMMEND3;
+      });
     }
   }
+}
 </script>
 
 <style scoped>
-  .time {
-    font-size: 13px;
-    color: #999;
-  }
+.time {
+  font-size: 13px;
+  color: #999;
+}
 
-  .bottom {
-    margin-top: 13px;
-    line-height: 12px;
-  }
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
 
-  .image {
-    width: 100%;
-    display: block;
-  }
+.image {
+  width: 100%;
+  display: block;
+}
 </style>

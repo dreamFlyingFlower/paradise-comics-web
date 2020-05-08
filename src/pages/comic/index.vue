@@ -1,68 +1,64 @@
 <template>
-  <div>
-    <nav-operates  @openEditDialog="openEditDialog" :multipleSelection="multipleSelection" @deletes="deletes"
-    ></nav-operates>
-    <el-table :data="tableDatas" stripe @selection-change="handleSelectionChange" style="width: 100%;">
-      <el-table-column type="selection"></el-table-column>
-      <el-table-column prop="name" label="动漫名称"></el-table-column>
-      <el-table-column prop="year" label="动漫年代"></el-table-column>
-      <el-table-column prop="state" label="动漫状态">
-        <template slot-scope="scope">
-          {{ getComicState(scope) }}
-        </template>
-      </el-table-column>
-      <el-table-column prop="username" label="作者"></el-table-column>
-      <el-table-column prop="createtime" label="发布时间"></el-table-column>
-      <el-table-column prop="setting" width="350" label="操作">
-        <template slot-scope="scope">
-          <el-button type="text" size="small" icon="el-icon-edit" @click="openEditDialog(scope.row, 2)">编辑</el-button>
-          <el-button type="text" size="small" icon="el-icon-delete" @click="$remove(api, scope.row[primaryKey])">
-            删除
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <pagination></pagination>
-    <edit  v-if="showEditDialog" :show-edit-dialog="showEditDialog" @closeDialog="closeDialog" :edit-data="editData" :edit-type="editType"></edit>
+  <div class="comic-container">
+    <el-container>
+      <el-aside><img :src="cover" alt="loading..."></el-aside>
+      <el-main>
+        <h5 v-text="comicData.name"></h5>
+        <h5>score</h5>
+        别名:<h5 v-text="comicData.alias"></h5>
+        上映:<h5></h5>
+        地区:<h5></h5>
+        类型:<h5></h5>
+        标签:<h5></h5>
+      </el-main>
+    </el-container>
+    <el-container>
+      <el-main>
+        动漫简介
+         <article v-text="comicData.brief">
+          
+        </article>
+        关联动漫
+        <div>
+          1,23,3,5,
+        </div>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
-import { mixinIndex } from '@mixin';
-import { navOperates, pagination } from '@is';
-import { getSelfChildrenCode } from '@api/dic';
-import edit from './edit.vue';
 
 export default {
-  name: 'anime-comic',
+  name: 'comic',
   data() {
     return {
-      api: 'comic',
-      primaryKey: 'id',
-      comicStates:[]
+      // 图片服务器地址
+      API_ROOT:process.env.API_ROOT+"upload/20200203/",
+      // 动漫编号
+      id:0,
+      // 动漫数据
+      comicData:{},
+      // 封面地址
+      cover:""
     };
   },
   components: {
-    navOperates,
-    pagination,
-    edit
   },
-  mixins: [mixinIndex],
   created() {
-    this.getComicStates();
+    this.id = this.$route.params.id;
+    this.getComicData();
   },
   methods: {
-    getComicStates(){
-      getSelfChildrenCode('COMIC_STATE',true).then(resp =>{
-        this.comicStates = resp.data;
-      });
-    },
-    getComicState(scope){
-      let item = this.comicStates.find(i => i.dicVal === scope.row.state);
-      if (item && Object.keys(item) && Object.keys(item).length > 0) {
-        return item.dicName;
-      }
+    getComicData(){
+      this.$getById('comic',this.id).then(resp =>{
+        this.comicData = resp.data;
+        this.cover = this.API_ROOT + this.comicData.cover;
+      })
     }
   }
 };
 </script>
+<style lang="scss" scoped>
+@import "./_index"
+</style>
