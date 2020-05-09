@@ -113,7 +113,7 @@ export default {
      * 判断参数是否存在,其中数字0,null,undefined,""是不存在,逻辑判断为false.
      * 本方法中,除了本身为不存在的值之外,还将"undefined","null","   ",[],{}认为是不存在
      * es6(可能es5)之前的版本中,0==undefined,''==undefined为true,但是es6之后为false,0==''仍判断为true
-     * 注意:[],{}仍然是存在的,只是为null,判断结果仍为true
+     * 注意:[],{}仍然是存在的,只是没有值,判断结果仍为true
      * @param param 参数
      */
     Vue.prototype.$exist = function (param) {

@@ -24,7 +24,7 @@
         <el-input v-model="searchKey" placeholder="请输入关键字"
                   style="width: 85%;display: inline-block;" @keyup.enter.native="search">
         </el-input>
-        <el-button type="info" icon="el-icon-search" style="margin-left: -5px;">
+        <el-button type="info" icon="el-icon-search" style="margin-left: -5px;" @click="search">
         </el-button>
       </el-col>
 
@@ -100,7 +100,11 @@
         });
       },
       search() {
-        console.log(this.searchKey)
+        if (!this.$exist(this.searchKey)) {
+          this.$message("请输入关键字或该关键字不可搜索");
+          return;
+        }
+        this.$router.push({name: "comic", params: {key: this.searchKey}});
       }
     }
   };

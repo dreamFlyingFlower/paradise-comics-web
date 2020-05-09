@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Layout from '../pages/layout'
 import LayoutSimple from "../pages/layout/layoutSimple"
 import LayoutUser from "../pages/layout/layoutUser"
-import Manager from '../pages/layout/manager'
 
 Vue.use(Router);
 
@@ -105,7 +104,7 @@ export default new Router({
           meta: {title: "友情链接"}
         },
         {
-          path:"comic/:id",
+          path:"comic/:id/:key",
           name:"comic",
           component:()=>import("@pages/comic"),
           meta:{title:"动漫详情"}

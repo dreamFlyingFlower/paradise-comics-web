@@ -5,7 +5,7 @@
       <h3 style="color:#f36c60; font-weight: bold;">番剧推荐</h3>
       <el-col :span="6" v-for="item in dramas" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
-          <router-link target="_blank" :to="{name:'comic',params:{id:item.id}}">
+          <router-link target="_blank" :to="{name:'comic',params:{id:item.id,key:''}}">
             <img :src="API_ROOT+item.cover" :alt="item.name" class="image" style="height: 250px;">
             <div style="padding: 14px;">
               <span class="font-ellipsis" :title="item.name" v-text="item.name"></span>
@@ -22,7 +22,7 @@
       <h3 style="color:#f36c60; font-weight: bold;">热门作品</h3>
       <el-col :span="6" v-for="item in hots" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
-          <router-link target="_blank" :to="{name:'comic',params:{id:item.id}}"  >
+          <router-link target="_blank" :to="{name:'comic',params:{id:item.id,key:''}}"  >
             <img :src="API_ROOT+item.cover" :alt="item.name" class="image" style="height: 250px;">
             <div style="padding: 14px;">
               <span class="font-ellipsis" :title="item.name" v-text="item.name"></span>
@@ -39,7 +39,7 @@
       <h3 style="color:#f36c60; font-weight: bold;">最新连载</h3>
       <el-col :span="6" v-for="item in news" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
-          <router-link target="_blank" :to="{name:'comic',params:{id:item.id}}">
+          <router-link target="_blank" :to="{name:'comic',params:{id:item.id,key:''}}">
             <img :src="API_ROOT+item.cover" :alt="item.name" class="image" style="height: 250px;">
             <div style="padding: 14px;">
               <span class="font-ellipsis" :title="item.name" :text="item.name"></span>
