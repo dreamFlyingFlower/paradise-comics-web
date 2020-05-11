@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 番剧推荐 -->
-    <el-row :gutter="2">
+    <el-row :gutter="12">
       <h3 style="color:#f36c60; font-weight: bold;">番剧推荐</h3>
       <el-col :span="6" v-for="item in dramas" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
@@ -18,7 +18,7 @@
       </el-col>
     </el-row>
     <!-- 热门作品 -->
-    <el-row :gutter="2">
+    <el-row :gutter="12">
       <h3 style="color:#f36c60; font-weight: bold;">热门作品</h3>
       <el-col :span="6" v-for="item in hots" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
@@ -35,7 +35,7 @@
       </el-col>
     </el-row>
     <!-- 最新连载 -->
-    <el-row :gutter="2">
+    <el-row :gutter="12">
       <h3 style="color:#f36c60; font-weight: bold;">最新连载</h3>
       <el-col :span="6" v-for="item in news" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">

@@ -104,10 +104,16 @@ export default new Router({
           meta: {title: "友情链接"}
         },
         {
-          path:"comic/:id/:key",
+          path:"comic/:id",
           name:"comic",
           component:()=>import("@pages/comic"),
           meta:{title:"动漫详情"}
+        },
+        {
+          path:"comic/:key",
+          name:"comic-list",
+          component:()=>import("@pages/comic/list"),
+          meta:{title:"动漫列表"}
         }
       ]
     },
