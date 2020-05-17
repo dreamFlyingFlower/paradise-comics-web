@@ -9,7 +9,7 @@
     </div>
     <div>
       <!-- 搜索的动画展示 -->
-      <img v-for="item in showComicDatas" :src="baseUrl+item.cover" alt="loading...">
+      <img v-for="item in showComicDatas" :key="item.id" :src="item.cover" alt="loading...">
     </div>
   </div>
 </template>
@@ -18,10 +18,9 @@
   import {navOperates, pagination} from '@is';
 
   export default {
-    name: "category-search",
+    name: "category",
     data() {
       return {
-        baseUrl:"http://localhost:12345/upload/20200203/",
         showCategoryDatas: [], // 分类数据展示
         showComicDatas:[], // 动漫数据展示
         params: []    // 参数
