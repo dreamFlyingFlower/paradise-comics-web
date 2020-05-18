@@ -1,6 +1,6 @@
-import apiUser from '@api/user'
-import apiRole from '@api/role'
-import cookie from '../utils/cookie'
+/* jshint esversion:6 */
+import apiUser from '@api/user';
+import cookie from '../utils/cookie';
 
 /**
  * 对store中的数据进行修改,可通过axios来动态修改,和mutation配合使用
@@ -56,17 +56,6 @@ export default {
         resolve(resp.code);
       }).catch(error => {
         reject(error);
-      });
-    })
-  },
-  /**
-   * 获得用户角色权限
-   * @param params 参数
-   */
-  ROUTES({commit}, roleId) {
-    return new Promise(resolve => {
-      apiRole.getRoleMenu(roleId).then(resp => {
-        resolve(resp.data);
       });
     })
   },
