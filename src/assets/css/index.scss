@@ -36,6 +36,14 @@ li {
   list-style: none;
 }
 
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
 //清除浮动
 .clearfix:before,
 .clearfix:after {
@@ -55,13 +63,17 @@ li {
   white-space: nowrap;
 }
 
+// 头部整体
+.header{
+  display: flex;
+}
+
 // 头部背景图
 .header-bgimg {
   display: block;
   width: 100%;
   height: 180px;
   background-size: cover;
-  z-index: 100;
   opacity: 0.6;
 }
 
@@ -72,7 +84,6 @@ li {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 1;
   height: 80px;
   color: black;
 

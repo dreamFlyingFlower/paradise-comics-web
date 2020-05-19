@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 番剧推荐 -->
-    <el-row :gutter="12">
+    <el-row :gutter="12" style="margin:0;">
       <h3 style="color:#f36c60; font-weight: bold;">番剧推荐</h3>
       <el-col :span="6" v-for="item in dramas" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
@@ -19,7 +19,7 @@
       </el-col>
     </el-row>
     <!-- 热门作品 -->
-    <el-row :gutter="12">
+    <el-row :gutter="12" style="margin:0;">
       <h3 style="color:#f36c60; font-weight: bold;">热门作品</h3>
       <el-col :span="6" v-for="item in hots" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
@@ -36,7 +36,7 @@
       </el-col>
     </el-row>
     <!-- 最新连载 -->
-    <el-row :gutter="12">
+    <el-row :gutter="12" style="margin:0;">
       <h3 style="color:#f36c60; font-weight: bold;">最新连载</h3>
       <el-col :span="6" v-for="item in news" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
@@ -56,50 +56,50 @@
 </template>
 
 <script>
-import { getRecommends } from "../../api/comic";
+  import {getRecommends} from "../../api/comic";
 
-export default {
-  name: "index",
-  data () {
-    return {
-      // 番剧
-      dramas: [],
-      // 热门
-      hots: [],
-      // 最新连载
-      news: []
-    }
-  },
-  created () {
-    this.getRecommends();
-  },
-  methods: {
-    // 获得番剧推荐
-    getRecommends () {
-      getRecommends().then(resp => {
-        let result = resp.data;
-        this.dramas = result.HOME_RECOMMEND1;
-        this.hots = result.HOME_RECOMMEND2;
-        this.news = result.HOME_RECOMMEND3;
-      });
+  export default {
+    name: "index",
+    data() {
+      return {
+        // 番剧
+        dramas: [],
+        // 热门
+        hots: [],
+        // 最新连载
+        news: []
+      }
+    },
+    created() {
+      this.getRecommends();
+    },
+    methods: {
+      // 获得番剧推荐
+      getRecommends() {
+        getRecommends().then(resp => {
+          let result = resp.data;
+          this.dramas = result.HOME_RECOMMEND1;
+          this.hots = result.HOME_RECOMMEND2;
+          this.news = result.HOME_RECOMMEND3;
+        });
+      }
     }
   }
-}
 </script>
 
 <style scoped>
-.time {
-  font-size: 13px;
-  color: #999;
-}
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
 
-.bottom {
-  margin-top: 13px;
-  line-height: 12px;
-}
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
 
-.image {
-  width: 100%;
-  display: block;
-}
+  .image {
+    width: 100%;
+    display: block;
+  }
 </style>

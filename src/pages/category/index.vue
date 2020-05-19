@@ -15,20 +15,19 @@
 </template>
 
 <script>
-  import {navOperates, pagination} from '@is';
+  import {pagination} from '@is';
 
   export default {
     name: "category",
     data() {
       return {
         showCategoryDatas: [], // 分类数据展示
-        showComicDatas:[], // 动漫数据展示
+        showComicDatas: [], // 动漫数据展示
         params: []    // 参数
       }
     },
     components: {
-      pagination,
-      navOperates
+      pagination
     },
     created() {
       this.getTree();
@@ -51,14 +50,14 @@
           } else {
             this.params.push(c.categoryId);
           }
-          if (this.params.length !== 0){
+          if (this.params.length !== 0) {
             ids = this.params.join(",");
-          }else{
+          } else {
             ids = null;
           }
         }
-        this.$getPage('comic', {categories: ids}).then(resp=>{
-          this.showComicDatas =  resp.data;
+        this.$getPage('comic', {categories: ids}).then(resp => {
+          this.showComicDatas = resp.data;
         });
       }
     }
