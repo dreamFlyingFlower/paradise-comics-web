@@ -7,10 +7,10 @@
     <el-row type="flex" class="header-navbar">
       <!-- 用户菜单 -->
       <el-col>
-        <el-menu :default-active="'0'" mode="horizontal" style="display: inline-block" @select="handlerSelect">
+        <el-menu :default-active="'0'" mode="horizontal" style="display: inline-block" @select="handlerSelect" >
           <el-menu-item index="0" style="color:#f36c60; font-size:28px;"><a href="/">动漫百科</a></el-menu-item>
           <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a></el-menu-item>
-          <el-menu-item v-for="item in userMenus" :index="item.menuId + ''" :key="item.menuId">
+          <el-menu-item v-for="item in userMenus" :index="item.menuId + ''" :key="item.menuId" >
             <router-link :to="{ path:item.menuPath}" v-text="item.menuName" />
           </el-menu-item>
         </el-menu>
