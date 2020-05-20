@@ -5,7 +5,7 @@ html, body {
   min-width: 1080px;
 }
 
-ul, li, ol {
+div,ul, li, ol,img,textarea {
   margin: 0;
   padding: 0;
 }
@@ -63,6 +63,7 @@ li {
   white-space: nowrap;
 }
 
+/*------ 头部样式 ------*/
 // 头部整体
 .header{
   display: flex;
@@ -96,3 +97,4 @@ li {
     color: #f36c60;
   }
 }
+/*------ 首页样式 ------*/
