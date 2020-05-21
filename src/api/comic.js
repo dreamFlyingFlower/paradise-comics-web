@@ -3,7 +3,7 @@ import service from '../utils/service';
 
 export {
   getRecommends,
-  getByKey
+  getAll
 }
 
 /**
@@ -16,8 +16,10 @@ function getRecommends() {
 
 /**
  * 头部搜索,会根据动漫名字,动漫别名,动漫作者,动漫简介搜索相关动漫
- * @param Stirng 关键字,关键字为null不搜索
+ * @param {String} searchKey 关键字,关键字为null不搜索
+ * @param {Ingeter} pageIndex 分页索引
+ * @param {Integer} pageSize 分页条数
  */
-function getByKey(key){
-  return service.get("elasticComic/findByKey",{key:key})
+function getAll(param) {
+  return service.get("comic/getAll", param)
 }

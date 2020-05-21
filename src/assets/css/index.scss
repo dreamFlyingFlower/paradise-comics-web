@@ -1,11 +1,17 @@
-html, body {
+html,
+body {
   background-color: #fff;
   margin: 0;
   padding: 0;
   min-width: 1080px;
 }
 
-div,ul, li, ol,img,textarea {
+div,
+ul,
+li,
+ol,
+img,
+textarea {
   margin: 0;
   padding: 0;
 }
@@ -52,7 +58,7 @@ li {
 }
 
 .clearfix:after {
-  clear: both
+  clear: both;
 }
 
 //文字超出显示为...
@@ -65,7 +71,7 @@ li {
 
 /*------ 头部样式 ------*/
 // 头部整体
-.header{
+.header {
   display: flex;
 }
 
@@ -97,4 +103,75 @@ li {
     color: #f36c60;
   }
 }
+/*------ 头部样式 end------*/
+
+/*------ 底部样式 ------*/
+.footer {
+  margin: 10px;
+  min-width: 1080px;
+  background-color: #f6f9fa;
+  font-size: 18px;
+}
+
+.footer-link-a {
+  float: left;
+  width: 70%;
+
+
+  li {
+    float: left;
+    margin: 10px;
+  }
+}
+
+.footer-link-b {
+
+  float: right;
+  width: 30%;
+  position: relative;
+
+  li {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+
+    img {
+      width: 100%;
+    }
+
+    span {
+      display: block;
+      text-align: center;
+      margin: 5px 0;
+    }
+  }
+}
+/*------ 底部样式 end------*/
+
 /*------ 首页样式 ------*/
+.index-recommend {
+  h3 {
+    font-size: 24px;
+    color: #f36c60;
+    font-weight: bold;
+  }
+  .name {
+    text-align: center;
+    margin: 5px 0;
+    font-size: 18px;
+  }
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
+
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+  .image {
+    width: 100%;
+    display: block;
+  }
+}

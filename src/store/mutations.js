@@ -25,6 +25,9 @@ export default {
   FRESH_TREE(state, freshTree) {
     state.freshTree = freshTree;
   },
+  SEARCH_KEY(state, searchKey){
+    state.searchKey = searchKey;
+  },
   PAGE_INDEX(state, pageIndex) {
     state.pageIndex = pageIndex;
   },

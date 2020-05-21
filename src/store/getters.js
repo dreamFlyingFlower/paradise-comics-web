@@ -10,6 +10,7 @@ export default {
   config: state => state.config,
   fresh: state => state.fresh,
   freshTree: state => state.freshTree,
+  searchKey: state => state.searchKey,
   language: state => state.language,
   pageIndex: state => state.pageIndex,
   pageSize: state => state.pageSize,
