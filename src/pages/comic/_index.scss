@@ -1,3 +1,16 @@
 .comic-container{
   margin: 0 20px;
 }
+.comic-list-image{
+  width: 200px;
+  height: 300px;
+  border-radius: 5px;
+}
+.comic-list-detail{
+  margin-left: 10px;
+  font-size: 12px;
+
+  h5{
+    margin: 5px 0;
+  }
+}

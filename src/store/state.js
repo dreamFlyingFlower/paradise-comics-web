@@ -13,7 +13,9 @@ export default {
   // 若当前页面中有树形结构,是否刷新
   freshTree: false,
   // 全局搜索key
-  searchKey:"",
+  searchKey:null,
+  // 全局搜索状态改变
+  searchState: false,
   pageIndex: 1,
   pageSize: 10,
   total: 0,

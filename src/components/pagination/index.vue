@@ -30,7 +30,6 @@
 
 <style scoped>
   .pagination-container {
-    background: #fff;
     text-align: right;
     margin-bottom: 15px;
   }

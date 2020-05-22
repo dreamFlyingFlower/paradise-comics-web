@@ -28,6 +28,9 @@ export default {
   SEARCH_KEY(state, searchKey){
     state.searchKey = searchKey;
   },
+  SEARCH_STATE(state, searchState){
+    state.searchState = searchState;
+  },
   PAGE_INDEX(state, pageIndex) {
     state.pageIndex = pageIndex;
   },

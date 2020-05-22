@@ -81,13 +81,10 @@ export default {
         this.userMenus = resp.data;
       });
     },
-    // 全局搜索
+    // 全局搜索,搜索关键词,每次点击时,即使关键字没有变也要重新查
     search() {
-      if (!this.$exist(this.searchKey)) {
-        this.$message("请输入关键字或该关键字不可搜索");
-        return;
-      }
       this.$store.commit("SEARCH_KEY", this.searchKey);
+      this.$store.commit("SEARCH_STATE", !this.$store.getters.searchState);
       if (this.$route.path !== "/comic/list") {
         this.$router.push({ path: "/comic/list" });
       }
