@@ -100,12 +100,39 @@ li {
 }
 /*------ 头部样式 end------*/
 
+/*------ 主体部分样式 ------*/
+.app-main{
+  background: url(/static/images/common.png) no-repeat;
+  background-size: cover;
+  min-height: calc(100vh - 350px);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+// .fixed-header + .app-main {
+//     padding-top: 50px;
+// }
+
+// .hasTagsView {
+//     .app-main {
+//         /* 84 = navbar + tags-view = 50 + 34 */
+//         min-height: calc(100vh - 84px);
+//     }
+
+//     .fixed-header + .app-main {
+//         padding-top: 84px;
+//     }
+// }
+/*------ 主体部分样式 end ------*/
+
 /*------ 底部样式 ------*/
 .footer {
   margin: 10px;
   min-width: 1080px;
+  height: 150px;
   background-color: #f6f9fa;
   font-size: 18px;
+  text-align: center;
 }
 
 .footer-link-a {

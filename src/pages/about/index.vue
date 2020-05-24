@@ -1,19 +1,32 @@
 <template>
   <div>
-    <h6>关于我们</h6>
+    <h2 class="about-title">关于我们</h2>
     <hr>
-    <article>
-      我们是一个干什么模式模式模式模式没什么没什么没什么嘛发的什么免费带似魔非魔多麻烦买的什么封面但是没免费大司马免费带没什么方面打什么
-    </article>
+    <article class="about-content" v-text="abouts.length > 0 ? abouts[0].content : ''"></article>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "about"
+export default {
+  name: "about",
+  data () {
+    return {
+      abouts: []
+    }
+  },
+  created () {
+    this.init();
+  },
+  methods: {
+    init () {
+      this.$getEntitys('about').then(resp => {
+        this.abouts = resp.data;
+      });
+    }
   }
+}
 </script>
 
 <style scoped>
-
+@import url("./_index.scss");
 </style>
