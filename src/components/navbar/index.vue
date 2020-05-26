@@ -6,7 +6,7 @@
     <!-- 头部菜单 -->
     <el-row type="flex" class="header-navbar">
       <!-- 用户菜单 -->
-      <el-col>
+      <el-col style="min-width: 400px">
         <el-menu :default-active="'0'" mode="horizontal" style="display: inline-block" @select="handlerSelect">
           <el-menu-item index="0" style="color:#f36c60; font-size:28px;"><a href="/">动漫百科</a></el-menu-item>
           <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a></el-menu-item>
@@ -23,9 +23,9 @@
       </el-col>
 
       <!-- 用户信息 -->
-      <el-col>
+      <el-col style="margin: auto;min-width: 400px;" class="navbar-user">
         <template v-if="!$store.getters.user.token">
-          <el-dropdown class="navbar-user">
+          <el-dropdown class="navbar-login">
             <span class="el-dropdown-link">
               登录/注册<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
