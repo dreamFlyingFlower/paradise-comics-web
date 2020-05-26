@@ -15,7 +15,7 @@
       </el-col>
 
       <!-- 搜索 -->
-      <el-col style="margin: auto;">
+      <el-col style="margin: auto;min-width: 400px;">
         <el-input v-model="searchKey" placeholder="请输入关键字" style="width: 85%;display: inline-block;" @keyup.enter.native="search"></el-input>
         <el-button type="info" icon="el-icon-search" style="margin-left: -5px;" @click="search"></el-button>
       </el-col>

@@ -1,5 +1,4 @@
-html,
-body {
+html,body {
   background-color: #fff;
   margin: 0;
   padding: 0;
@@ -88,6 +87,7 @@ li {
   top: 0;
   height: 80px;
   color: black;
+  min-width: 1080px;
 
   .el-menu.el-menu--horizontal {
     border: none;
@@ -133,16 +133,17 @@ li {
   background-color: #f6f9fa;
   font-size: 18px;
   text-align: center;
+  padding: 0 50px;
 }
 
 .footer-link-a {
   float: left;
-  width: 70%;
+  width: 60%;
   text-align: left;
 
-  li {
-    float: left;
-    margin: 10px;
+  h3{
+    color: red;
+    margin: 20px 0;
   }
 }
 
