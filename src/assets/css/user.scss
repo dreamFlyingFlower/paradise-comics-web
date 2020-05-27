@@ -1,5 +1,4 @@
 .user {
-  /* background-image: url("assets/css/icon.jpg"); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -39,7 +38,15 @@
 .detail-avatar {
   display: block;
   text-align: center;
-  margin-top: -50px;
+
+  h2{
+    color:red;
+  }
+
+  h6{
+    color:grey;
+    margin: 5px 0;
+  }
 }
 
 .detail-aside {
@@ -55,8 +62,8 @@
     text-align: center;
     border-bottom: 1px solid lightgrey;
 
-    .el-header {
-      text-align: left;
+    el-header {
+      text-align: center;
     }
   }
 

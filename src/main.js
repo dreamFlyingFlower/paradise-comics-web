@@ -1,18 +1,19 @@
+/* jslint esversion:6 */
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
-import store from './store'
-import ElementUI from 'element-ui'
-import Api from './global/api'
-import Funcs from './global/funcs'
-import 'videojs-contrib-hls'
+import Vue from 'vue';
+import App from './App';
+import router from './router';
+import store from './store';
+import ElementUI from 'element-ui';
+import Api from './global/api';
+import Funcs from './global/funcs';
+import 'videojs-contrib-hls';
 import axios from 'axios';
 // import 'bootstrap'
-import $ from 'jquery'
-import 'element-ui/lib/theme-chalk/index.css'
-import 'normalize.css/normalize.css'
+import $ from 'jquery';
+import 'element-ui/lib/theme-chalk/index.css';
+import 'normalize.css/normalize.css';
 
 // 取消vue的所有日志和警告,true取消,false不取消
 Vue.config.silent = false;

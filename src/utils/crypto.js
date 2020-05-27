@@ -2,6 +2,8 @@
 // jshint node:true
 // node自带的crypt加密模块,无需其他依赖
 const crypto = require("crypto");
+// aes加密算法
+let aesCryptoType = "aes-128-ecb";
 // key必须是16的倍数
 const key = "#@brave-comics#@";
 const encoding="utf-8";
@@ -67,18 +69,19 @@ export default class Crypto {
 
   static AESEncode(str, iv) {
     iv = iv ? iv : '';
-    const cipher = crypto.createCipheriv('aes-128-ecb', key, iv);
+    str += '_' + new Date().getTime();
+    let cipher = crypto.createCipheriv(aesCryptoType, key, iv);
     let result = [];
     result.push(cipher.update(str, encoding, byteEncoding));
     result.push(cipher.final(byteEncoding));
     return result.join("");
   }
 
-  static AESDecode(str,iv) {
+  static AESDecode(str, iv) {
     iv = iv ? iv : '';
-    const cipher = crypto.createDecipheriv('aes-128-ecb', key, iv);
+    const cipher = crypto.createDecipheriv(aesCryptoType, key, iv);
     let result = [];
-    result.push(cipher.update(str, byteEncoding, encoding));
+    result.push(cipher.update(str, encoding, byteEncoding));
     result.push(cipher.final(encoding));
     return result.join("");
   }

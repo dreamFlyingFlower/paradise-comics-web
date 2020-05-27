@@ -1,3 +1,4 @@
+/* jshint esversion:6*/
 import axios from 'axios';
 import {Message} from 'element-ui';
 import store from '@/store';
@@ -68,17 +69,17 @@ export default {
       service.get(url, {params: data}).then(resp => {
         resolve(resp);
       }).catch(err => {
-        reject(err)
-      })
-    })
+        reject(err);
+      });
+    });
   },
   post: function (url, data = {}) {
     return new Promise((resolve, reject) => {
       service.post(url, JSON.stringify(data)).then(resp => {
         resolve(resp);
       }, err => {
-        reject(err)
-      })
-    })
+        reject(err);
+      });
+    });
   }
-}
+};

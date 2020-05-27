@@ -16,5 +16,5 @@ function logout(userId) {
 }
 
 function create(params) {
-  return service.post('user/create', params)
+  return service.post('user/register', params)
 }

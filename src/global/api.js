@@ -1,3 +1,4 @@
+/*jslint esversion:6 */
 // 通用增删改查分页
 import service from '@utils/service';
 import {Message, MessageBox} from 'element-ui';
@@ -26,13 +27,13 @@ export default {
               callback(resp);
             });
           } else if (method.toLowerCase() === 'post') {
-            service.post(url, params).then((resp) => {
+            service.post(url, params).then(resp => {
               callback(resp);
             });
           }
         } else {
           if (method.toLowerCase() === 'get') {
-            service.get(url, params).then((resp) => {
+            service.get(url, params).then(resp => {
               if (resp.code === 1 && msg) {
                 Message.success(msg);
               }

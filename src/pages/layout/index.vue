@@ -24,10 +24,6 @@
       ...mapState([
         'fixedHeader'
       ]),
-    },
-    methods: {}
+    }
   }
 </script>
-
-<style scoped>
-</style>

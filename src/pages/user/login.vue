@@ -64,7 +64,7 @@
             this.loading = true;
             this.$store.dispatch('LOGIN', {
               username: this.formData.username,
-              password: Crypto.AESEncode(this.formData.password + "_" + new Date().getTime())
+              password: Crypto.AESEncode(this.formData.password)
             }).then(
               resp => {
                 if (resp === 1) {
