@@ -34,70 +34,82 @@
   color: #0000FF;
 }
 
-// user/detail
-.detail-avatar {
-  display: block;
+/* ------ user/detail ------ */
+.user-detail-avatar {
   text-align: center;
 
-  h2{
-    color:red;
+  h2 {
+    color: red;
   }
 
-  h6{
-    color:grey;
+  h6 {
+    color: grey;
     margin: 5px 0;
   }
-}
 
-.detail-aside {
-  margin: 0 20px;
-  border: 1px solid lightgrey;
-}
-
-.detail-main {
-  margin: auto 20px;
-  border: 1px solid lightgrey;
-
-  .el-container {
-    text-align: center;
-    border-bottom: 1px solid lightgrey;
-
-    el-header {
-      text-align: center;
-    }
-  }
-
-  .el-container:nth-child(1) {
-    a img {
-      display: inline-block;
-      height: 200px;
-      width: 20%;
-      margin: auto 20px;
-      line-height: 200px;
-    }
-  }
-
-  .el-container:nth-child(2) {
-    li {
-      margin: 15px auto;
-      text-align: left;
-      font-size: 18px;
-
-      span {
-        display: inline-block;
-      }
-
-      span:nth-child(1), span:nth-child(3) {
-        width: 15%;
-      }
-
-      span:nth-child(2) {
-        width: 65%;
-      }
-    }
+  .el-upload {
+    border: none;
   }
 }
-.el-upload  {
+.user-detail-main{
+  text-align: center;
+}
+.el-header{
+  line-height: 60px;
+  font-size: 20px;
+}
+
+//.detail-aside {
+//  margin: 0 20px;
+//  border: 1px solid lightgrey;
+//}
+
+//.detail-main {
+//  margin: auto 20px;
+//  border: 1px solid lightgrey;
+//
+//  .el-container {
+//    text-align: center;
+//    border-bottom: 1px solid lightgrey;
+//
+//    el-header {
+//      text-align: center;
+//    }
+//  }
+//
+//  .el-container:nth-child(1) {
+//    a img {
+//      display: inline-block;
+//      height: 200px;
+//      width: 20%;
+//      margin: auto 20px;
+//      line-height: 200px;
+//    }
+//  }
+//
+//  .el-container:nth-child(2) {
+//    li {
+//      margin: 15px auto;
+//      text-align: left;
+//      font-size: 18px;
+//
+//      span {
+//        display: inline-block;
+//      }
+//
+//      span:nth-child(1), span:nth-child(3) {
+//        width: 15%;
+//      }
+//
+//      span:nth-child(2) {
+//        width: 65%;
+//      }
+//    }
+//  }
+//}
+/* ------ user/detail enb ------ */
+
+.el-upload {
   border: 1px dashed #d9d9d9;
   border-radius: 6px;
   cursor: pointer;

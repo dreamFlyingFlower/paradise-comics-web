@@ -12,7 +12,7 @@
       <div class="login-rem">
         <el-checkbox label="记住我" v-model="rememberMe"></el-checkbox>
         <span class="login-notice">不是自己的电脑上不要勾选此项</span>
-        <router-link class="tip-right" :to="{ path: '/forget' }">忘记密码?</router-link>
+<!--        <router-link class="tip-right" :to="{ path: '/forget' }">忘记密码?</router-link>-->
       </div>
       <el-form-item>
         <el-row :gutter="10">
