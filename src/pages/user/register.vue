@@ -9,10 +9,10 @@
         <el-input type="password" v-model="formData.password" placeholder="请输入密码"></el-input>
       </el-form-item>
       <el-form-item prop="password2">
-        <el-input type="password" v-model="formData.password2" placeholder="请再次输入密码" @keyup.enter.native="register">
+        <el-input type="password" v-model="formData.password2" placeholder="请再次输入密码" @keyup.enter.native="handleData">
         </el-input>
       </el-form-item>
-      <el-button style="width: 100%;" :loading="loading" type="primary" @click.native.prevent="register">注册</el-button>
+      <el-button style="width: 100%;" :loading="loading" type="primary" @click.native.prevent="handleData">注册</el-button>
       <router-link class="tip-right" :to="{ path: '/login' }">
         已有帐号,直接登录
         <i class="el-icon-arrow-right"></i>
@@ -82,7 +82,7 @@ export default {
       }
     },
     // 注册
-    register() {
+    handleData() {
       this.$refs.formData.validate(valid => {
         if (valid) {
           this.loading = true;
