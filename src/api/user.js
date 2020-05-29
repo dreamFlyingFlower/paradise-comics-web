@@ -11,8 +11,8 @@ function login(params) {
   return service.get('user/login', params);
 }
 
-function logout(userId) {
-  return service.get(`user/logout/${userId}`)
+function logout(token) {
+  return service.get(`user/logout/`, { token: token });
 }
 
 function create(params) {

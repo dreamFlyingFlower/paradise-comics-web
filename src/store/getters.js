@@ -1,3 +1,4 @@
+/* jshint esversion:6 */
 import cookie from "../utils/cookie";
 
 export default {

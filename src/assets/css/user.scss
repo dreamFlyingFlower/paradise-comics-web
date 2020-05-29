@@ -31,7 +31,7 @@
   margin: 5px;
   float: right;
   font-size: 0.75rem;
-  color: #0000FF;
+  color: #0000ff;
 }
 
 /* ------ user/detail ------ */
@@ -51,15 +51,20 @@
     border: none;
   }
 }
-.user-detail-main{
+.user-detail-main {
   text-align: center;
 }
-.el-header{
+.el-header {
   line-height: 60px;
   font-size: 20px;
 }
-.user-detail-confirm{
+.user-detail-confirm {
   text-align: center;
+  margin-bottom: 10px;
+
+  button {
+    width: 100px;
+  }
 }
 
 //.detail-aside {
@@ -121,7 +126,6 @@
 }
 
 .el-dialog {
-
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;

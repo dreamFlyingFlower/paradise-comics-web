@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar :showCarouset="true" :showVideoTypes="true"/>
+    <navbar :showCarouset="true"/>
     <app-content/>
     <link-footer/>
   </div>
@@ -11,7 +11,7 @@
   import {mapState} from 'vuex'
 
   export default {
-    name: 'layout-index',
+    name: 'layout',
     components: {
       // 上方导航栏
       navbar,

@@ -2,15 +2,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Layout from '../pages/layout';
-import LayoutSimple from "../pages/layout/layoutSimple";
-import LayoutUser from "../pages/layout/layoutUser";
+import LayoutLogin from "../pages/layout/layoutLogin";
 
 Vue.use(Router);
 
 export default new Router({
   routes: [{
     path: "/login",
-    component: LayoutSimple,
+    component: Layout,
     redirect: "/login",
     children: [{
       path: "",
@@ -23,7 +22,7 @@ export default new Router({
   },
   {
     path: "/register",
-    component: LayoutSimple,
+    component: Layout,
     redirect: "/register",
     children: [{
       path: "",
@@ -36,7 +35,7 @@ export default new Router({
   },
   {
     path: "/detail",
-    component: Layout,
+    component: LayoutLogin,
     redirect: "/detail",
     children: [{
       path: "",
@@ -49,7 +48,7 @@ export default new Router({
   },
   {
     path: "/userinfo",
-    component: LayoutUser,
+    component: Layout,
     redirect: "/userinfo",
     children: [{
       path: "",

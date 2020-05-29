@@ -56,7 +56,7 @@
                 <router-link :to="{ path: '/userinfo' }">修改资料</router-link>
               </el-dropdown-item>
               <el-dropdown-item>
-                <span style="display:block;" @click="logout">登出</span>
+                <span style="display:block;" @click="logout">退出登录</span>
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -68,19 +68,22 @@
 
 <script>
 import { getUserMenus } from "../../api/menu";
+import user from "../../api/user";
+import cookie from "@utils/cookie";
 
 export default {
   name: "navbar",
-  props: ["showCarouset", "showVideoTypes"],
+  props: ["showCarouset", "checkLogin"],
   data() {
     return {
-      carouset: "", // 首页大图
-      userMenus: [], // 菜单类型
-      searchKey: "" // 搜索关键字
+      carouset: "",     // 首页大图
+      userMenus: [],  // 菜单类型
+      searchKey: ""   // 搜索关键字
     };
   },
   created() {
     this.getCarousets();
+    this.checkUserLogin();
     this.getUserMenus();
   },
   methods: {
@@ -93,6 +96,12 @@ export default {
       this.$getEntitys("carouset", { type: 2 }).then(resp => {
         this.carouset = resp && resp.data.length > 0 ? resp.data[0] : "";
       });
+    },
+    // 检查页面跳转是否需要登录
+    checkUserLogin() {
+      if (this.checkLogin && !this.$store.getters.user.token) {
+        this.$router.push("/")
+      }
     },
     // 获得用户菜单
     getUserMenus() {
@@ -109,7 +118,15 @@ export default {
       }
     },
     // 退出登录
-    logout() { }
+    logout() {
+      user.logout(this.$store.getters.user.token);
+      cookie.removeUser();
+      cookie.removeToken();
+      this.$store.commit("USER", null);
+      if (this.$route.path !== "/") {
+        this.$router.push("/");
+      }
+    }
   }
 };
 </script>

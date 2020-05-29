@@ -9,11 +9,11 @@
         <el-input :type="passwordType" v-model="formData.password" placeholder="请输入密码" @keyup.enter.native="login"/>
         <span class="show-pwd" @click="showPwd"><!-- <svg-icon icon-class="eye"/> --></span>
       </el-form-item>
-      <div class="login-rem">
+      <!-- <div class="login-rem">
         <el-checkbox label="记住我" v-model="rememberMe"></el-checkbox>
-        <span class="login-notice">不是自己的电脑上不要勾选此项</span>
+        <span class="login-notice">不是自己的电脑上不要勾选此项</span> -->
 <!--        <router-link class="tip-right" :to="{ path: '/forget' }">忘记密码?</router-link>-->
-      </div>
+      <!-- </div> -->
       <el-form-item>
         <el-row :gutter="10">
           <el-col :span="12">

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <navbar :showCarouset="true" :showVideoTypes="false"/>
+    <navbar :showCarouset="true" :checkLogin="true"/>
     <app-content/>
-    <link-footer/>
   </div>
 </template>
 
@@ -11,21 +10,18 @@
   import {mapState} from 'vuex'
 
   export default {
-    name: 'layout-simple',
+    name: 'layout-login',
     components: {
       // 上方导航栏
       navbar,
       // 主体router-view
-      appContent,
-      // 下方友情连接
-      linkFooter
+      appContent
     },
     computed: {
       ...mapState([
         'fixedHeader'
       ]),
-    },
-    methods: {}
+    }
   }
 </script>
 
