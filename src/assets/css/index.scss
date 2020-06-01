@@ -1,11 +1,28 @@
-html,body {
+html,
+body {
   background-color: #fff;
   margin: 0;
   padding: 0;
   min-width: 1200px;
+  font-family: Arial,Microsoft YaHei,Microsoft Sans Serif,Microsoft SanSerf,微软雅黑;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-div,ul,li,ol,img,h1,h2,h3,h4,h5,h6,form,checkbox,textarea {
+div,
+ul,
+li,
+ol,
+img,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+checkbox,
+textarea {
   margin: 0;
   padding: 0;
 }
@@ -29,7 +46,6 @@ div,ul,li,ol,img,h1,h2,h3,h4,h5,h6,form,checkbox,textarea {
 a {
   text-decoration: none;
   color: black;
-  cursor: auto;
 }
 
 li {
@@ -98,14 +114,14 @@ li {
     color: #f36c60;
   }
 
-  .navbar-user{
+  .navbar-user {
     cursor: pointer;
   }
 }
 /*------ 头部样式 end------*/
 
 /*------ 主体部分样式 ------*/
-.app-main{
+.app-main {
   background: url(/static/images/common.png) no-repeat;
   background-size: cover;
   min-height: calc(100vh - 350px);
@@ -145,14 +161,13 @@ li {
   width: 60%;
   text-align: left;
 
-  h3{
+  h3 {
     color: red;
     margin: 20px 0;
   }
 }
 
 .footer-link-b {
-
   float: right;
   width: 30%;
   position: relative;
@@ -172,6 +187,11 @@ li {
       margin: 5px 0;
     }
   }
+}
+.footer-title {
+  margin: 20px;
+  font-size: 24px;
+  color: yellowgreen;
 }
 /*------ 底部样式 end------*/
 
@@ -197,10 +217,13 @@ li {
     margin-top: 13px;
     line-height: 12px;
   }
-
-  .image {
-    width: 100%;
-    height: 300px;
-    display: block;
-  }
+}
+.image {
+  width: 200px;
+  height: 300px;
+  display: block;
+}
+.image-big{
+  width: 250px;
+  height: 350px;
 }

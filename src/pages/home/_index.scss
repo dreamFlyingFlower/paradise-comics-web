@@ -1,0 +1,15 @@
+.el-card.is-always-shadow,
+.el-card.is-hover-shadow:focus,
+.el-card .is-hover-shadow:hover {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.el-card {
+  border: none;
+}
+.el-card__body {
+  text-align: center;
+}
+.el-card__body a {
+  display: inline-block;
+}

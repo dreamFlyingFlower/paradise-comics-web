@@ -1,16 +1,42 @@
-.comic-container{
-  margin: 0 20px;
+.comic-container {
+  margin: 50px 20px 0 20px;
+  text-align: center;
+
+  .detail-title {
+    margin-top: -20px;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 400;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.87);
+      margin: 0 0 11px;
+    }
+
+    h2{
+      font-size: 16px;
+      font-weight: 400;
+      color:rgba(0,0,0,.56);
+    }
+  }
 }
-.comic-list-image{
+.comic-list-image {
   width: 200px;
   height: 300px;
   border-radius: 5px;
 }
-.comic-list-detail{
+.comic-list-detail {
   margin-left: 10px;
   font-size: 12px;
 
-  h5{
+  h5 {
     margin: 5px 0;
   }
+}
+.el-aside {
+  overflow: hidden;
 }

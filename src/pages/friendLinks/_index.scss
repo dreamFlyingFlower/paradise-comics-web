@@ -1,0 +1,18 @@
+.friend {
+  text-align: center;
+
+  .el-col {
+    margin: 10px 0;
+    height: 50px;
+    background: url(../../assets/photo/account/myself_bar.jpg) no-repeat center;
+    background-size: 50%;
+
+    a{
+      line-height: 50px;
+    }
+  }
+}
+.el-divider__text,
+.el-link {
+  font-size: 18px;
+}

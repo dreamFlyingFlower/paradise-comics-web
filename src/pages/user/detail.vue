@@ -143,7 +143,6 @@ export default {
     },
     // 处理用户头像
     handleAvatarUrl() {
-      debugger
       if (this.$store.getters.user.avatar) {
         this.avatarUrl = this.$store.getters.user.avatar;
       } else {

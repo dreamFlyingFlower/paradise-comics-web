@@ -52,9 +52,9 @@
               <el-dropdown-item>
                 <router-link :to="{ path: '/detail' }">个人中心</router-link>
               </el-dropdown-item>
-              <el-dropdown-item>
+              <!-- <el-dropdown-item>
                 <router-link :to="{ path: '/userinfo' }">修改资料</router-link>
-              </el-dropdown-item>
+              </el-dropdown-item> -->
               <el-dropdown-item>
                 <span style="display:block;" @click="logout">退出登录</span>
               </el-dropdown-item>
