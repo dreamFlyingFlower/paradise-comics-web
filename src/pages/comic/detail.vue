@@ -38,16 +38,31 @@
     <el-container class="detail-recommend">
       <el-main>
         <h2 class="recommend-title">相关推荐</h2>
-        <el-row :gutter="12"><el-col :span="4"></el-col></el-row>
+        <el-row :gutter="12" style="margin-left:0;margin-right:0">
+          <el-col :span="4" v-for="item in recommends" :key="item.id">
+            <el-card :body-style="{ padding: '0px',width: '150px',height: '300px',margin:'auto' }">
+              <router-link target="_blank" :to="{ name: 'comic', params: { id: item.id } }">
+                <img :src="item.cover" :alt="item.name" class="image-small" />
+                <div class="name">
+                  <span class="font-ellipsis" :title="item.name" v-text="item.name"></span>
+                  <div class="bottom clearfix">
+                    <time class="time">{{ item.createtime }}</time>
+                  </div>
+                </div>
+              </router-link>
+            </el-card>
+          </el-col>
+        </el-row>
       </el-main>
     </el-container>
   </div>
 </template>
 
 <script>
+import { getByCategoryIds } from "@api/comic";
 export default {
   name: "comic",
-  data() {
+  data () {
     return {
       // 动漫编号
       id: 0,
@@ -61,19 +76,25 @@ export default {
       year: null,
       // 标签数组
       labels: [],
+      // 分类编号
+      categoryIds: [],
       // 标签展示
       showLabel: null,
       // 评分颜色
-      colors: ["#99A9BF", "#F7BA2A", "#FF9900"]
+      colors: ["#99A9BF", "#F7BA2A", "#FF9900"],
+      // 相关推荐
+      recommends: []
     };
   },
   components: {},
-  created() {
+  created () {
     this.id = this.$route.params.id;
-    this.getComicDatas();
+    debugger
+    this.getComicData();
   },
   methods: {
-    getComicDatas() {
+    // 获得动漫详情
+    getComicData () {
       this.$getById("comic", this.id).then(resp => {
         this.comicData = resp.data;
         this.categorys = resp.data.categorys;
@@ -87,10 +108,18 @@ export default {
             }
             if (category.categoryCode.includes("LABEL")) {
               this.labels.push(category.categoryName);
+              this.categoryIds.push(category.categoryId);
             }
           }
           this.showLabel = this.labels.join(",");
+          this.getRecommends();
         }
+      });
+    },
+    // 获得相关推荐
+    getRecommends () {
+      getByCategoryIds(this.categoryIds.join(","), 1, 6).then(resp => {
+        this.recommends = resp.data;
       });
     }
   }

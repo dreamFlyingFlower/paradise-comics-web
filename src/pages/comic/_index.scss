@@ -9,7 +9,7 @@
   }
 
   .detail-title {
-    margin-top: -20px;
+    margin-top: 15px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -47,6 +47,9 @@
 
   .detail-recommend{
 
+    .el-main{
+      margin-top: 15px;
+    }
 
     .recommend-title{
       margin: 0 0 20px;
@@ -55,6 +58,15 @@
       color: rgba(0,0,0,.87);
     }
 
+    .name{
+      text-align: center;
+      font-size: 18px;
+      margin: 5px 0;
+    }
+    .time{
+      font-size: 13px;
+      color: #999;
+    }
   }
 }
 .comic-list-image {

@@ -3,7 +3,8 @@ import service from '../utils/service';
 
 export {
   getRecommends,
-  getAll
+  getAll,
+  getByCategoryIds
 }
 
 /**
@@ -22,4 +23,14 @@ function getRecommends() {
  */
 function getAll(param) {
   return service.get("comic/getAll", param)
+}
+
+/**
+ * 
+ * @param {String} ids 动漫分类标识组成的字符串,多个用逗号隔开
+ * @param {Integer} pageIndex 分页参数,从第几页开始
+ * @param {Integer} pageSize 分页参数,每页展示数据条数
+ */
+function getByCategoryIds(ids,pageIndex,pageSize){
+  return service.get(`comic/getByCategoryIds/${ids}`,{pageIndex:pageIndex,pageSize:pageSize});
 }
