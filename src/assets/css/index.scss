@@ -5,8 +5,6 @@ body {
   padding: 0;
   min-width: 1200px;
   font-family: Arial,Microsoft YaHei,Microsoft Sans Serif,Microsoft SanSerf,微软雅黑;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 div,
@@ -77,6 +75,7 @@ li {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  word-break: break-all;
 }
 
 /*------ 头部样式 ------*/

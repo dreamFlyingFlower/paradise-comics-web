@@ -1,47 +1,44 @@
 <template>
-  <div class="comic-container">
+  <div class="comic-detail-container">
     <el-container>
       <el-aside><img class="image-big" :src="comicData.cover ? comicData.cover : ''" alt="loading..." /></el-aside>
-      <el-main>
+      <el-main class="comic-detail-main">
         <div class="detail-title">
           <template v-if="comicData.alias">
-            <h1 v-text="comicData.name+'('+comicData.alias+')'"></h1>
+            <h1 v-text="comicData.name + '(' + comicData.alias + ')'"></h1>
           </template>
           <template v-else>
             <h1 v-text="comicData.name"></h1>
           </template>
           <h2 v-text="comicData.author"></h2>
         </div>
-        <el-row :gutter="12">
+        <el-row>
           <!-- <el-col :span="12">
             评分:
             <el-rate style="display: inline-block;" v-model="comicData.score" :colors="colors"></el-rate>
           </el-col> -->
-          <el-col :span="12">
-            别名:
-            <span v-text="comicData.alias"></span>
+          <el-col>
+            <i class="el-icon-collection-tag"></i>
+            <span v-text="showLabel"></span>
           </el-col>
-          <el-col :span="12">
-            年代:
-            <span v-text="comicData.year"></span>
+          <el-col>
+            <i class="el-icon-date"></i>
+            <span v-text="year"></span>
           </el-col>
-          <el-col :span="12">
-            地区:
+          <el-col>
+            <i class="el-icon-location-information"></i>
             <span v-text="region"></span>
           </el-col>
-          <el-col :span="12">
-            标签:
-            <span v-text="showLabel"></span>
+          <el-col>
+            <article>{{ comicData.brief }}</article>
           </el-col>
         </el-row>
       </el-main>
     </el-container>
-    <el-container>
+    <el-container class="detail-recommend">
       <el-main>
-        动漫简介
-        <article v-text="comicData.brief"></article>
-        关联动漫
-        <div>1,23,3,5,</div>
+        <h2 class="recommend-title">相关推荐</h2>
+        <el-row :gutter="12"><el-col :span="4"></el-col></el-row>
       </el-main>
     </el-container>
   </div>
