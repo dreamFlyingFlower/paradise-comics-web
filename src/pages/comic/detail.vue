@@ -55,6 +55,26 @@
         </el-row>
       </el-main>
     </el-container>
+    <el-container class="detail-recommend">
+      <el-main>
+        <h2 class="recommend-title">评论</h2>
+        <el-row :gutter="12" style="margin-left:0;margin-right:0">
+          <el-col :span="4" v-for="item in recommends" :key="item.id">
+            <el-card :body-style="{ padding: '0px',width: '150px',height: '300px',margin:'auto' }">
+              <router-link target="_blank" :to="{ name: 'comic', params: { id: item.id } }">
+                <img :src="item.cover" :alt="item.name" class="image-small" />
+                <div class="name">
+                  <span class="font-ellipsis" :title="item.name" v-text="item.name"></span>
+                  <div class="bottom clearfix">
+                    <time class="time">{{ item.createtime }}</time>
+                  </div>
+                </div>
+              </router-link>
+            </el-card>
+          </el-col>
+        </el-row>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
