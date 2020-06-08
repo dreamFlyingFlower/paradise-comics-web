@@ -10,6 +10,7 @@ import Api from './global/api';
 import Funcs from './global/funcs';
 import 'videojs-contrib-hls';
 import axios from 'axios';
+import './icons'
 // import 'bootstrap'
 import $ from 'jquery';
 import 'element-ui/lib/theme-chalk/index.css';

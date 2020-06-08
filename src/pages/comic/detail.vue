@@ -40,7 +40,7 @@
         <h2 class="recommend-title">相关推荐</h2>
         <el-row :gutter="12" style="margin-left:0;margin-right:0">
           <el-col :span="4" v-for="item in recommends" :key="item.id">
-            <el-card :body-style="{ padding: '0px',width: '150px',height: '300px',margin:'auto' }">
+            <el-card :body-style="{ padding: '0px', width: '150px', height: '300px', margin: 'auto' }">
               <router-link target="_blank" :to="{ name: 'comic', params: { id: item.id } }">
                 <img :src="item.cover" :alt="item.name" class="image-small" />
                 <div class="name">
@@ -58,31 +58,21 @@
     <el-container class="detail-recommend">
       <el-main>
         <h2 class="recommend-title">评论</h2>
-        <el-row :gutter="12" style="margin-left:0;margin-right:0">
-          <el-col :span="4" v-for="item in recommends" :key="item.id">
-            <el-card :body-style="{ padding: '0px',width: '150px',height: '300px',margin:'auto' }">
-              <router-link target="_blank" :to="{ name: 'comic', params: { id: item.id } }">
-                <img :src="item.cover" :alt="item.name" class="image-small" />
-                <div class="name">
-                  <span class="font-ellipsis" :title="item.name" v-text="item.name"></span>
-                  <div class="bottom clearfix">
-                    <time class="time">{{ item.createtime }}</time>
-                  </div>
-                </div>
-              </router-link>
-            </el-card>
-          </el-col>
-        </el-row>
+        <comment :comments="comments"></comment>
+        <pagination></pagination>
       </el-main>
     </el-container>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { getByCategoryIds } from "@api/comic";
+import { getByArguedId } from "@api/comment";
+import { comment, pagination } from "@is";
 export default {
   name: "comic",
-  data () {
+  data() {
     return {
       // 动漫编号
       id: 0,
@@ -103,18 +93,68 @@ export default {
       // 评分颜色
       colors: ["#99A9BF", "#F7BA2A", "#FF9900"],
       // 相关推荐
-      recommends: []
+      recommends: [],
+      // 评论
+      comments: [],
+      pageIndexChange: false
     };
   },
-  components: {},
-  created () {
+  components: {
+    comment,
+    pagination
+  },
+  computed: {
+    ...mapGetters(["pageIndex", "pageSize", "total"])
+  },
+  watch: {
+    pageIndex: function(val) {
+      this.$store.commit("PAGE_INDEX", val);
+      // pageSize改变时会重置pageIndex,可能造成refresh方法双重调用
+      if (this.pageIndexChange) {
+        this.pageIndexChange = false;
+        return false;
+      }
+      this.$nextTick(() => {
+        this.comments();
+      });
+    },
+    /**
+     * 当pageSize改变时,会将pageIndex重置为1,若是pageIndex原先本来就为1,则不会调用refresh方法
+     * 若是pageSize直接调用refresh方法,同时重置了pageIndex,若pageIndex原先不为1,
+     * 则会调用2次refresh方法,此处将设置一个标志
+     * @param val 改变后的新值
+     */
+    pageSize: function(val) {
+      this.$store.commit("PAGE_SIZE", val);
+      this.pageIndexChange = true;
+      this.$store.commit("PAGE_INDEX", 1);
+      this.$nextTick(() => {
+        this.comments();
+      });
+    },
+    /**
+     * TODO
+     * 页面删除时会改变total的值,删除了一整页的时候需要重新请求
+     * total的值必须在每次请求refresh方法的时候设置.此时可能会出现重复请求
+     */
+    total: function(val) {
+      let quotient = val / this.pageSize;
+      let flag = val % this.pageSize === 0;
+      if (this.pageIndex > 1) {
+        if (flag && quotient < this.pageIndex) {
+          this.$store.commit("PAGE_INDEX", this.pageIndex - 1);
+        }
+      }
+    }
+  },
+  created() {
     this.id = this.$route.params.id;
-    debugger
     this.getComicData();
+    this.getComments();
   },
   methods: {
     // 获得动漫详情
-    getComicData () {
+    getComicData() {
       this.$getById("comic", this.id).then(resp => {
         this.comicData = resp.data;
         this.categorys = resp.data.categorys;
@@ -137,9 +177,16 @@ export default {
       });
     },
     // 获得相关推荐
-    getRecommends () {
+    getRecommends() {
       getByCategoryIds(this.categoryIds.join(","), 1, 6).then(resp => {
         this.recommends = resp.data;
+      });
+    },
+    // 获得评论
+    getComments() {
+      getByArguedId(this.id, 1, this.pageIndex, this.pageSize).then(resp => {
+        this.comments = resp.data;
+        this.$store.commit("TOTAL",resp.total);
       });
     }
   }
