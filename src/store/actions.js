@@ -15,6 +15,7 @@ export default {
     return new Promise((resolve, reject) => {
       apiUser.login(params).then(resp => {
         commit('USER', resp.data);
+        commit('TOKEN',resp.data.token);
         cookie.setUser(resp.data);
         cookie.setToken(resp.data.token);
         resolve(resp.code);
@@ -33,9 +34,10 @@ export default {
   LOGOUT({commit, state}) {
     return new Promise((resolve, reject) => {
       apiUser.logout(state.user.userId).then(resp => {
-        commit('USER', null);
         cookie.removeToken();
         cookie.removeUser();
+        commit('USER', null);
+        commit("TOKEN",null);
         resetRouter();
         resolve();
       }).catch(error => {

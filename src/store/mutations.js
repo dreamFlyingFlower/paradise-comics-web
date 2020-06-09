@@ -11,6 +11,12 @@ export default {
   USER(state, user) {
     state.user = user;
   },
+  TOKEN(state, token) {
+    state.token = token;
+  },
+  AVATAR(state, avatar) {
+    state.avatar = avatar;
+  },
   ROLES(state, roles) {
     state.roles = roles
   },
@@ -26,10 +32,10 @@ export default {
   FRESH_TREE(state, freshTree) {
     state.freshTree = freshTree;
   },
-  SEARCH_KEY(state, searchKey){
+  SEARCH_KEY(state, searchKey) {
     state.searchKey = searchKey;
   },
-  SEARCH_STATE(state, searchState){
+  SEARCH_STATE(state, searchState) {
     state.searchState = searchState;
   },
   PAGE_INDEX(state, pageIndex) {
@@ -70,9 +76,9 @@ export default {
       return;
     }
     state.visitedViews.push(
-        Object.assign({}, view, {
-          title: view.meta.title || 'no-name'
-        })
+      Object.assign({}, view, {
+        title: view.meta.title || 'no-name'
+      })
     )
   },
   CACHED_VIEW: (state, view) => {

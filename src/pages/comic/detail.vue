@@ -58,7 +58,25 @@
     <el-container class="detail-recommend">
       <el-main>
         <h2 class="recommend-title">评论</h2>
-        <comment :comments="comments"></comment>
+        <el-row>
+          <el-col class="comment-reply-content">
+            <img src="static/images/boy.jpg" alt="loading" class="comment-img-children" />
+            <div class="comment-reply-info">
+              <div class="comment-reply-cover" v-if="!$store.getters.token">
+                <span>
+                  请先
+                  <router-link :to="{ path: '/login', query: { redirect: $route.path } }">登录</router-link>
+                  后发表评论ლ(╹◡╹ლ)
+                </span>
+              </div>
+              <div class="comment-textarea">
+                <el-input class="comment-textarea-content" type="textarea" v-model="formData.content" :disabled="!$store.getters.token"></el-input>
+                <button :class="$store.getters.token ? 'comment-publish-b' : 'comment-publish-a'" @click="handleData(item)">发表评论</button>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+        <comment :comments="comments" :arguded="comicData" @freshData="getComments"></comment>
         <pagination></pagination>
       </el-main>
     </el-container>
@@ -96,7 +114,15 @@ export default {
       recommends: [],
       // 评论
       comments: [],
-      pageIndexChange: false
+      pageIndexChange: false,
+      // 评论数据提交
+      formData: {
+        arguedId: null,
+        type: 1,
+        creater: this.$store.getters.user.userId,
+        subject: null,
+        content: null
+      }
     };
   },
   components: {
@@ -186,12 +212,31 @@ export default {
     getComments() {
       getByArguedId(this.id, 1, this.pageIndex, this.pageSize).then(resp => {
         this.comments = resp.data;
-        this.$store.commit("TOTAL",resp.total);
+        this.$store.commit("TOTAL", resp.total);
       });
+    },
+    // 提交评论
+    handleData() {
+      if (this.formData.content.trim()) {
+        this.formData.creater = this.$store.getters.user.userId;
+        this.formData.arguedId = this.id;
+        this.formData.type = 1;
+        this.formData.subject = this.comicData.name;
+        this.$create("comment", this.formData, true).then(resp => {
+          if (resp.code === 1) {
+            this.getComments();
+            this.formData.subject = "";
+            this.formData.content = "";
+          }
+        });
+      } else {
+        this.$message("评论内容为空");
+      }
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 @import "./_index";
+@import "../../components/comment/_index";
 </style>

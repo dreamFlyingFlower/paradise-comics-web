@@ -1,4 +1,4 @@
-.detail-comment-img {
+.comment-img {
   width: 70px;
   height: 70px;
   border-radius: 70px;
@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.detail-comment-img-children {
+.comment-img-children {
   width: 35px;
   height: 35px;
   border-radius: 35px;
@@ -14,17 +14,19 @@
   position: relative;
 }
 
-.detail-comment-content {
+.comment-content {
   margin-left: 90px;
+  border-top: 1px solid #e5e9ef;
 }
 
-.detail-comment-content-children {
+.comment-content-children {
   margin-left: 50px;
 }
 
-.detail-comment-content,
-.detail-comment-content-children {
+.comment-content,
+.comment-content-children {
   margin-bottom: 10px;
+  padding: 10px;
   overflow: hidden;
   position: relative;
 
@@ -42,50 +44,52 @@
     word-wrap: break-word;
     word-break: break-word;
   }
-  .detail-comment-info {
+  .comment-info {
     color: #99a2aa;
     font-size: 12px;
     line-height: 26px;
 
-    .detail-comment-vote {
+    .comment-vote {
       margin-left: 15px;
       cursor: pointer;
       display: inline-block;
     }
 
-    .detail-comment-vote .svg-icon {
+    .comment-vote .svg-icon {
       width: 16px;
       height: 16px;
     }
 
-    .detail-comment-vote .svg-icon:hover {
+    .comment-vote .svg-icon:hover {
       color: blue;
     }
 
-    .detail-comment-reply {
+    .comment-reply {
       padding: 0 5px;
       border-radius: 4px;
       margin-left: 15px;
       cursor: pointer;
       display: inline-block;
     }
-    .detail-comment-reply:hover {
+    .comment-reply:hover {
       color: blue;
       background-color: #99a2aa;
     }
   }
 }
-.detail-comment-reply-content {
+.comment-reply-content {
   position: relative;
-  margin-left: 70px;
+  margin-left: 90px;
   float: left;
   margin-bottom: 15px;
+  width: 1100px;
 
-  .detail-comment-reply-info{
+  .comment-reply-info {
     position: relative;
     margin-left: 50px;
+    width: 1060px;
 
-    .detail-comment-reply-cover{
+    .comment-reply-cover {
       display: block;
       position: absolute;
       z-index: 10000;
@@ -93,17 +97,50 @@
       height: 55px;
       text-align: center;
 
-      span{
+      span {
         line-height: 55px;
         display: inline-block;
 
-        a{
+        a {
           cursor: pointer;
-          color:#fff;
+          color: #fff;
           background-color: #00a1d6;
           border-radius: 4px;
           padding: 4px 9px;
         }
+      }
+    }
+    .comment-textarea {
+      width: 1060px;
+      height: 60px;
+
+      .comment-textarea-content {
+        width: 980px;
+      }
+
+      textarea {
+        height: 60px;
+      }
+
+      .comment-publish-a,
+      .comment-publish-b {
+        cursor: default;
+        width: 70px;
+        height: 60px;
+        padding: 4px 15px;
+        font-size: 14px;
+        border-radius: 4px;
+        text-align: center;
+      }
+      .comment-publish-a {
+        background-color: #e5e9ef !important;
+        color: #b8c0cc !important;
+        border-color: #e5e9ef !important;
+      }
+      .comment-publish-b {
+        background-color: #00a1d6;
+        border: 1px solid #00a1d6;
+        color: #fff;
       }
     }
   }

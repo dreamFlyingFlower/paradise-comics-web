@@ -34,7 +34,7 @@
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
-                <router-link :to="{ path: '/login' }">用户登录</router-link>
+                <router-link :to="{ path: '/login',query:{redirect:$route.path} }">用户登录</router-link>
               </el-dropdown-item>
               <el-dropdown-item>
                 <router-link :to="{ path: '/register' }">注册账号</router-link>
@@ -99,7 +99,7 @@ export default {
     },
     // 检查页面跳转是否需要登录
     checkUserLogin() {
-      if (this.checkLogin && !this.$store.getters.user.token) {
+      if (this.checkLogin && !this.$store.getters.token) {
         this.$router.push("/")
       }
     },
