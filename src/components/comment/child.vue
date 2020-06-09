@@ -1,13 +1,13 @@
 <template>
-  <div :style="children ? 'margin-left:90px' : ''">
+  <div style="margin-left:90px;">
     <el-col v-for="item in comments" :key="item.commentId">
       <img
-        :src="item.avatar ? item.avatar : item.user.sex ? (item.user.sex === 2 ? 'static/images/girl.jpg' : 'static/images/boy.jpg') : 'static/images/boy.jpg'"
-        alt="loading"
-        :class="children ? 'comment-img-children' : 'comment-img'"
-      />
-      <div :class="children ? 'comment-content-children' : 'comment-content'">
-        <h5 v-text="item.user.nickname ? item.user.nickname : item.user.username"></h5>
+        :src="item.avatar ? item.avatar : item.create.sex ? (item.create.sex === 2 ? 'static/images/girl.jpg' : 'static/images/boy.jpg') : 'static/images/boy.jpg'"
+        alt="loading" class="comment-img-children" />
+      <div class="comment-content-children">
+        <h5 v-text="item.create.nickname ? item.create.nickname : item.create.username" style="display:inline-block;"></h5>
+        <h5 v-if="item.reply" v-text="'回复'+(item.reply.nickname ? item.reply.nickname : item.reply.username)"
+        style="display:inline-block;"></h5>
         <p v-text="item.content"></p>
         <div class="bottom clearfix comment-info">
           <time class="time">{{ item.createtime }}</time>
@@ -28,9 +28,9 @@
 
 <script>
 export default {
-  props: ["comments", "children", "parent"],
+  props: ["comments", "parent"],
   methods: {
-    reply(item) {
+    reply (item) {
       let params = {
         parent: this.parent,
         child: item

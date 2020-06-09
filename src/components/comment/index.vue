@@ -3,12 +3,10 @@
     <el-row style="margin-left:0;margin-right:0;">
       <el-col v-for="item in comments" :key="item.commentId">
         <img
-          :src="item.avatar ? item.avatar : item.user.sex ? (item.user.sex === 2 ? 'static/images/girl.jpg' : 'static/images/boy.jpg') : 'static/images/boy.jpg'"
-          alt="loading"
-          :class="children ? 'comment-img-children' : 'comment-img'"
-        />
+          :src="item.avatar ? item.avatar : item.create.sex ? (item.create.sex === 2 ? 'static/images/girl.jpg' : 'static/images/boy.jpg') : 'static/images/boy.jpg'"
+          alt="loading" :class="children ? 'comment-img-children' : 'comment-img'" />
         <div :class="children ? 'comment-content-children' : 'comment-content'">
-          <h5 v-text="item.user.nickname ? item.user.nickname : item.user.username"></h5>
+          <h5 v-text="item.create.nickname ? item.create.nickname : item.create.username"></h5>
           <p v-text="item.content"></p>
           <div class="bottom clearfix comment-info">
             <time class="time">{{ item.createtime }}</time>
@@ -24,10 +22,8 @@
           </div>
         </div>
         <!-- <comment v-if="item.children && item.children.length > 0" :comments="item.children" :children="true"></comment> -->
-        <child v-if="item.children && item.children.length > 0"
-        :comments="item.children"
-        :children="true"
-        :parent="item" @showParentReply="showParentReply">
+        <child v-if="item.children && item.children.length > 0" :comments="item.children" :parent="item"
+          @showParentReply="showParentReply">
         </child>
         <el-col v-if="showReply === item.commentId" class="comment-reply-content">
           <img src="static/images/boy.jpg" alt="loading" class="comment-img-children" />
@@ -40,8 +36,10 @@
               </span>
             </div>
             <div class="comment-textarea">
-              <el-input class="comment-textarea-content" type="textarea" v-model="formData.content" :disabled="!$store.getters.token"></el-input>
-              <button :class="$store.getters.token ? 'comment-publish-b' : 'comment-publish-a'" @click="handleData()">发表评论</button>
+              <el-input class="comment-textarea-content" type="textarea" v-model="formData.content"
+                :disabled="!$store.getters.token"></el-input>
+              <button :class="$store.getters.token ? 'comment-publish-b' : 'comment-publish-a'"
+                @click="handleData()">发表评论</button>
             </div>
           </div>
         </el-col>
@@ -56,7 +54,7 @@ import child from "./child.vue";
 export default {
   name: "comment",
   props: ["comments", "children", "arguded"],
-  data() {
+  data () {
     return {
       // 当前点击回复数据
       need: {},
@@ -67,7 +65,8 @@ export default {
         type: 0,
         creater: this.$store.getters.user.userId,
         subject: null,
-        content: null
+        content: null,
+        replyer: null
       }
     };
   },
@@ -76,7 +75,7 @@ export default {
   },
   methods: {
     // 处理点赞或返回,type为1表示赞正,0表示反对
-    handleVote(type, item) {
+    handleVote (type, item) {
       if (this.$store.getters.token) {
         handleVote({ id: item.commentId, userId: this.$store.getters.user.userId, type: type }).then();
       } else {
@@ -84,18 +83,21 @@ export default {
       }
     },
     // 处理子级数据点击回复显示
-    showParentReply(datas){
+    showParentReply (datas) {
       let parent = datas.parent;
       let child = datas.child;
       if (this.showReply === parent.commentId) {
         this.showReply = 0;
+        this.formData.replyer = null;
       } else {
+        debugger
         this.showReply = parent.commentId;
-        this.formData.arguedId = child.commentId;
+        this.formData.arguedId = parent.commentId;
+        this.formData.replyer = child.creater;
       }
     },
     // 点击回复
-    reply(comment) {
+    reply (comment) {
       if (this.showReply === comment.commentId) {
         this.showReply = 0;
       } else {
@@ -104,7 +106,7 @@ export default {
       }
     },
     // 提交评论
-    handleData() {
+    handleData () {
       if (this.formData.content.trim()) {
         this.formData.creater = this.$store.getters.user.userId;
         this.formData.subject = this.arguded.name;
