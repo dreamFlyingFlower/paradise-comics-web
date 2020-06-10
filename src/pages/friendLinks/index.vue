@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h6 class="footer-title">友情链接</h6>
-    <hr />
+    <h6 class="footer-title about-title">友情链接</h6>
     <el-row class="friend" :gutter="12">
       <el-col :span="6" v-for="item in friendLinks" :key="item.friendLinkId"><el-link :underline="false" :href="item.url" v-text="item.linkName"></el-link></el-col>
     </el-row>

@@ -71,19 +71,6 @@
     }
   }
 }
-.comic-list-image {
-  width: 200px;
-  height: 300px;
-  border-radius: 5px;
-}
-.comic-list-detail {
-  margin-left: 10px;
-  font-size: 12px;
-
-  h5 {
-    margin: 5px 0;
-  }
-}
 .el-aside {
   overflow: hidden;
 }
@@ -142,5 +129,28 @@
       color: blue;
       background-color: #99a2aa;
     }
+  }
+}
+
+// 搜索页面
+.comic-list-image {
+  width: 200px;
+  height: 300px;
+  border-radius: 5px;
+}
+.comic-list-detail {
+  margin-left: 10px;
+  font-size: 12px;
+
+  h5 {
+    max-width: 400px;
+    font-size: 18px;
+    margin: 10px 0 20px;
+  }
+
+  p {
+    margin: 10px auto;
+    max-width: 400px;
+    font-size: 16px;
   }
 }

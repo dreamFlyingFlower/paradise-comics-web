@@ -61,7 +61,7 @@
         <el-row>
           <el-col class="comment-reply-content">
             <img src="static/images/boy.jpg" alt="loading" class="comment-img-children" />
-            <div class="comment-reply-info">
+            <div class="comment-reply-info" style="width: 1150px;">
               <div class="comment-reply-cover" v-if="!$store.getters.token">
                 <span>
                   请先
@@ -69,9 +69,9 @@
                   后发表评论ლ(╹◡╹ლ)
                 </span>
               </div>
-              <div class="comment-textarea">
-                <el-input class="comment-textarea-content" type="textarea" v-model="formData.content" :disabled="!$store.getters.token"></el-input>
-                <button :class="$store.getters.token ? 'comment-publish-b' : 'comment-publish-a'" @click="handleData(item)">发表评论</button>
+              <div class="comment-textarea" style="width: 1150px;">
+                <el-input class="comment-textarea-content" style="width: 1060px;" type="textarea" v-model="formData.content" :disabled="!$store.getters.token"></el-input>
+                <button :class="$store.getters.token ? 'comment-publish-b' : 'comment-publish-a'" @click="handleData()">发表评论</button>
               </div>
             </div>
           </el-col>

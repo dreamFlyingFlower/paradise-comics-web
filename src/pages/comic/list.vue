@@ -8,13 +8,31 @@
           </router-link>
           <div class="comic-list-detail">
             <h5 class="font-ellipsis" :title="item.name" v-text="item.name"></h5>
-            <h5>评分:{{ item.score }}</h5>
-            <h5>别名:{{ item.alias }}</h5>
-            <h5>作者:{{ item.author }}</h5>
-            <h5>地区:{{ item.region }}</h5>
-            <h5>标签:{{ item.label }}</h5>
-            <h5>年代:{{ item.year }}</h5>
-            <article class="font-ellipsis">动漫简介:{{ item.brief }}</article>
+            <!-- <h5>评分:{{ item.score }}</h5> -->
+            <p>
+              <span>别名:</span>
+              {{ item.alias }}
+            </p>
+            <p>
+              <span>作者:</span>
+              {{ item.author }}
+            </p>
+            <p>
+              <span>地区:</span>
+              {{ item.region }}
+            </p>
+            <p>
+              <span>标签:</span>
+              {{ item.label }}
+            </p>
+            <p>
+              <span>年代:</span>
+              {{ item.year }}
+            </p>
+            <p class="font-ellipsis">
+              <span>动漫简介:</span>
+              {{ item.brief }}
+            </p>
           </div>
         </el-card>
       </el-col>

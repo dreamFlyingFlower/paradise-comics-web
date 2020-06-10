@@ -4,7 +4,9 @@
       <el-col v-for="item in comments" :key="item.commentId">
         <img
           :src="item.avatar ? item.avatar : item.create.sex ? (item.create.sex === 2 ? 'static/images/girl.jpg' : 'static/images/boy.jpg') : 'static/images/boy.jpg'"
-          alt="loading" :class="children ? 'comment-img-children' : 'comment-img'" />
+          alt="loading"
+          :class="children ? 'comment-img-children' : 'comment-img'"
+        />
         <div :class="children ? 'comment-content-children' : 'comment-content'">
           <h5 v-text="item.create.nickname ? item.create.nickname : item.create.username"></h5>
           <p v-text="item.content"></p>
@@ -21,10 +23,7 @@
             <span class="comment-reply" @click="reply(item)">回复</span>
           </div>
         </div>
-        <!-- <comment v-if="item.children && item.children.length > 0" :comments="item.children" :children="true"></comment> -->
-        <child v-if="item.children && item.children.length > 0" :comments="item.children" :parent="item"
-          @showParentReply="showParentReply">
-        </child>
+        <child v-if="item.children && item.children.length > 0" :comments="item.children" :parent="item" @showParentReply="showParentReply"></child>
         <el-col v-if="showReply === item.commentId" class="comment-reply-content">
           <img src="static/images/boy.jpg" alt="loading" class="comment-img-children" />
           <div class="comment-reply-info">
@@ -36,10 +35,8 @@
               </span>
             </div>
             <div class="comment-textarea">
-              <el-input class="comment-textarea-content" type="textarea" v-model="formData.content"
-                :disabled="!$store.getters.token"></el-input>
-              <button :class="$store.getters.token ? 'comment-publish-b' : 'comment-publish-a'"
-                @click="handleData()">发表评论</button>
+              <el-input class="comment-textarea-content" type="textarea" v-model="formData.content" :disabled="!$store.getters.token"></el-input>
+              <button :class="$store.getters.token ? 'comment-publish-b' : 'comment-publish-a'" @click="handleData()">发表评论</button>
             </div>
           </div>
         </el-col>
@@ -77,7 +74,12 @@ export default {
     // 处理点赞或返回,type为1表示赞正,0表示反对
     handleVote (type, item) {
       if (this.$store.getters.token) {
-        handleVote({ id: item.commentId, userId: this.$store.getters.user.userId, type: type }).then();
+        handleVote({ id: item.commentId, userId: this.$store.getters.user.userId, type: type }).then(resp=>{
+          if (resp.code === 1) {
+            item.approve = resp.data.approve;
+            item.against = resp.data.against;
+          }
+        });
       } else {
         this.$message("请先登录");
       }
