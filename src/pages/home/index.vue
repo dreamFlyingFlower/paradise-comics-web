@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 番剧推荐 -->
-    <el-row :gutter="12" class="index-recommend" style="margin:50px auto;width: 80%;" v-for="recommend in recommends" :key="recommend.labelKey">
+    <el-row :gutter="12" class="index-recommend" style="margin:50px auto;width: 75%;" v-for="recommend in recommends" :key="recommend.labelKey">
       <h3 v-text="recommend.labelName"></h3>
       <el-col :span="4" v-for="item in recommend[recommend.labelKey]" :key="item.id" style="text-align: center;margin-bottom: 10px;">
         <el-card :body-style="{ padding: '0px',margin:'auto' }">
