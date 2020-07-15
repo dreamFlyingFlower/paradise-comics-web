@@ -4,12 +4,12 @@
     <img v-if="showCarouset" class="header-bgimg" :src="carouset ?  carouset.src : ''" alt="loading" />
 
     <!-- 头部菜单 -->
-    <el-row type="flex" class="header-navbar">
+    <el-row class="header-navbar" type="flex">
       <!-- 用户菜单 -->
-      <el-col style="min-width: 400px">
+      <el-col style="min-width: 600px">
         <el-menu :default-active="'0'" mode="horizontal" style="display: inline-block" @select="handlerSelect">
           <el-menu-item index="0" style="color:#f36c60; font-size:28px;"><a href="/">动漫百科</a></el-menu-item>
-          <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a>
+          <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">主站</a>
           </el-menu-item>
           <el-menu-item v-for="item in userMenus" :index="item.menuId + ''" :key="item.menuId">
             <router-link :to="{ path: item.menuPath }" v-text="item.menuName" />
@@ -25,7 +25,7 @@
       </el-col>
 
       <!-- 用户信息 -->
-      <el-col style="margin: auto;min-width: 400px;" class="navbar-user">
+      <el-col style="margin: auto;min-width:200px;" class="navbar-user">
         <template v-if="!$store.getters.user.token">
           <el-dropdown class="navbar-login">
             <span class="el-dropdown-link">
@@ -52,15 +52,24 @@
               <el-dropdown-item>
                 <router-link :to="{ path: '/detail' }">个人中心</router-link>
               </el-dropdown-item>
-              <!-- <el-dropdown-item>
-                <router-link :to="{ path: '/userinfo' }">修改资料</router-link>
-              </el-dropdown-item> -->
               <el-dropdown-item>
                 <span style="display:block;" @click="logout">退出登录</span>
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </template>
+      </el-col>
+    </el-row>
+
+    <el-row style="position: relative;text-align: center;">
+      <el-col style="min-width: 400px">
+        <el-menu :default-active="'0'" mode="horizontal" style="display: inline-block;" @select="handlerSelect">
+          <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a>
+          </el-menu-item>
+          <el-menu-item v-for="item in userBottomMenus" :index="item.menuId + ''" :key="item.menuId">
+            <router-link :to="{ path: item.menuPath }" v-text="item.menuName" />
+          </el-menu-item>
+        </el-menu>
       </el-col>
     </el-row>
   </div>
@@ -74,22 +83,29 @@ import cookie from "@utils/cookie";
 export default {
   name: "navbar",
   props: ["showCarouset", "checkLogin"],
-  data() {
+  data () {
     return {
-      carouset: "",     // 首页大图
-      userMenus: [],  // 菜单类型
-      searchKey: ""   // 搜索关键字
+      // 首页大图
+      carouset: "",
+      // 用户大图顶部菜单
+      userMenus: [],
+      // 用户大图底部菜单
+      userBottomMenus: [],
+      // 搜索关键字
+      searchKey: ""
     };
   },
-  created() {
+  created () {
     this.getCarousets();
     this.checkUserLogin();
     this.getUserMenus();
+    this.getUserBottomMenus();
   },
   methods: {
-    handlerSelect(key, keyPath) { },
+    handlerSelect (key, keyPath) {
+    },
     // 获得首页大图
-    getCarousets() {
+    getCarousets () {
       if (!this.showCarouset) {
         return;
       }
@@ -98,19 +114,25 @@ export default {
       });
     },
     // 检查页面跳转是否需要登录
-    checkUserLogin() {
+    checkUserLogin () {
       if (this.checkLogin && !this.$store.getters.token) {
-        this.$router.push("/")
+        this.$router.push("/");
       }
     },
     // 获得用户菜单
-    getUserMenus() {
+    getUserMenus () {
       getUserMenus().then(resp => {
         this.userMenus = resp.data;
       });
     },
+    // 获得用户大图底部菜单
+    getUserBottomMenus () {
+      getUserMenus(2).then(resp => {
+        this.userBottomMenus = resp.data;
+      })
+    },
     // 全局搜索,搜索关键词,每次点击时,即使关键字没有变也要重新查
-    search() {
+    search () {
       this.$store.commit("SEARCH_KEY", this.searchKey);
       this.$store.commit("SEARCH_STATE", !this.$store.getters.searchState);
       if (this.$route.path !== "/comic/list") {
@@ -118,7 +140,7 @@ export default {
       }
     },
     // 退出登录
-    logout() {
+    logout () {
       user.logout(this.$store.getters.user.token);
       cookie.removeUser();
       cookie.removeToken();

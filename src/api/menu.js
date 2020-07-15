@@ -19,6 +19,6 @@ function getSelfChildren(menuId) {
  * 获得用户菜单
  * @returns {*}
  */
-function getUserMenus() {
-  return service.get("menu/getUserMenus");
+function getUserMenus(type) {
+  return service.get("menu/getUserMenus",{type:type});
 }
