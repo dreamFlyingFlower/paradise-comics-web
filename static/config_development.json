@@ -1,4 +1,8 @@
 {
+  "API_ROOT": "http://localhost:12350/",
+  "LOCAL_URL": "http://localhost",
+  "LOCAL_PORT": 12346,
+  "TIME_OUT": 60000,
   "ROOT_MENU_ID": 0,
   "ROOT_DIC_ID": 0,
   "ROOT_CATEGORY_ID": 0,

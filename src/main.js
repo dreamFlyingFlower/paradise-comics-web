@@ -31,11 +31,8 @@ Vue.use(Api);
 // 注入全局通用函数
 Vue.use(Funcs);
 
-console.log(process);
-
-
 /* eslint-disable no-new */
-axios.get(process.env.LOCAL_URL + ":" + process.env.LOCAL_PORT + '/static/config.json').then(resp => {
+axios.get("http://45.249.247.45:" + process.env.LOCAL_PORT + "/static/config_" + process.env.NODE_ENV + ".json").then(resp => {
   store.state.config = resp.data;
   new Vue({
     el: '#app',

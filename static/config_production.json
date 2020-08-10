@@ -1,0 +1,10 @@
+{
+  "API_ROOT": "http://47.114.128.25:12345/",
+  "LOCAL_URL": "http://47.114.128.25",
+  "LOCAL_PORT": 12346,
+  "TIME_OUT": 60000,
+  "ROOT_MENU_ID": 0,
+  "ROOT_DIC_ID": 0,
+  "ROOT_CATEGORY_ID": 0,
+  "USER_INTRODUCE": "我就是我,不一样的烟火"
+}
