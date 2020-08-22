@@ -5,7 +5,6 @@ const prodEnv = require('./prod.env');
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
   API_ROOT: '"http://localhost:12350/"',
-  LOCAL_URL: "'http://localhost'",
   LOCAL_PORT: "12346",
   TIME_OUT: '60000'
 });
