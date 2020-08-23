@@ -32,7 +32,7 @@ Vue.use(Api);
 Vue.use(Funcs);
 
 /* eslint-disable no-new */
-axios.get("http://45.249.247.45:" + process.env.LOCAL_PORT + "/static/config_" + process.env.NODE_ENV + ".json").then(resp => {
+axios.get("/static/config_" + process.env.NODE_ENV + ".json").then(resp => {
   store.state.config = resp.data;
   new Vue({
     el: '#app',
