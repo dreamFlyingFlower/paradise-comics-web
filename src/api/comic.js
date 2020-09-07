@@ -2,17 +2,8 @@
 import service from '../utils/service';
 
 export {
-  getRecommends,
   getAll,
   getByCategoryIds
-}
-
-/**
- * 获得首页推荐动漫
- * @returns {Promise | Promise<unknown>}
- */
-function getRecommends() {
-  return service.get(`comic/getRecommends`);
 }
 
 /**
@@ -26,7 +17,7 @@ function getAll(param) {
 }
 
 /**
- * 
+ *
  * @param {String} ids 动漫分类标识组成的字符串,多个用逗号隔开
  * @param {Integer} pageIndex 分页参数,从第几页开始
  * @param {Integer} pageSize 分页参数,每页展示数据条数

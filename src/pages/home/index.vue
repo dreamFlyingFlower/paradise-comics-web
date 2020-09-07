@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { getRecommends } from "../../api/comic";
+import { getRecommends } from "../../api/recommend";
 
 export default {
   name: "index",
@@ -37,7 +37,7 @@ export default {
   methods: {
     // 获得番剧推荐
     getRecommends() {
-      getRecommends().then(resp => {
+      getRecommends("HOME_RECOMMEND").then(resp => {
         this.recommends = resp.data;
       });
     }

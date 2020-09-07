@@ -20,15 +20,15 @@
     <div class="footer-link-b">
       <ul>
         <li>
-          <img src="/static/images/links/weixin.jpg" alt="loading" />
+          <img src="/web/static/images/links/weixin.jpg" alt="loading" />
           <span>官方微信</span>
         </li>
         <li>
-          <img src="/static/images/links/gongzonghao.jpg" alt="loading" />
+          <img src="/web/static/images/links/gongzonghao.jpg" alt="loading" />
           <span>公众号</span>
         </li>
         <li>
-          <img src="/static/images/links/qq.jpg" alt="loading" />
+          <img src="/web/static/images/links/qq.jpg" alt="loading" />
           <span>QQ群</span>
         </li>
       </ul>
