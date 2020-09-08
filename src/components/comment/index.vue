@@ -3,7 +3,7 @@
     <el-row style="margin-left:0;margin-right:0;">
       <el-col v-for="item in comments" :key="item.commentId">
         <img
-          :src="item.avatar ? item.avatar : item.create.sex ? (item.create.sex === 2 ? 'static/images/girl.jpg' : 'static/images/boy.jpg') : 'static/images/boy.jpg'"
+          :src="item.avatar ? item.avatar : item.create.sex ? (item.create.sex === 2 ? '/web/static/images/girl.jpg' : '/web/static/images/boy.jpg') : '/web/static/images/boy.jpg'"
           alt="loading"
           :class="children ? 'comment-img-children' : 'comment-img'"
         />
@@ -25,7 +25,7 @@
         </div>
         <child v-if="item.children && item.children.length > 0" :comments="item.children" :parent="item" @showParentReply="showParentReply"></child>
         <el-col v-if="showReply === item.commentId" class="comment-reply-content">
-          <img src="static/images/boy.jpg" alt="loading" class="comment-img-children" />
+          <img src="/web/static/images/boy.jpg" alt="loading" class="comment-img-children" />
           <div class="comment-reply-info">
             <div class="comment-reply-cover" v-if="!$store.getters.token">
               <span>
@@ -46,88 +46,89 @@
 </template>
 
 <script>
-import { handleVote } from "@api/comment";
-import child from "./child.vue";
-export default {
-  name: "comment",
-  props: ["comments", "children", "arguded"],
-  data () {
-    return {
-      // 当前点击回复数据
-      need: {},
-      // 当前显示评论的编号
-      showReply: 0,
-      formData: {
-        arguedId: null,
-        type: 0,
-        creater: this.$store.getters.user.userId,
-        subject: null,
-        content: null,
-        replyer: null
-      }
-    };
-  },
-  components: {
-    child
-  },
-  methods: {
-    // 处理点赞或返回,type为1表示赞正,0表示反对
-    handleVote (type, item) {
-      if (this.$store.getters.token) {
-        handleVote({ id: item.commentId, userId: this.$store.getters.user.userId, type: type }).then(resp=>{
-          if (resp.code === 1) {
-            item.approve = resp.data.approve;
-            item.against = resp.data.against;
-          }
-        });
-      } else {
-        this.$message("请先登录");
-      }
+  import {handleVote} from "@api/comment";
+  import child from "./child.vue";
+
+  export default {
+    name: "comment",
+    props: ["comments", "children", "arguded"],
+    data() {
+      return {
+        // 当前点击回复数据
+        need: {},
+        // 当前显示评论的编号
+        showReply: 0,
+        formData: {
+          arguedId: null,
+          type: 0,
+          creater: this.$store.getters.user.userId,
+          subject: null,
+          content: null,
+          replyer: null
+        }
+      };
     },
-    // 处理子级数据点击回复显示
-    showParentReply (datas) {
-      let parent = datas.parent;
-      let child = datas.child;
-      if (this.showReply === parent.commentId) {
-        this.showReply = 0;
-        this.formData.replyer = null;
-      } else {
-        debugger
-        this.showReply = parent.commentId;
-        this.formData.arguedId = parent.commentId;
-        this.formData.replyer = child.creater;
-      }
+    components: {
+      child
     },
-    // 点击回复
-    reply (comment) {
-      if (this.showReply === comment.commentId) {
-        this.showReply = 0;
-      } else {
-        this.showReply = comment.commentId;
-        this.formData.arguedId = comment.commentId;
-      }
-    },
-    // 提交评论
-    handleData () {
-      if (this.formData.content.trim()) {
-        this.formData.creater = this.$store.getters.user.userId;
-        this.formData.subject = this.arguded.name;
-        this.$create("comment", this.formData, true).then(resp => {
-          if (resp.code === 1) {
-            this.$emit("freshData");
-            this.showReply = 0;
-            this.formData.subject = "";
-            this.formData.content = "";
-          }
-        });
-      } else {
-        this.$message("评论内容为空");
+    methods: {
+      // 处理点赞或返回,type为1表示赞正,0表示反对
+      handleVote(type, item) {
+        if (this.$store.getters.token) {
+          handleVote({id: item.commentId, userId: this.$store.getters.user.userId, type: type}).then(resp => {
+            if (resp.code === 1) {
+              item.approve = resp.data.approve;
+              item.against = resp.data.against;
+            }
+          });
+        } else {
+          this.$message("请先登录");
+        }
+      },
+      // 处理子级数据点击回复显示
+      showParentReply(datas) {
+        let parent = datas.parent;
+        let child = datas.child;
+        if (this.showReply === parent.commentId) {
+          this.showReply = 0;
+          this.formData.replyer = null;
+        } else {
+          debugger
+          this.showReply = parent.commentId;
+          this.formData.arguedId = parent.commentId;
+          this.formData.replyer = child.creater;
+        }
+      },
+      // 点击回复
+      reply(comment) {
+        if (this.showReply === comment.commentId) {
+          this.showReply = 0;
+        } else {
+          this.showReply = comment.commentId;
+          this.formData.arguedId = comment.commentId;
+        }
+      },
+      // 提交评论
+      handleData() {
+        if (this.formData.content.trim()) {
+          this.formData.creater = this.$store.getters.user.userId;
+          this.formData.subject = this.arguded.name;
+          this.$create("comment", this.formData, true).then(resp => {
+            if (resp.code === 1) {
+              this.$emit("freshData");
+              this.showReply = 0;
+              this.formData.subject = "";
+              this.formData.content = "";
+            }
+          });
+        } else {
+          this.$message("评论内容为空");
+        }
       }
     }
-  }
-};
+  };
 </script>
 
 <style lang="scss">
-@import "./_index.scss";
+  @import "./_index.scss";
 </style>

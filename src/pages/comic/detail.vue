@@ -60,7 +60,7 @@
         <h2 class="recommend-title">评论</h2>
         <el-row>
           <el-col class="comment-reply-content">
-            <img src="static/images/boy.jpg" alt="loading" class="comment-img-children" />
+            <img src="/web/static/images/boy.jpg" alt="loading" class="comment-img-children" />
             <div class="comment-reply-info" style="width: 1150px;">
               <div class="comment-reply-cover" v-if="!$store.getters.token">
                 <span>

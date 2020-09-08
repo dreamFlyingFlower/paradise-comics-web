@@ -2,7 +2,7 @@
   <div style="margin-left:90px;">
     <el-col v-for="(item, index) in comments" :key="index" v-if="index < count">
       <img
-        :src="item.avatar ? item.avatar : item.create.sex ? (item.create.sex === 2 ? 'static/images/girl.jpg' : 'static/images/boy.jpg') : 'static/images/boy.jpg'"
+        :src="item.avatar ? item.avatar : item.create.sex ? (item.create.sex === 2 ? '/web/static/images/girl.jpg' : '/web/static/images/boy.jpg') : '/web/static/images/boy.jpg'"
         alt="loading"
         class="comment-img-children"
       />

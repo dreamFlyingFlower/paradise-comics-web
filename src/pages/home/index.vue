@@ -3,9 +3,9 @@
     <!-- 番剧推荐 -->
     <el-row :gutter="12" class="index-recommend" style="margin:50px auto;width: 60%;" v-for="recommend in recommends" :key="recommend.labelKey">
       <div><h3 v-text="recommend.labelName"></h3><h4>更多...</h4></div>
-      <el-col :span="6" v-for="item in recommend[recommend.labelKey]" :key="item.id" style="text-align: center;margin-bottom: 10px;">
+      <el-col :span="6" v-for="item in recommend[recommend.labelKey]" :key="item.comicId" style="text-align: center;margin-bottom: 10px;">
         <el-card :body-style="{ padding: '0px',margin:'auto' }">
-          <router-link target="_blank" :to="{ name: 'comic', params: { id: item.id } }">
+          <router-link target="_blank" :to="{ name: 'comic', params: { id: item.comicId } }">
             <img :src="item.cover" :alt="item.name" class="image-index" />
             <div class="name">
               <span class="font-ellipsis" :title="item.name" v-text="item.name"></span>
