@@ -62,6 +62,7 @@
 </template>
 
 <script>
+  // 收藏 FIXME
 export default {
   name: "detail",
   data() {

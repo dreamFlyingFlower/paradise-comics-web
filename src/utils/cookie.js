@@ -15,7 +15,7 @@ export default {
   setMenus,
   removeMenus
 }
-const prefix = 'paradise_comics_';// 通用cookie前缀
+const prefix = 'paradise_comics_web_';// 通用cookie前缀
 const userKey = 'USER';// 通用user存储cookie的key
 const menusKey = 'MENUS';// 通用menus存储cookie的key
 const tokenKey = 'Admin-Token';// token存储cookie的key

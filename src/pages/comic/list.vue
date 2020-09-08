@@ -60,12 +60,39 @@ export default {
     pagination
   },
   computed: {
-    ...mapGetters(["searchKey", "searchState"])
+    ...mapGetters(["searchKey", "searchState","pageIndex", "pageSize", "total"])
   },
   watch: {
     searchState: function() {
       this.search();
-    }
+    },
+    'pageIndex': function (val) {
+      this.$store.commit('PAGE_INDEX', val);
+      if (this.pageIndexChange) {
+        this.pageIndexChange = false;
+        return false;
+      }
+      this.$nextTick(() => {
+        this.search();
+      });
+    },
+    'pageSize': function (val) {
+      this.$store.commit('PAGE_SIZE', val);
+      this.pageIndexChange = true;
+      this.$store.commit('PAGE_INDEX', 1);
+      this.$nextTick(() => {
+        this.search();
+      });
+    },
+    'total': function (val) {
+      let quotient = val / this.pageSize;
+      let flag = val % this.pageSize === 0;
+      if (this.pageIndex > 1) {
+        if (flag && (quotient < this.pageIndex)) {
+          this.$store.commit('PAGE_INDEX', this.pageIndex - 1);
+        }
+      }
+    },
   },
   created() {
     this.search();
@@ -86,5 +113,5 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "./_index.scss";
+@import "_index.scss";
 </style>

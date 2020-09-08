@@ -1,20 +1,20 @@
 import cookie from '../utils/cookie'
 
 export default {
-  user: cookie.getUser() ? cookie.getUser() : {},
-  token: cookie.getToken() ? cookie.getToken() : null,
-  avatar: cookie.getUser() ? cookie.getUser().avatar : null,
-  roles: cookie.getUser() && Object.keys(cookie.getUser()).length > 0 ? cookie.getUser().roles : [],
+  user: {},
+  token: null,
+  avatar: null,
+  roles: [],
   routes: [],
   buttons: [],
   // 前端配置文件
-  config:{},
+  config: {},
   // 是否刷新当前页面
   fresh: false,
   // 若当前页面中有树形结构,是否刷新
   freshTree: false,
   // 全局搜索key
-  searchKey:null,
+  searchKey: null,
   // 全局搜索状态改变
   searchState: false,
   pageIndex: 1,

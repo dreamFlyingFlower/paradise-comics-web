@@ -10,8 +10,7 @@
     <el-form label-width="120px" :model="formData" :rules="rules" ref="formData">
       <el-row>
         <el-col :span="12">
-          <el-form-item label="用户名:" prop="username"><input v-model="formData.username" style="width:80%;" />
-          </el-form-item>
+          <el-form-item label="用户名:" prop="username"><input v-model="formData.username" style="width:80%;" /></el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="昵称:"><input v-model="formData.nickname" style="width:80%;" /></el-form-item>
@@ -28,7 +27,7 @@
         <el-col :span="12">
           <el-form-item label="性别:">
             <el-select v-model="formData.sex" style="width:80%;">
-              <el-option v-for="item in sexs" :key="item.dicId" :value="item.dicVal" :label="item.dicName"></el-option>
+              <el-option v-for="item in sexs" :key="item.dictId" :value="item.dictVal" :label="item.dictName"></el-option>
             </el-select>
           </el-form-item>
         </el-col>
@@ -36,22 +35,20 @@
           <el-form-item label="真实姓名:"><input v-model="formData.userinfo.realname" style="width:80%;" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="年龄:"><input v-model="formData.userinfo.age" style="width:80%;" /></el-form-item>
-        </el-col>
-        <el-col :span="12">
           <el-form-item label="住址:"><input v-model="formData.userinfo.address" style="width:80%;" /></el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="生日:">
-            <el-date-picker v-model="formData.userinfo.birthday" type="date" style="width:80%;" format="yyyy年MM月dd日"
-              value-format="yyyy-MM-dd"></el-date-picker>
+          <el-form-item label="出生日期:">
+            <el-date-picker v-model="formData.userinfo.birthday" type="date" style="width:80%;" format="yyyy年MM月dd日" value-format="yyyy-MM-dd"></el-date-picker>
           </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="年龄:"><input v-model="formData.userinfo.age" style="width:80%;" /></el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="教育程度:">
             <el-select v-model="formData.userinfo.education" style="width:80%;">
-              <el-option v-for="item in educations" :key="item.dicId" :value="item.dicId" :label="item.dicName">
-              </el-option>
+              <el-option v-for="item in educations" :key="item.dictId" :value="item.dictId" :label="item.dictName"></el-option>
             </el-select>
           </el-form-item>
         </el-col>
@@ -69,22 +66,20 @@
         </el-col>
       </el-row>
     </el-form>
-    <div class="user-detail-confirm">
-      <el-button :type="buttonType" @click="handleData">修改</el-button>
-    </div>
+    <div class="user-detail-confirm"><el-button :type="buttonType" @click="handleData">修改</el-button></div>
   </div>
 </template>
 
 <script>
-import { getSelfChildrenCode } from "@api/dic";
+import { getSelfChildrenCode } from '@api/dict';
 import cookie from '@utils/cookie';
 
 export default {
-  name: "detail",
+  name: 'detail',
   data() {
     return {
       // 图片上传地址
-      uploadUrl: process.env.API_ROOT + "user/uploadAvatar/"+this.$store.getters.user.userId,
+      uploadUrl: process.env.API_ROOT + 'user/uploadAvatar/' + this.$store.getters.user.userId,
       // 用户信息
       formData: {
         userId: this.$store.getters.user.userId,
@@ -109,7 +104,7 @@ export default {
         }
       },
       rules: {
-        username: [{ required: true, validator: this.validUsername, trigger: "blur" }, { max: 12, message: "最大长度不得超过12位", trigger: "blur" }]
+        username: [{ required: true, validator: this.validUsername, trigger: 'blur' }, { max: 12, message: '最大长度不得超过12位', trigger: 'blur' }]
       },
       // 性别字典
       sexs: [],
@@ -120,8 +115,18 @@ export default {
       // 不可无限制提交修改,5秒才可以修改一次
       timeout: 5,
       // 按钮类型
-      buttonType: "primary"
+      buttonType: 'primary'
     };
+  },
+  watch:{
+    // 生日的修改改变年龄
+    "formData.userinfo.birthday":function(newVal,oldVal){
+      if(!newVal){
+        this.formData.userinfo.age = 0;
+      }else if(newVal !== oldVal){
+        this.formData.userinfo.age = new Date().getFullYear() - new Date(newVal).getFullYear();
+      }
+    }
   },
   created() {
     this.getSexs();
@@ -131,13 +136,13 @@ export default {
   methods: {
     // 获得性别字典
     getSexs() {
-      getSelfChildrenCode("SEX", true).then(resp => {
+      getSelfChildrenCode('SEX', true).then(resp => {
         this.sexs = resp.data;
       });
     },
     // 获得教育程度字典
     getEducation() {
-      getSelfChildrenCode("EDUCATION", true).then(resp => {
+      getSelfChildrenCode('EDUCATION', true).then(resp => {
         this.educations = resp.data;
       });
     },
@@ -147,32 +152,32 @@ export default {
         this.avatarUrl = this.$store.getters.user.avatar;
       } else {
         if (this.$store.getters.user.sex === 2) {
-          this.avatarUrl = "static/images/girl.jpg";
+          this.avatarUrl = 'web/static/images/girl.jpg';
         } else {
-          this.avatarUrl = "static/images/boy.jpg";
+          this.avatarUrl = 'web/static/images/boy.jpg';
         }
       }
     },
     // 用户名校验
     validUsername(rule, value, callback) {
       if (!this.$exist(value)) {
-        callback(new Error("请输入用户名"));
+        callback(new Error('请输入用户名'));
         return;
       }
       if (this.formData.oriUsername === this.formData.username) {
         callback();
         return;
       }
-      this.$hasValue("user", { username: value }).then(resp => {
+      this.$hasValue('user', { username: value }).then(resp => {
         if (resp.data === 1) {
-          callback(new Error("用户名已被使用,请重新输入"));
+          callback(new Error('用户名已被使用,请重新输入'));
         } else {
           callback();
         }
       });
     },
     // 用户头像上传成功事件,修改内存和cookie中的avatar
-    handleSuccess(response,file) {
+    handleSuccess(response, file) {
       this.avatarUrl = URL.createObjectURL(file.raw);
       this.$store.getters.user.avatar = response.data;
       cookie.setUser(this.$store.getters.user);
@@ -188,35 +193,38 @@ export default {
     // 信息修改
     handleData() {
       if (this.timeout < 5) {
-        this.$message("不可重复提交,请稍等");
+        this.$message('不可重复提交,请稍等');
         return;
       }
       this.$refs.formData.validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$edit("user", this.formData, true).then(resp => {
-            if (resp.code === 1) {
-              this.$message.success("修改成功,");
-              // 修改内存和cookie中的用户信息
-              this.$store.commit("USER", this.formData);
-              cookie.setUser(this.formData);
+          this.$edit('user', this.formData, true).then(
+            resp => {
+              if (resp.code === 1) {
+                this.$message.success('修改成功,');
+                // 修改内存和cookie中的用户信息
+                this.$store.commit('USER', this.formData);
+                cookie.setUser(this.formData);
+                this.loading = false;
+                let that = this;
+                let interval = window.setInterval(function() {
+                  if (that.timeout <= 0) {
+                    that.timeout = 5;
+                    that.buttonType = 'primary';
+                    window.clearInterval(interval);
+                    return;
+                  }
+                  that.buttonType = 'info';
+                  that.timeout--;
+                }, 1000);
+              }
+            },
+            () => {
               this.loading = false;
-              let that = this;
-              let interval = window.setInterval(function () {
-                if (that.timeout <= 0) {
-                  that.timeout = 5;
-                  that.buttonType = "primary";
-                  window.clearInterval(interval);
-                  return;
-                }
-                that.buttonType = "info";
-                that.timeout--;
-              }, 1000);
+              this.$message(resp.msg);
             }
-          }, () => {
-            this.loading = false;
-            this.$message(resp.msg);
-          });
+          );
         } else {
           this.loading = false;
           return false;
@@ -228,5 +236,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/css/user.scss";
+@import '../../assets/css/user.scss';
 </style>

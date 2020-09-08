@@ -19,17 +19,9 @@
     </div>
     <div class="footer-link-b">
       <ul>
-        <li>
-          <img src="/web/static/images/links/weixin.jpg" alt="loading" />
-          <span>官方微信</span>
-        </li>
-        <li>
-          <img src="/web/static/images/links/gongzonghao.jpg" alt="loading" />
-          <span>公众号</span>
-        </li>
-        <li>
-          <img src="/web/static/images/links/qq.jpg" alt="loading" />
-          <span>QQ群</span>
+        <li v-for="item in contacts" :key="item.contactId">
+          <img :src="item.contactWay" alt="loading" />
+          <span v-text="item.contactName"></span>
         </li>
       </ul>
     </div>
@@ -38,21 +30,30 @@
 
 <script>
 export default {
-  name: "link-footer",
+  name: 'link-footer',
   data() {
     return {
-      API_ROOT: process.env.API_ROOT,
-      friendLinks: []
+      // 友链
+      friendLinks: [],
+      // 二维码联系方式
+      contacts: []
     };
   },
   created() {
     this.getFriendLinks();
+    this.getContacts();
   },
   methods: {
     // 获得所有的友情链接
     getFriendLinks() {
-      this.$getEntitys("friendLink").then(resp => {
+      this.$getEntitys('friendLink').then(resp => {
         this.friendLinks = resp.data;
+      });
+    },
+    // 获得联系方式的二维码
+    getContacts() {
+      this.$getEntitys('contact', { type: 2 }).then(resp => {
+        this.contacts = resp.data;
       });
     }
   }
@@ -60,5 +61,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./index";
+@import './index';
 </style>

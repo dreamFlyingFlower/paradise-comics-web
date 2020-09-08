@@ -2,10 +2,11 @@
 import cookie from "../utils/cookie";
 
 export default {
-  user: state => state.user,
-  token: state => state.token,
+  user: state => state.user && Object.keys(state.user).length > 0 ? state.user : cookie.getUser(),
+  token: state => state.token ? state.token : cookie.getToken(),
   avatar: state => state.avatar,
-  roles: state => state.user,
+  roles: state => state.user && Object.keys(state.user).length > 0 ? state.user.roles
+      : cookie.getUser().roles,
   routes: state => state.routes,
   buttons: state => state.buttons,
   config: state => state.config,

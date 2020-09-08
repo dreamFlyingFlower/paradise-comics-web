@@ -124,7 +124,7 @@ li {
 .app-main {
   background: url(/static/images/common.png) no-repeat;
   background-size: cover;
-  min-height: calc(100vh - 350px);
+  min-height: calc(100vh - 415px);
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -170,10 +170,11 @@ li {
 .footer-link-b {
   float: right;
   width: 30%;
-  position: relative;
+  padding-top: 20px;
 
   li {
     display: inline-block;
+    margin: 0 5px;
     width: 30%;
     text-align: center;
 
@@ -200,11 +201,17 @@ li {
   margin: 50px auto;
 
   h3 {
+    display: inline-block;
     font-size: 24px;
     color: #f36c60;
     font-weight: bold;
     margin-bottom: 10px;
     margin-left: 6px;
+  }
+  h4 {
+    float: right;
+    padding-top: 10px;
+    padding-right: 10px;
   }
   .name {
     width: 100%;

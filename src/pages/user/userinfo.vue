@@ -67,7 +67,7 @@
 
 <script>
   import mixinEdit from "@mixin/mixinEdit";
-  import {getSelfChildrenCode} from '@api/dic';
+  import {getSelfChildrenCode} from '@api/dict';
   import Crypto from "@utils/crypto";
   import upload from "./upload";
 
@@ -135,9 +135,9 @@
             + avatarName.substring(avatarName.indexOf("_") + 1, avatarName.lastIndexOf(".")) + '/' + avatarName;
         } else {
           if (this.$store.getters.user.sex === '女') {
-            this.userAvatarSrc = 'static/images/girl.jpg';
+            this.userAvatarSrc = 'web/static/images/girl.jpg';
           } else {
-            this.userAvatarSrc = 'static/images/boy.jpg';
+            this.userAvatarSrc = 'web/static/images/boy.jpg';
           }
         }
       },

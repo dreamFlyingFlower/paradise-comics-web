@@ -26,7 +26,7 @@
 
       <!-- 用户信息 -->
       <el-col style="margin: auto;min-width:200px;" class="navbar-user">
-        <template v-if="!$store.getters.user.token">
+        <template v-if="!$store.getters.token">
           <el-dropdown class="navbar-login">
             <span class="el-dropdown-link">
               登录/注册
@@ -62,7 +62,7 @@
     </el-row>
 
     <el-row style="position: relative;text-align: center;">
-      <el-col style="min-width: 400px">
+      <el-col style="min-width: 400px;height: 65px;">
         <el-menu :default-active="'0'" mode="horizontal" style="display: inline-block;" @select="handlerSelect">
           <el-menu-item index="'1'" style="border-bottom:1px solid #f36c60"><a href="/" style="color:#f36c60">首页</a>
           </el-menu-item>
@@ -141,11 +141,12 @@ export default {
     },
     // 退出登录
     logout () {
-      user.logout(this.$store.getters.user.token);
+      user.logout(this.$store.getters.token);
       cookie.removeUser();
       cookie.removeToken();
       this.$store.commit("USER", null);
-      if (this.$route.path !== "/") {
+      this.$store.commit("TOKEN",null);
+      if (this.$route.path !== "/" && this.$route.path !== "/index") {
         this.$router.push("/");
       }
     }
